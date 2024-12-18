@@ -23,9 +23,7 @@
     "development-http": "NODE_ENV=development webpack serve --config webpack.config.ts",
     "build": "rm -rf dist && npm run tsc && NODE_ENV=production webpack --config webpack.config.ts",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "server": "nodemon",
-    "prepare": "husky install"
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx,json,css,scss,md}": [
@@ -41,10 +39,13 @@
     }
   },
   "dependencies": {
+    "@ton/core": "0.59.0",
     "axios": "1.7.7",
+    "buffer": "^6.0.3",
     "express": "4.21.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "votebox_wrappers": "github:VoteBoxIO/wrappers"
   },
   "devDependencies": {
     "@babel/core": "7.22.17",

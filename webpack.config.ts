@@ -5,7 +5,7 @@ import fs from 'fs'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
-import { Configuration, DefinePlugin } from 'webpack'
+import { Configuration, DefinePlugin, ProvidePlugin } from 'webpack'
 import 'webpack-dev-server'
 import { linariaCssLoaderRules, linariaJsLoader } from './webpack/linaria'
 
@@ -41,6 +41,7 @@ const config: Configuration = {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     fallback: {
       url: require.resolve('url/'), // Polyfill for the Node.js 'url' module
+      buffer: require.resolve('buffer/'), // Add Buffer polyfill
     },
   },
   plugins: [
@@ -50,6 +51,10 @@ const config: Configuration = {
       chunkFilename: '[name].styles.css',
     }),
     isDevelopment && new ReactRefreshWebpackPlugin(),
+    // ProvidePlugin for Buffer polyfill
+    new ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'], // Ensures Buffer is globally available
+    }),
     // DefinePlugin to inject environment variables properly into browser code
     new DefinePlugin({
       'process.env': JSON.stringify(process.env), // Inject all process.env variables
