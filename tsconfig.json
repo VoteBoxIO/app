@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "moduleResolution": "node",
+    "esModuleInterop": true, // Enable this flag to allow default imports from CommonJS modules
+    "allowSyntheticDefaultImports": true, // Keep this enabled for flexibility with imports
+    "strict": true,
+    "jsx": "react",
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/global.d.ts",
+    "src/custom.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}

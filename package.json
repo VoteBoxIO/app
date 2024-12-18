@@ -1,0 +1,93 @@
+{
+  "name": "vote-box-io",
+  "version": "1.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:VoteBoxIO/app.git"
+  },
+  "author": "Sergei Stepanenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VoteBoxIO/app/issues"
+  },
+  "homepage": "https://github.com/VoteBoxIO",
+  "description": "",
+  "scripts": {
+    "tsc": "bash -c tsc",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix",
+    "development": "NODE_ENV=development HTTPS=true webpack serve --config webpack.config.ts",
+    "development-http": "NODE_ENV=development webpack serve --config webpack.config.ts",
+    "build": "rm -rf dist && npm run tsc && NODE_ENV=production webpack --config webpack.config.ts",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "server": "nodemon",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx,json,css,scss,md}": [
+      "npm run format"
+    ],
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "npm run tsc"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "axios": "1.7.7",
+    "express": "4.21.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.22.17",
+    "@babel/preset-env": "7.22.10",
+    "@babel/preset-react": "7.22.5",
+    "@babel/preset-typescript": "7.22.5",
+    "@eslint/js": "9.12.0",
+    "@linaria/babel-preset": "5.0.4",
+    "@linaria/core": "6.2.0",
+    "@linaria/react": "6.2.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
+    "@types/cors": "2.8.17",
+    "@types/node": "20.14.9",
+    "@types/react": "18.3.11",
+    "@types/react-dom": "18.2.7",
+    "@types/telegram-web-app": "7.10.1",
+    "@types/webpack-env": "1.18.5",
+    "@typescript-eslint/eslint-plugin": "8.8.1",
+    "@typescript-eslint/parser": "8.8.1",
+    "@wyw-in-js/babel-preset": "0.5.4",
+    "@wyw-in-js/webpack-loader": "0.5.4",
+    "babel-loader": "9.1.3",
+    "cors": "2.8.5",
+    "css-hot-loader": "1.4.4",
+    "css-loader": "7.1.2",
+    "dotenv": "16.4.5",
+    "eslint": "9.12.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "eslint-plugin-react": "7.37.1",
+    "file-loader": "6.2.0",
+    "gh-pages": "6.2.0",
+    "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.0",
+    "lint-staged": "15.2.10",
+    "mini-css-extract-plugin": "2.9.1",
+    "nodemon": "3.1.7",
+    "react-refresh": "0.14.0",
+    "ts-node": "10.9.1",
+    "typescript": "5.2.2",
+    "url": "0.11.4",
+    "webpack": "5.88.2",
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "4.15.1"
+  }
+}
