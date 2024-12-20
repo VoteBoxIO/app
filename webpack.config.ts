@@ -70,19 +70,25 @@ const config: Configuration = {
       overlay: true,
     },
     // ЕСЛИ НУЖНО ЗАПУСТИТЬ ПО HTTPS ДЛЯ TELEGRAM MINI APP
-    ...(httpsMode && {
-      port: 443, // Set the port to 443
-      https: {
-        key: fs.readFileSync(
-          path.resolve(__dirname, '.cert/localhost-key.pem'),
-        ), // Your key path
-        cert: fs.readFileSync(path.resolve(__dirname, '.cert/localhost.pem')), // Your cert path
-      },
-      allowedHosts: 'all', // Allow all hosts, including ngrok
-      headers: {
-        'Access-Control-Allow-Origin': '*', // To allow ngrok access
-      },
-    }),
+    ...(httpsMode
+      ? {
+          port: 443, // Set the port to 443
+          https: {
+            key: fs.readFileSync(
+              path.resolve(__dirname, '.cert/localhost-key.pem'),
+            ), // Your key path
+            cert: fs.readFileSync(
+              path.resolve(__dirname, '.cert/localhost.pem'),
+            ), // Your cert path
+          },
+          allowedHosts: 'all', // Allow all hosts, including ngrok
+          headers: {
+            'Access-Control-Allow-Origin': '*', // To allow ngrok access
+          },
+        }
+      : {
+          port: 8001,
+        }),
   },
 }
 

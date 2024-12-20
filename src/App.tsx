@@ -1,5 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import { IndexPage } from './pages/IndexPage'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { TonConnectUIProvider } from '@tonconnect/ui-react'
 
 export const App: FC = () => {
   useEffect(() => {
@@ -7,7 +9,15 @@ export const App: FC = () => {
     window.Telegram.WebApp.expand()
   }, [])
 
-  return <IndexPage />
-}
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { refetchOnWindowFocus: false } },
+  })
 
-export default App
+  return (
+    <TonConnectUIProvider manifestUrl="/tonconnect-manifest.json">
+      <QueryClientProvider client={queryClient}>
+        <IndexPage />
+      </QueryClientProvider>
+    </TonConnectUIProvider>
+  )
+}
