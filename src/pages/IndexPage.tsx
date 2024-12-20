@@ -30,7 +30,7 @@ export const IndexPage: FC = () => {
       </div>
       <div>
         wallet:{' '}
-        {wallet ? Address.parse(wallet as string).toString() : 'Loading..'}
+        {wallet ? Address.parse(wallet as string).toString() : 'Loading...'}
       </div>
       <div>connected: {String(connected)}</div>
       <TonConnectButtonWrapper>
