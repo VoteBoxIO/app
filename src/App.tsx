@@ -14,7 +14,8 @@ export const App: FC = () => {
   })
 
   return (
-    <TonConnectUIProvider manifestUrl="/tonconnect-manifest.json">
+    // @TODO replace manifestUrl with your own
+    <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/VoteBoxIO/app/refs/heads/main/public/tonconnect-manifest.json">
       <QueryClientProvider client={queryClient}>
         <IndexPage />
       </QueryClientProvider>

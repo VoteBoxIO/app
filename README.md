@@ -1,7 +1,9 @@
 # How to run project in DEV MODE:
 
 ```bash
-npm run development-http
+npm install
+npm run development
+go to http://localhost:8001/
 ```
 
 # How to run project in DEV MODE in Telegram Mini App over HTTPS with Hot Reloading in MacOS
@@ -30,4 +32,12 @@ mkdir -p .cert && mkcert -key-file ./.cert/localhost-key.pem -cert-file ./.cert/
 
 ```bash
 mkcert -install
+```
+
+4. Run the following commands to start the server:
+
+```bash
+npm install
+npm run development-https
+go to https://secure.localhost/
 ```
