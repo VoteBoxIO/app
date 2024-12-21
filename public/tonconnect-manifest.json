@@ -1,5 +1,5 @@
 {
-  "url": "",
+  "url": "https://mydapp.com",
   "name": "Vote Box",
-  "iconUrl": ""
+  "iconUrl": "https://raw.githubusercontent.com/VoteBoxIO/app/refs/heads/main/public/favicon.ico"
 }

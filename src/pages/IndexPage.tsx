@@ -10,6 +10,8 @@ import {
 } from 'votebox_wrappers'
 import { Welcome } from '../components/Welcome'
 import { useTonConnect } from '../hooks/useTonConnect'
+import { useTonClient } from '../hooks/useTonClient'
+import { useWalletBalance } from '../hooks/useWalletBalance'
 
 console.log({
   MasterNftCollectionWrappers,
@@ -20,6 +22,8 @@ console.log({
 
 export const IndexPage: FC = () => {
   const { network, connected, wallet } = useTonConnect()
+  const { client } = useTonClient()
+  const balance = useWalletBalance(client)
 
   return (
     <div>
@@ -32,6 +36,7 @@ export const IndexPage: FC = () => {
         wallet:{' '}
         {wallet ? Address.parse(wallet as string).toString() : 'Loading...'}
       </div>
+      <div>balance: {balance !== null ? balance.toString() : 'N/A'}</div>
       <div>connected: {String(connected)}</div>
       <TonConnectButtonWrapper>
         <TonConnectButton />
