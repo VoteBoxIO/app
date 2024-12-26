@@ -12,22 +12,20 @@ import { Welcome } from '../components/Welcome'
 import { useTonConnect } from '../hooks/useTonConnect'
 import { useTonClient } from '../hooks/useTonClient'
 import { useWalletBalance } from '../hooks/useWalletBalance'
-
-console.log({
-  MasterNftCollectionWrappers,
-  VoteJettonMasterWrappers,
-  VoteJettonWalletWrappers,
-  VotingNftItemWrappers,
-})
+import { useJettonContract } from '../hooks/useJettonContract'
 
 export const IndexPage: FC = () => {
   const { network, connected, wallet } = useTonConnect()
   const { client } = useTonClient()
   const balance = useWalletBalance(client)
+  useJettonContract()
 
   return (
     <div>
       <Welcome />
+      <TonConnectButtonWrapper>
+        <TonConnectButton />
+      </TonConnectButtonWrapper>
       <div>
         network:{' '}
         {network ? (network === CHAIN.MAINNET ? 'mainnet' : 'testnet') : 'N/A'}
@@ -38,9 +36,6 @@ export const IndexPage: FC = () => {
       </div>
       <div>balance: {balance !== null ? balance.toString() : 'N/A'}</div>
       <div>connected: {String(connected)}</div>
-      <TonConnectButtonWrapper>
-        <TonConnectButton />
-      </TonConnectButtonWrapper>
     </div>
   )
 }

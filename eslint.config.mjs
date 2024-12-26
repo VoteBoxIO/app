@@ -31,6 +31,10 @@ export default [
     rules: {
       ...react.configs.recommended.rules,
       'prettier/prettier': 'error', // Enforce Prettier rules
+      'no-unused-vars': [
+        'ignore',
+        { vars: 'all', args: 'after-used', ignoreRestSiblings: true },
+      ],
     },
     settings: {
       react: {

@@ -12,9 +12,13 @@ export function useWalletBalance(client: TonClient | undefined) {
     }
 
     const fetchBalance = async () => {
-      const walletAddress = wallet.toString()
-      const balance = await client.getBalance(Address.parse(walletAddress))
-      setBalance(balance)
+      try {
+        const walletAddress = wallet.toString()
+        const balance = await client.getBalance(Address.parse(walletAddress))
+        setBalance(balance)
+      } catch (error) {
+        throw new Error('Error fetching balance')
+      }
     }
 
     fetchBalance()

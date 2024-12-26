@@ -10,7 +10,6 @@ export function useTonClient() {
   return {
     client: useAsyncInitialize(async () => {
       if (!network) {
-        console.error('Network is not set')
         return
       }
 
