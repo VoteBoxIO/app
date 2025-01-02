@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Address, TonClient } from 'ton'
 import { useTonConnect } from './useTonConnect'
+import { Address, TonClient } from '@ton/ton'
 
 export function useWalletBalance(client: TonClient | undefined) {
   const { wallet } = useTonConnect()

@@ -1,20 +1,14 @@
+import { Address } from '@ton/core'
 import { useEffect, useState } from 'react'
-import { Address, fromNano, OpenedContract, toNano } from 'ton-core'
-import { useAsyncInitialize } from './useAsyncInitialize'
-import { useTonClient } from './useTonClient'
-import { useTonConnect } from './useTonConnect'
-
 import {
   MasterNftCollectionWrappers,
   VoteJettonMasterWrappers,
-  VoteJettonWalletWrappers,
   VotingNftItemWrappers,
 } from 'votebox_wrappers'
-import { VoteJettonWallet } from 'votebox_wrappers/dist/VoteJettonWallet'
+import { useAsyncInitialize } from './useAsyncInitialize'
 import { useContactAddresses } from './useContactAddresses'
-import { Contract } from '@ton/core'
-import { VoteJettonMaster } from 'votebox_wrappers/dist/VoteJettonMaster'
-import { MasterNftCollection } from 'votebox_wrappers/dist/MasterNftCollection'
+import { useTonClient } from './useTonClient'
+import { useTonConnect } from './useTonConnect'
 
 export function useJettonContract() {
   const { client } = useTonClient()
@@ -22,24 +16,47 @@ export function useJettonContract() {
   const [balance, setBalance] = useState<string | null>()
   const contracts = useContactAddresses()
 
-  const nftCollectionOpenedContract = useAsyncInitialize(async () => {
+  const nftCollection = useAsyncInitialize(async () => {
     if (!client || !wallet || !contracts) return
 
-    try {
-      const contract =
-        MasterNftCollectionWrappers.MasterNftCollection.fromAddress(
-          Address.parse(contracts.masterNftCollectionAddress),
-        )
+    const address = Address.parse(contracts.nftCollectionContractAddress)
+    const contract =
+      MasterNftCollectionWrappers.MasterNftCollection.fromAddress(address)
 
-      // @ts-expect-error
-      return client.open(contract) as OpenedContract<MasterNftCollection>
-    } catch (error) {
-      console.error('Error initializing MasterNftCollection:', error)
-      return
-    }
+    return client.open(contract)
   }, [client, wallet])
 
-  if (nftCollectionOpenedContract) {
-    console.info('voteJettonMaster', nftCollectionOpenedContract)
+  const nftItem = useAsyncInitialize(async () => {
+    if (!client || !wallet || !contracts) return
+
+    const address = Address.parse(contracts.nftItemContractAddress)
+    const contract = VotingNftItemWrappers.VotingNftItem.fromAddress(address)
+
+    return client.open(contract)
+  }, [client, wallet])
+
+  const masterJettonContract = useAsyncInitialize(async () => {
+    if (!client || !wallet || !contracts) return
+
+    const address = Address.parse(contracts.jettonContractAddress)
+    const contract =
+      VoteJettonMasterWrappers.VoteJettonMaster.fromAddress(address)
+
+    return client.open(contract)
+  }, [client, wallet])
+
+  const fetchData = async () => {
+    if (!nftCollection || !masterJettonContract || !nftItem) {
+      return
+    }
+
+    // const response = await nftCollection.getGetCollectionData()
+    // const response = await masterJettonContract.getGetJettonData()
+    const response = await nftItem.getGetNftData()
+    console.info(response)
   }
+
+  useEffect(() => {
+    fetchData()
+  }, [nftCollection])
 }
