@@ -1,5 +1,29 @@
 {
   "active-voting": {
     "defaultMessage": "Активные голосования"
+  },
+  "active-voting-subtitle": {
+    "defaultMessage": "Посмотрите доступные опросы"
+  },
+  "create-voting": {
+    "defaultMessage": "Создать голосование"
+  },
+  "create-voting-subtitle": {
+    "defaultMessage": "Запустите опрос и вовлеките аудиторию"
+  },
+  "logo-subtitle": {
+    "defaultMessage": "Монетизируйте ваш контент"
+  },
+  "my-polls": {
+    "defaultMessage": "Мои опросы"
+  },
+  "my-polls-subtitle": {
+    "defaultMessage": "История ваших голосований"
+  },
+  "my-votes": {
+    "defaultMessage": "Мои голоса"
+  },
+  "my-votes-subtitle": {
+    "defaultMessage": "История ваших голосований"
   }
 }

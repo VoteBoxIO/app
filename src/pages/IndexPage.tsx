@@ -27,29 +27,56 @@ export const IndexPage: FC = () => {
               defaultMessage="Активные голосования"
             />
           }
-          subtitle="Посмотрите доступные опросы"
+          subtitle={
+            <FormattedMessage
+              id="active-voting-subtitle"
+              defaultMessage="Посмотрите доступные опросы"
+            />
+          }
         />
         <ActionBlock
           to={myVotingPagePath}
           variant="peach"
           icon={<SvgFolder />}
-          title="Мои голоса"
-          subtitle="История ваших голосований"
+          title={<FormattedMessage id="my-votes" defaultMessage="Мои голоса" />}
+          subtitle={
+            <FormattedMessage
+              id="my-votes-subtitle"
+              defaultMessage="История ваших голосований"
+            />
+          }
         />
         <TwoBlocks>
           <ActionBlock
             to={createVotingPagePath}
             variant="white"
             icon={<SvgPlus />}
-            title="Создать голосование"
-            subtitle="Запустите опрос и вовлеките аудиторию"
+            title={
+              <FormattedMessage
+                id="create-voting"
+                defaultMessage="Создать голосование"
+              />
+            }
+            subtitle={
+              <FormattedMessage
+                id="create-voting-subtitle"
+                defaultMessage="Запустите опрос и вовлеките аудиторию"
+              />
+            }
           />
           <ActionBlock
             to={myPollsPagePath}
             variant="white"
             icon={<SvgPolls />}
-            title="Мои опросы"
-            subtitle="История ваших голосований"
+            title={
+              <FormattedMessage id="my-polls" defaultMessage="Мои опросы" />
+            }
+            subtitle={
+              <FormattedMessage
+                id="my-polls-subtitle"
+                defaultMessage="История ваших голосований"
+              />
+            }
           />
         </TwoBlocks>
       </Block>

@@ -1,5 +1,29 @@
 {
   "active-voting": {
-    "defaultMessage": "Active voting"
+    "defaultMessage": "Active Voting"
+  },
+  "active-voting-subtitle": {
+    "defaultMessage": "View available polls"
+  },
+  "create-voting": {
+    "defaultMessage": "Create Voting"
+  },
+  "create-voting-subtitle": {
+    "defaultMessage": "Launch a poll and engage your audience"
+  },
+  "logo-subtitle": {
+    "defaultMessage": "Monetize your content"
+  },
+  "my-polls": {
+    "defaultMessage": "My Polls"
+  },
+  "my-polls-subtitle": {
+    "defaultMessage": "History of your polls"
+  },
+  "my-votes": {
+    "defaultMessage": "My Votes"
+  },
+  "my-votes-subtitle": {
+    "defaultMessage": "History of your votes"
   }
 }

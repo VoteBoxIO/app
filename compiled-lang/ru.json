@@ -4,5 +4,53 @@
       "type": 0,
       "value": "Активные голосования"
     }
+  ],
+  "active-voting-subtitle": [
+    {
+      "type": 0,
+      "value": "Посмотрите доступные опросы"
+    }
+  ],
+  "create-voting": [
+    {
+      "type": 0,
+      "value": "Создать голосование"
+    }
+  ],
+  "create-voting-subtitle": [
+    {
+      "type": 0,
+      "value": "Запустите опрос и вовлеките аудиторию"
+    }
+  ],
+  "logo-subtitle": [
+    {
+      "type": 0,
+      "value": "Монетизируйте ваш контент"
+    }
+  ],
+  "my-polls": [
+    {
+      "type": 0,
+      "value": "Мои опросы"
+    }
+  ],
+  "my-polls-subtitle": [
+    {
+      "type": 0,
+      "value": "История ваших голосований"
+    }
+  ],
+  "my-votes": [
+    {
+      "type": 0,
+      "value": "Мои голоса"
+    }
+  ],
+  "my-votes-subtitle": [
+    {
+      "type": 0,
+      "value": "История ваших голосований"
+    }
   ]
 }

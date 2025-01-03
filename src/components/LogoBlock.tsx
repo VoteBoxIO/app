@@ -1,5 +1,6 @@
 import { styled } from '@linaria/react'
 import React, { FC } from 'react'
+import { FormattedMessage } from 'react-intl'
 import SvgLogo from '../svgr/Logo'
 import { Typography } from '../ui/Typography'
 
@@ -12,7 +13,10 @@ export const LogoBlock: FC = () => {
           VoteBox
         </Typography>
         <Typography fontSize={12} fontWeight={400}>
-          Монетизируйте ваш контент
+          <FormattedMessage
+            id="logo-subtitle"
+            defaultMessage="Монетизируйте ваш контент"
+          />
         </Typography>
       </Box>
     </LogoContainer>

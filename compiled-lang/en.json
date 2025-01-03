@@ -2,7 +2,55 @@
   "active-voting": [
     {
       "type": 0,
-      "value": "Active voting"
+      "value": "Active Voting"
+    }
+  ],
+  "active-voting-subtitle": [
+    {
+      "type": 0,
+      "value": "View available polls"
+    }
+  ],
+  "create-voting": [
+    {
+      "type": 0,
+      "value": "Create Voting"
+    }
+  ],
+  "create-voting-subtitle": [
+    {
+      "type": 0,
+      "value": "Launch a poll and engage your audience"
+    }
+  ],
+  "logo-subtitle": [
+    {
+      "type": 0,
+      "value": "Monetize your content"
+    }
+  ],
+  "my-polls": [
+    {
+      "type": 0,
+      "value": "My Polls"
+    }
+  ],
+  "my-polls-subtitle": [
+    {
+      "type": 0,
+      "value": "History of your polls"
+    }
+  ],
+  "my-votes": [
+    {
+      "type": 0,
+      "value": "My Votes"
+    }
+  ],
+  "my-votes-subtitle": [
+    {
+      "type": 0,
+      "value": "History of your votes"
     }
   ]
 }
