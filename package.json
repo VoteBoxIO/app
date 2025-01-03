@@ -14,6 +14,7 @@
   "homepage": "https://github.com/VoteBoxIO",
   "description": "",
   "scripts": {
+    "generate-svgr": "npx @svgr/cli --typescript --no-index --no-svgo --out-dir src/svgr -- src/svg",
     "tsc": "bash -c tsc",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
@@ -50,6 +51,7 @@
     "express": "4.21.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-router": "7.1.1",
     "ton": "13.9.0",
     "ton-crypto": "3.2.0",
     "votebox_wrappers": "github:VoteBoxIO/wrappers"

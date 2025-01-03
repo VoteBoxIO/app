@@ -1,49 +1,46 @@
 import { styled } from '@linaria/react'
-import { Address } from '@ton/core'
-import { CHAIN, TonConnectButton } from '@tonconnect/ui-react'
 import React, { FC } from 'react'
-import {
-  MasterNftCollectionWrappers,
-  VoteJettonMasterWrappers,
-  VoteJettonWalletWrappers,
-  VotingNftItemWrappers,
-} from 'votebox_wrappers'
-import { Welcome } from '../components/Welcome'
-import { useTonConnect } from '../hooks/useTonConnect'
-import { useTonClient } from '../hooks/useTonClient'
-import { useWalletBalance } from '../hooks/useWalletBalance'
-import { useJettonContract } from '../hooks/useJettonContract'
+import { LogoBlock } from '../components/LogoBlock'
+import SvgFolder from '../svgr/Folder'
+import SvgVote from '../svgr/Vote'
+import { ActionBlock } from '../ui/ActionBlock'
+import { activeVotingPagePath } from './ActiveVotingPage'
+import { myVotingPagePath } from './MyVotingPage'
 
 export const IndexPage: FC = () => {
-  const { network, connected, wallet } = useTonConnect()
-  const { client } = useTonClient()
-  const balance = useWalletBalance(client)
-  useJettonContract()
-
   return (
-    <div>
-      <Welcome />
-      <TonConnectButtonWrapper>
-        <TonConnectButton />
-      </TonConnectButtonWrapper>
-      <div>
-        network:{' '}
-        {network ? (network === CHAIN.MAINNET ? 'mainnet' : 'testnet') : 'N/A'}
-      </div>
-      <div>
-        wallet:{' '}
-        {wallet ? Address.parse(wallet as string).toString() : 'Loading...'}
-      </div>
-      <div>balance: {balance !== null ? balance.toString() : 'N/A'}</div>
-      <div>connected: {String(connected)}</div>
-    </div>
+    <IndexPageContainer>
+      <LogoBlock />
+      <Block>
+        <ActionBlock
+          to={activeVotingPagePath}
+          variant="purple"
+          icon={<SvgVote />}
+          title="Активные голосования"
+          subtitle="Посмотрите доступные опросы"
+        />
+        <ActionBlock
+          to={myVotingPagePath}
+          variant="peach"
+          icon={<SvgFolder />}
+          title="Мои голоса"
+          subtitle="История ваших голосований"
+        />
+      </Block>
+    </IndexPageContainer>
   )
 }
 
-const TonConnectButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  position: sticky;
-  top: 0;
-  right: 0;
+export const indexPagePath = '/'
+
+const IndexPageContainer = styled.div`
+  display: grid;
+  gap: 16px;
+  grid-gap: 16px;
+`
+
+const Block = styled.div`
+  display: grid;
+  gap: 12px;
+  grid-gap: 12px;
 `

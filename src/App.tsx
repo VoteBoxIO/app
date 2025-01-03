@@ -1,7 +1,17 @@
 import React, { FC, useEffect } from 'react'
-import { IndexPage } from './pages/IndexPage'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { TonConnectUIProvider } from '@tonconnect/ui-react'
+import { BrowserRouter, Route, Routes } from 'react-router'
+import { IndexPage, indexPagePath } from './pages/IndexPage'
+import { MainLayout } from './layout/MainLayout'
+import { SandboxPage, sandboxPagePath } from './pages/SandboxPage'
+import {
+  ActiveVotingPage,
+  activeVotingPagePath,
+} from './pages/ActiveVotingPage'
+import {
+  CreateVotingPage,
+  createVotingPagePath,
+} from './pages/CreateVotingPage'
+import { MyVotingPage, myVotingPagePath } from './pages/MyVotingPage'
 
 export const App: FC = () => {
   useEffect(() => {
@@ -9,16 +19,17 @@ export const App: FC = () => {
     window.Telegram.WebApp.expand()
   }, [])
 
-  const queryClient = new QueryClient({
-    defaultOptions: { queries: { refetchOnWindowFocus: false } },
-  })
-
   return (
-    // @TODO replace manifestUrl with your own
-    <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/VoteBoxIO/app/refs/heads/main/public/tonconnect-manifest.json">
-      <QueryClientProvider client={queryClient}>
-        <IndexPage />
-      </QueryClientProvider>
-    </TonConnectUIProvider>
+    <BrowserRouter>
+      <MainLayout>
+        <Routes>
+          <Route index path={indexPagePath} element={<IndexPage />} />
+          <Route path={activeVotingPagePath} element={<ActiveVotingPage />} />
+          <Route path={myVotingPagePath} element={<MyVotingPage />} />
+          <Route path={createVotingPagePath} element={<CreateVotingPage />} />
+          <Route path={sandboxPagePath} element={<SandboxPage />} />
+        </Routes>
+      </MainLayout>
+    </BrowserRouter>
   )
 }

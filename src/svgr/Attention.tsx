@@ -1,0 +1,35 @@
+import * as React from 'react'
+import type { SVGProps } from 'react'
+const SvgAttention = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M12.2001 19.8667C16.4343 19.8667 19.8668 16.4342 19.8668 12.2C19.8668 7.96581 16.4343 4.53333 12.2001 4.53333C7.96593 4.53333 4.53345 7.96581 4.53345 12.2C4.53345 16.4342 7.96593 19.8667 12.2001 19.8667Z"
+      stroke="#190900"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12.2 9.1333V12.2"
+      stroke="#190900"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12.2 15.2667H12.207"
+      stroke="#190900"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+export default SvgAttention
