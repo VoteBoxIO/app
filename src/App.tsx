@@ -1,8 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import { IndexPage, indexPagePath } from './pages/IndexPage'
 import { MainLayout } from './layout/MainLayout'
-import { SandboxPage, sandboxPagePath } from './pages/SandboxPage'
 import {
   ActiveVotingPage,
   activeVotingPagePath,
@@ -11,7 +9,10 @@ import {
   CreateVotingPage,
   createVotingPagePath,
 } from './pages/CreateVotingPage'
+import { IndexPage, indexPagePath } from './pages/IndexPage'
+import { MyPollsPage, myPollsPagePath } from './pages/MyPollsPage'
 import { MyVotingPage, myVotingPagePath } from './pages/MyVotingPage'
+import { SandboxPage, sandboxPagePath } from './pages/SandboxPage'
 
 export const App: FC = () => {
   useEffect(() => {
@@ -28,6 +29,7 @@ export const App: FC = () => {
           <Route path={myVotingPagePath} element={<MyVotingPage />} />
           <Route path={createVotingPagePath} element={<CreateVotingPage />} />
           <Route path={sandboxPagePath} element={<SandboxPage />} />
+          <Route path={myPollsPagePath} element={<MyPollsPage />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

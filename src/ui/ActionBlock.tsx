@@ -1,8 +1,8 @@
+import { css, LinariaClassName } from '@linaria/core'
 import { styled } from '@linaria/react'
 import React, { FC, ReactNode } from 'react'
-import { Typography } from './Typography'
-import { css, LinariaClassName } from '@linaria/core'
 import { Link } from 'react-router'
+import { TitleAndSubtitle } from './TitleAndSubtitle'
 
 export const ActionBlock: FC<{
   variant: Variant
@@ -15,14 +15,7 @@ export const ActionBlock: FC<{
     <Link to={to}>
       <ActionBlockButton className={variantCss[variant]}>
         <IconWrapper>{icon}</IconWrapper>
-        <Block>
-          <Typography fontSize={20} fontWeight={600}>
-            {title}
-          </Typography>
-          <Typography fontSize={16} fontWeight={400}>
-            {subtitle}
-          </Typography>
-        </Block>
+        <TitleAndSubtitle title={title} subtitle={subtitle} />
       </ActionBlockButton>
     </Link>
   )
@@ -45,17 +38,20 @@ const variantCss: Record<Variant, LinariaClassName> = {
   peach: css`
     background: rgba(255, 239, 230, 1);
   `,
-  white: css``,
+  white: css`
+    background: rgba(244, 244, 244, 1);
+  `,
 }
-
 const ActionBlockButton = styled.div`
-  display: grid;
-  gap: 12px;
-  grid-gap: 12px;
+  height: 100%;
   padding: 12px 16px;
   border-radius: 16px;
+
+  & > * + * {
+    margin-top: 12px;
+  }
 `
-const Block = styled.div``
 const IconWrapper = styled.div`
+  height: 47px;
   padding: 8px;
 `

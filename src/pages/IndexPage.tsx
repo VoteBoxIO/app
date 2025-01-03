@@ -6,6 +6,10 @@ import SvgVote from '../svgr/Vote'
 import { ActionBlock } from '../ui/ActionBlock'
 import { activeVotingPagePath } from './ActiveVotingPage'
 import { myVotingPagePath } from './MyVotingPage'
+import { createVotingPagePath } from './CreateVotingPage'
+import { myPollsPagePath } from './MyPollsPage'
+import SvgPlus from '../svgr/Plus'
+import SvgPolls from '../svgr/Polls'
 
 export const IndexPage: FC = () => {
   return (
@@ -26,6 +30,22 @@ export const IndexPage: FC = () => {
           title="Мои голоса"
           subtitle="История ваших голосований"
         />
+        <TwoBlocks>
+          <ActionBlock
+            to={createVotingPagePath}
+            variant="white"
+            icon={<SvgPlus />}
+            title="Создать голосование"
+            subtitle="Запустите опрос и вовлеките аудиторию"
+          />
+          <ActionBlock
+            to={myPollsPagePath}
+            variant="white"
+            icon={<SvgPolls />}
+            title="Мои опросы"
+            subtitle="История ваших голосований"
+          />
+        </TwoBlocks>
       </Block>
     </IndexPageContainer>
   )
@@ -43,4 +63,7 @@ const Block = styled.div`
   display: grid;
   gap: 12px;
   grid-gap: 12px;
+`
+const TwoBlocks = styled(Block)`
+  grid-template-columns: 1fr 1fr;
 `
