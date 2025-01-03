@@ -48,15 +48,11 @@
     "@ton/crypto": "3.3.0",
     "@ton/ton": "15.1.0",
     "@tonconnect/ui-react": "2.0.9",
-    "axios": "1.7.7",
     "buffer": "6.0.3",
-    "express": "4.21.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-intl": "7.1.0",
     "react-router": "7.1.1",
-    "ton": "13.9.0",
-    "ton-crypto": "3.2.0",
     "votebox_wrappers": "github:VoteBoxIO/wrappers"
   },
   "devDependencies": {

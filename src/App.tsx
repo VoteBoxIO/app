@@ -13,6 +13,7 @@ import { IndexPage, indexPagePath } from './pages/IndexPage'
 import { MyPollsPage, myPollsPagePath } from './pages/MyPollsPage'
 import { MyVotingPage, myVotingPagePath } from './pages/MyVotingPage'
 import { SandboxPage, sandboxPagePath } from './pages/SandboxPage'
+import { NotFoundPage } from './pages/NotFoundPage'
 
 export const App: FC = () => {
   useEffect(() => {
@@ -30,6 +31,7 @@ export const App: FC = () => {
           <Route path={createVotingPagePath} element={<CreateVotingPage />} />
           <Route path={sandboxPagePath} element={<SandboxPage />} />
           <Route path={myPollsPagePath} element={<MyPollsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
