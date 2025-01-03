@@ -10,6 +10,7 @@ import { createVotingPagePath } from './CreateVotingPage'
 import { myPollsPagePath } from './MyPollsPage'
 import SvgPlus from '../svgr/Plus'
 import SvgPolls from '../svgr/Polls'
+import { FormattedMessage } from 'react-intl'
 
 export const IndexPage: FC = () => {
   return (
@@ -20,7 +21,12 @@ export const IndexPage: FC = () => {
           to={activeVotingPagePath}
           variant="purple"
           icon={<SvgVote />}
-          title="Активные голосования"
+          title={
+            <FormattedMessage
+              id="active-voting"
+              defaultMessage="Активные голосования"
+            />
+          }
           subtitle="Посмотрите доступные опросы"
         />
         <ActionBlock
