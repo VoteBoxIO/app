@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom/client'
 import { IntlProvider } from 'react-intl'
 import { App } from './App'
 import { loadLocaleData } from './Index.functions'
+import { AppContextProvider } from './App.context'
+import { detectBrowserLanguage } from './functions/detectBrowserLanguage'
 
 const rootElement = document.getElementById('root')
 
@@ -16,14 +18,21 @@ if (rootElement) {
   })
 
   const bootstrapApplication = async (Component: FC) => {
-    const messages = await loadLocaleData('ru')
+    const language = detectBrowserLanguage()
+    const messages = await loadLocaleData(language)
 
     root.render(
       <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/VoteBoxIO/app/refs/heads/main/public/tonconnect-manifest.json">
         <QueryClientProvider client={queryClient}>
-          <IntlProvider messages={messages} locale="ru" defaultLocale="ru">
-            <Component />
-          </IntlProvider>
+          <AppContextProvider language={language}>
+            <IntlProvider
+              messages={messages}
+              locale={language}
+              defaultLocale="ru"
+            >
+              <Component />
+            </IntlProvider>
+          </AppContextProvider>
         </QueryClientProvider>
       </TonConnectUIProvider>,
     )

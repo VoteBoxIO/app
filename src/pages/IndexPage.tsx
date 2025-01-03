@@ -1,25 +1,28 @@
 import { styled } from '@linaria/react'
 import React, { FC } from 'react'
+import { FormattedMessage } from 'react-intl'
+import { Footer } from '../components/Footer'
+import { HowItWorksLink } from '../components/HowItWorksLink'
 import { LogoBlock } from '../components/LogoBlock'
+import { ReferralLink } from '../components/ReferralLink'
 import SvgFolder from '../svgr/Folder'
-import SvgVote from '../svgr/Vote'
-import { ActionBlock } from '../ui/ActionBlock'
-import { activeVotingPagePath } from './ActiveVotingPage'
-import { myVotingPagePath } from './MyVotingPage'
-import { createVotingPagePath } from './CreateVotingPage'
-import { myPollsPagePath } from './MyPollsPage'
 import SvgPlus from '../svgr/Plus'
 import SvgPolls from '../svgr/Polls'
-import { FormattedMessage } from 'react-intl'
+import SvgVote from '../svgr/Vote'
+import { ActionBlockWithIcon } from '../ui/ActionBlock'
+import { activeVotingPagePath } from './ActiveVotingPage'
+import { pollTypePagePath } from './PollTypePage'
+import { myPollsPagePath } from './MyPollsPage'
+import { myVotingPagePath } from './MyVotingPage'
 
 export const IndexPage: FC = () => {
   return (
     <IndexPageContainer>
       <LogoBlock />
-      <Block>
-        <ActionBlock
+      <Rhytm>
+        <ActionBlockWithIcon
           to={activeVotingPagePath}
-          variant="purple"
+          color="purple"
           icon={<SvgVote />}
           title={
             <FormattedMessage
@@ -34,9 +37,9 @@ export const IndexPage: FC = () => {
             />
           }
         />
-        <ActionBlock
+        <ActionBlockWithIcon
           to={myVotingPagePath}
-          variant="peach"
+          color="peach"
           icon={<SvgFolder />}
           title={<FormattedMessage id="my-votes" defaultMessage="Мои голоса" />}
           subtitle={
@@ -46,10 +49,11 @@ export const IndexPage: FC = () => {
             />
           }
         />
+
         <TwoBlocks>
-          <ActionBlock
-            to={createVotingPagePath}
-            variant="white"
+          <ActionBlockWithIcon
+            to={pollTypePagePath}
+            color="white"
             icon={<SvgPlus />}
             title={
               <FormattedMessage
@@ -64,9 +68,9 @@ export const IndexPage: FC = () => {
               />
             }
           />
-          <ActionBlock
+          <ActionBlockWithIcon
             to={myPollsPagePath}
-            variant="white"
+            color="white"
             icon={<SvgPolls />}
             title={
               <FormattedMessage id="my-polls" defaultMessage="Мои опросы" />
@@ -79,7 +83,13 @@ export const IndexPage: FC = () => {
             }
           />
         </TwoBlocks>
-      </Block>
+
+        <HowItWorksLink />
+
+        <ReferralLink />
+
+        <Footer />
+      </Rhytm>
     </IndexPageContainer>
   )
 }
@@ -92,11 +102,11 @@ const IndexPageContainer = styled.div`
   grid-gap: 16px;
 `
 
-const Block = styled.div`
+const Rhytm = styled.div`
   display: grid;
   gap: 12px;
   grid-gap: 12px;
 `
-const TwoBlocks = styled(Block)`
+const TwoBlocks = styled(Rhytm)`
   grid-template-columns: 1fr 1fr;
 `

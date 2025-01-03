@@ -1,29 +1,48 @@
 import { css, LinariaClassName } from '@linaria/core'
 import { styled } from '@linaria/react'
-import React, { FC, ReactNode } from 'react'
+import React, { ComponentProps, FC, ReactNode } from 'react'
 import { Link } from 'react-router'
 import { TitleAndSubtitle } from './TitleAndSubtitle'
+import { Button } from './Button'
 
-export const ActionBlock: FC<{
-  variant: Variant
+export const ActionBlockWithIcon: FC<{
+  color: Color
   to: string
   icon: ReactNode
   title: ReactNode
   subtitle: ReactNode
-}> = ({ variant, to, icon, title, subtitle }) => {
+}> = ({ color, to, icon, title, subtitle }) => {
   return (
     <Link to={to}>
-      <ActionBlockButton className={variantCss[variant]}>
+      <ActionBlockInner className={colorCss[color]}>
         <IconWrapper>{icon}</IconWrapper>
         <TitleAndSubtitle title={title} subtitle={subtitle} />
-      </ActionBlockButton>
+      </ActionBlockInner>
     </Link>
   )
 }
 
-type Variant = 'purple' | 'peach' | 'white'
+export const ActionBlockWithButton: FC<{
+  color: Color
+  buttonColor: ComponentProps<typeof Button>['color']
+  to: string
+  title: ReactNode
+  subtitle: ReactNode
+  buttonText: ReactNode
+}> = ({ to, color, buttonColor, title, subtitle }) => {
+  return (
+    <ActionBlockInner className={colorCss[color]}>
+      <TitleAndSubtitle title={title} subtitle={subtitle} />
+      <Button to={to} color={buttonColor}>
+        Создать голосование
+      </Button>
+    </ActionBlockInner>
+  )
+}
 
-const variantCss: Record<Variant, LinariaClassName> = {
+type Color = 'purple' | 'peach' | 'white'
+
+const colorCss: Record<Color, LinariaClassName> = {
   purple: css`
     background: rgba(79, 82, 119, 1);
     p {
@@ -42,7 +61,7 @@ const variantCss: Record<Variant, LinariaClassName> = {
     background: rgba(244, 244, 244, 1);
   `,
 }
-const ActionBlockButton = styled.div`
+const ActionBlockInner = styled.div`
   height: 100%;
   padding: 12px 16px;
   border-radius: 16px;

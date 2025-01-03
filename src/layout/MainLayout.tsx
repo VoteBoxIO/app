@@ -12,7 +12,7 @@ export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
 const MainLayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   padding: 20px 16px;
   background: linear-gradient(

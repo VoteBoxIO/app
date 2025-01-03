@@ -1,14 +1,15 @@
 import { styled } from '@linaria/react'
-import React, { FC, ReactNode } from 'react'
+import React, { ComponentProps, FC, ReactNode } from 'react'
 import { Typography } from './Typography'
 
 export const TitleAndSubtitle: FC<{
   title: ReactNode
+  titleFontSize?: ComponentProps<typeof Typography>['fontSize']
   subtitle: ReactNode
-}> = ({ title, subtitle }) => {
+}> = ({ title, subtitle, titleFontSize = 20 }) => {
   return (
     <Block>
-      <Typography fontSize={20} fontWeight={600}>
+      <Typography fontSize={titleFontSize} fontWeight={600}>
         {title}
       </Typography>
       <Typography fontSize={16} fontWeight={400}>
@@ -18,4 +19,8 @@ export const TitleAndSubtitle: FC<{
   )
 }
 
-const Block = styled.div``
+const Block = styled.div`
+  display: grid;
+  gap: 4px;
+  grid-gap: 2px;
+`
