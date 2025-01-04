@@ -6,9 +6,10 @@ export const TitleAndSubtitle: FC<{
   title: ReactNode
   titleFontSize?: ComponentProps<typeof Typography>['fontSize']
   subtitle: ReactNode
-}> = ({ title, subtitle, titleFontSize = 20 }) => {
+  gap?: string
+}> = ({ title, subtitle, titleFontSize = 20, gap = '4px' }) => {
   return (
-    <Block>
+    <Block gap={gap}>
       <Typography fontSize={titleFontSize} fontWeight={600}>
         {title}
       </Typography>
@@ -19,8 +20,8 @@ export const TitleAndSubtitle: FC<{
   )
 }
 
-const Block = styled.div`
+const Block = styled.div<{ gap: string }>`
   display: grid;
-  gap: 4px;
-  grid-gap: 2px;
+  gap: ${props => props.gap};
+  grid-gap: ${props => props.gap};
 `

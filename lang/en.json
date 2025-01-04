@@ -9,10 +9,34 @@
     "defaultMessage": "Create Voting"
   },
   "create-voting-subtitle": {
-    "defaultMessage": "Launch a poll and engage your audience"
+    "defaultMessage": "Select the type of voting and configure the parameters"
+  },
+  "create-voting-title": {
+    "defaultMessage": "Create Voting"
+  },
+  "how-it-works": {
+    "defaultMessage": "How does it work?"
+  },
+  "how-to-create": {
+    "defaultMessage": "How to create"
+  },
+  "invite-friend": {
+    "defaultMessage": "Invite a Friend"
+  },
+  "invite-friend-bonus": {
+    "defaultMessage": "Invite a friend and get bonuses"
   },
   "logo-subtitle": {
     "defaultMessage": "Monetize your content"
+  },
+  "money-pool-button": {
+    "defaultMessage": "Create Voting"
+  },
+  "money-pool-subtitle": {
+    "defaultMessage": "Winners share the money of the losers. Voting is unlimited."
+  },
+  "money-pool-title": {
+    "defaultMessage": "Money Pool"
   },
   "my-polls": {
     "defaultMessage": "My Polls"
@@ -25,5 +49,20 @@
   },
   "my-votes-subtitle": {
     "defaultMessage": "History of your votes"
+  },
+  "paid-voting-button": {
+    "defaultMessage": "Create Voting"
+  },
+  "paid-voting-subtitle": {
+    "defaultMessage": "All participants get access to the content. One vote – fixed cost."
+  },
+  "paid-voting-title": {
+    "defaultMessage": "Paid Voting"
+  },
+  "payment-methods": {
+    "defaultMessage": "Payment Methods"
+  },
+  "support": {
+    "defaultMessage": "Support"
   }
 }

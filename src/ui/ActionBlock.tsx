@@ -29,12 +29,12 @@ export const ActionBlockWithButton: FC<{
   title: ReactNode
   subtitle: ReactNode
   buttonText: ReactNode
-}> = ({ to, color, buttonColor, title, subtitle }) => {
+}> = ({ to, color, buttonColor, title, subtitle, buttonText }) => {
   return (
     <ActionBlockInner className={colorCss[color]}>
       <TitleAndSubtitle title={title} subtitle={subtitle} />
       <Button to={to} color={buttonColor}>
-        Создать голосование
+        {buttonText}
       </Button>
     </ActionBlockInner>
   )

@@ -9,10 +9,34 @@
     "defaultMessage": "Создать голосование"
   },
   "create-voting-subtitle": {
-    "defaultMessage": "Запустите опрос и вовлеките аудиторию"
+    "defaultMessage": "Выберите тип голосования и настройте параметры"
+  },
+  "create-voting-title": {
+    "defaultMessage": "Создание голосования"
+  },
+  "how-it-works": {
+    "defaultMessage": "Как это работает?"
+  },
+  "how-to-create": {
+    "defaultMessage": "Как создать"
+  },
+  "invite-friend": {
+    "defaultMessage": "Пригласить друга"
+  },
+  "invite-friend-bonus": {
+    "defaultMessage": "Приведи друга и получи бонусы"
   },
   "logo-subtitle": {
     "defaultMessage": "Монетизируйте ваш контент"
+  },
+  "money-pool-button": {
+    "defaultMessage": "Создать голосование"
+  },
+  "money-pool-subtitle": {
+    "defaultMessage": "Победители делят деньги проигравших. Голосовать можно неограниченное количество раз."
+  },
+  "money-pool-title": {
+    "defaultMessage": "Денежный пул"
   },
   "my-polls": {
     "defaultMessage": "Мои опросы"
@@ -25,5 +49,20 @@
   },
   "my-votes-subtitle": {
     "defaultMessage": "История ваших голосований"
+  },
+  "paid-voting-button": {
+    "defaultMessage": "Создать голосование"
+  },
+  "paid-voting-subtitle": {
+    "defaultMessage": "Все участники получают доступ к контенту. Один голос – фиксированная стоимость."
+  },
+  "paid-voting-title": {
+    "defaultMessage": "Платное голосование"
+  },
+  "payment-methods": {
+    "defaultMessage": "Способы оплаты"
+  },
+  "support": {
+    "defaultMessage": "Поддержка"
   }
 }

@@ -20,13 +20,61 @@
   "create-voting-subtitle": [
     {
       "type": 0,
-      "value": "Launch a poll and engage your audience"
+      "value": "Select the type of voting and configure the parameters"
+    }
+  ],
+  "create-voting-title": [
+    {
+      "type": 0,
+      "value": "Create Voting"
+    }
+  ],
+  "how-it-works": [
+    {
+      "type": 0,
+      "value": "How does it work?"
+    }
+  ],
+  "how-to-create": [
+    {
+      "type": 0,
+      "value": "How to create"
+    }
+  ],
+  "invite-friend": [
+    {
+      "type": 0,
+      "value": "Invite a Friend"
+    }
+  ],
+  "invite-friend-bonus": [
+    {
+      "type": 0,
+      "value": "Invite a friend and get bonuses"
     }
   ],
   "logo-subtitle": [
     {
       "type": 0,
       "value": "Monetize your content"
+    }
+  ],
+  "money-pool-button": [
+    {
+      "type": 0,
+      "value": "Create Voting"
+    }
+  ],
+  "money-pool-subtitle": [
+    {
+      "type": 0,
+      "value": "Winners share the money of the losers. Voting is unlimited."
+    }
+  ],
+  "money-pool-title": [
+    {
+      "type": 0,
+      "value": "Money Pool"
     }
   ],
   "my-polls": [
@@ -51,6 +99,36 @@
     {
       "type": 0,
       "value": "History of your votes"
+    }
+  ],
+  "paid-voting-button": [
+    {
+      "type": 0,
+      "value": "Create Voting"
+    }
+  ],
+  "paid-voting-subtitle": [
+    {
+      "type": 0,
+      "value": "All participants get access to the content. One vote – fixed cost."
+    }
+  ],
+  "paid-voting-title": [
+    {
+      "type": 0,
+      "value": "Paid Voting"
+    }
+  ],
+  "payment-methods": [
+    {
+      "type": 0,
+      "value": "Payment Methods"
+    }
+  ],
+  "support": [
+    {
+      "type": 0,
+      "value": "Support"
     }
   ]
 }
