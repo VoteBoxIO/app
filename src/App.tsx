@@ -23,6 +23,10 @@ import {
   HowToCreatePollPage,
   howToCreatePollPagePath,
 } from './pages/HowToCreatePollPage'
+import {
+  CreateMoneyPoolPage,
+  createMoneyPoolPagePath,
+} from './pages/CreateMoneyPoolPage'
 
 export const App: FC = () => {
   useEffect(() => {
@@ -32,8 +36,8 @@ export const App: FC = () => {
 
   return (
     <BrowserRouter>
-      <MainLayout>
-        <Routes>
+      <Routes>
+        <Route element={<MainLayout />}>
           <Route index path={indexPagePath} element={<IndexPage />} />
           <Route path={activeVotingPagePath} element={<ActiveVotingPage />} />
           <Route path={myVotingPagePath} element={<MyVotingPage />} />
@@ -52,9 +56,17 @@ export const App: FC = () => {
             path={howToCreatePollPagePath}
             element={<HowToCreatePollPage />}
           />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </MainLayout>
+        </Route>
+
+        <Route element={<MainLayout background="transparent" />}>
+          <Route
+            path={createMoneyPoolPagePath}
+            element={<CreateMoneyPoolPage />}
+          />
+        </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </BrowserRouter>
   )
 }

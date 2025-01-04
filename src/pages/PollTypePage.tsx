@@ -6,6 +6,8 @@ import { TextWithArrow } from '../ui/TextWithArrow'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { howToCreatePollPagePath } from './HowToCreatePollPage'
 import { FormattedMessage } from 'react-intl'
+import { create } from 'domain'
+import { createMoneyPoolPagePath } from './CreateMoneyPoolPage'
 
 export const PollTypePage: FC = () => {
   return (
@@ -33,7 +35,7 @@ export const PollTypePage: FC = () => {
         <ActionBlockWithButton
           color="white"
           buttonColor="purple"
-          to={pollTypePagePath}
+          to={createMoneyPoolPagePath}
           title={
             <FormattedMessage
               id="money-pool-title"
