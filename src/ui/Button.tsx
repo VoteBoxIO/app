@@ -1,31 +1,45 @@
 import { LinariaClassName, css } from '@linaria/core'
 import { styled } from '@linaria/react'
-import React, { FC, PropsWithChildren } from 'react'
+import React, { ComponentProps, FC, PropsWithChildren } from 'react'
 import { Link } from 'react-router'
 import { Typography } from './Typography'
 
-export const Button: FC<PropsWithChildren & { to?: string; color: Color }> = ({
-  to,
-  color,
-  children,
-}) => {
-  if (to) {
-    return (
-      <Link to={to} style={{ display: 'block' }}>
-        <ButtonContainer className={colorCss[color]}>
-          <Typography fontSize={16} fontWeight={600}>
-            {children}
-          </Typography>
-        </ButtonContainer>
-      </Link>
-    )
+export const ButtonLink: FC<
+  PropsWithChildren & {
+    to: string
+    color: Color
   }
+> = ({ to, color, children }) => {
+  return (
+    <Link to={to} style={{ display: 'block' }}>
+      <ButtonContainer className={colorCss[color]}>
+        <Typography fontSize={16} fontWeight={600}>
+          {children}
+        </Typography>
+      </ButtonContainer>
+    </Link>
+  )
+}
 
-  return null
+export const ButtonRegular: FC<
+  ComponentProps<typeof StyledButton> & {
+    color: Color
+  }
+> = ({ children, color, ...props }) => {
+  return (
+    <StyledButton {...props}>
+      <ButtonContainer className={colorCss[color]}>
+        <Typography fontSize={16} fontWeight={600}>
+          {children}
+        </Typography>
+      </ButtonContainer>
+    </StyledButton>
+  )
 }
 
 type Color = 'purple' | 'peach'
 
+const StyledButton = styled.button``
 const ButtonContainer = styled.div`
   padding: 16px 20px;
   border-radius: 26px;

@@ -5,14 +5,32 @@
   "active-voting-subtitle": {
     "defaultMessage": "Посмотрите доступные опросы"
   },
+  "add-option": {
+    "defaultMessage": "Добавить вариант"
+  },
+  "add-reward-placeholder": {
+    "defaultMessage": "Добавить вознаграждение"
+  },
+  "blogger-commission-placeholder": {
+    "defaultMessage": "Комиссия блогера"
+  },
+  "create-button": {
+    "defaultMessage": "Создать"
+  },
   "create-voting": {
     "defaultMessage": "Создать голосование"
   },
   "create-voting-subtitle": {
-    "defaultMessage": "Выберите тип голосования и настройте параметры"
+    "defaultMessage": "Запустите опрос и вовлеките аудиторию"
   },
   "create-voting-title": {
     "defaultMessage": "Создание голосования"
+  },
+  "create-voting-type": {
+    "defaultMessage": "Выберите тип голосования и настройте параметры"
+  },
+  "deadline-placeholder": {
+    "defaultMessage": "Установить дедлайн"
   },
   "how-it-works": {
     "defaultMessage": "Как это работает?"
@@ -29,14 +47,23 @@
   "logo-subtitle": {
     "defaultMessage": "Монетизируйте ваш контент"
   },
+  "money-pool": {
+    "defaultMessage": "Денежный пул"
+  },
   "money-pool-button": {
     "defaultMessage": "Создать голосование"
+  },
+  "money-pool-description": {
+    "defaultMessage": "Победители делят деньги проигравших. Голосовать можно неограниченное количество раз."
   },
   "money-pool-subtitle": {
     "defaultMessage": "Победители делят деньги проигравших. Голосовать можно неограниченное количество раз."
   },
   "money-pool-title": {
     "defaultMessage": "Денежный пул"
+  },
+  "multiple-options-toggle": {
+    "defaultMessage": "Выбор нескольких вариантов"
   },
   "my-polls": {
     "defaultMessage": "Мои опросы"
@@ -50,6 +77,9 @@
   "my-votes-subtitle": {
     "defaultMessage": "История ваших голосований"
   },
+  "option-placeholder": {
+    "defaultMessage": "Вариант ответа"
+  },
   "paid-voting-button": {
     "defaultMessage": "Создать голосование"
   },
@@ -61,6 +91,18 @@
   },
   "payment-methods": {
     "defaultMessage": "Способы оплаты"
+  },
+  "poll": {
+    "defaultMessage": "Опрос"
+  },
+  "poll-name-placeholder": {
+    "defaultMessage": "Название голосования"
+  },
+  "question-placeholder": {
+    "defaultMessage": "Вопрос"
+  },
+  "quiz-mode-toggle": {
+    "defaultMessage": "Режим викторины"
   },
   "support": {
     "defaultMessage": "Поддержка"

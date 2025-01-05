@@ -3,7 +3,7 @@ import { styled } from '@linaria/react'
 import React, { ComponentProps, FC, ReactNode } from 'react'
 import { Link } from 'react-router'
 import { TitleAndSubtitle } from './TitleAndSubtitle'
-import { Button } from './Button'
+import { ButtonLink } from './Button'
 
 export const ActionBlockWithIcon: FC<{
   color: Color
@@ -24,7 +24,7 @@ export const ActionBlockWithIcon: FC<{
 
 export const ActionBlockWithButton: FC<{
   color: Color
-  buttonColor: ComponentProps<typeof Button>['color']
+  buttonColor: ComponentProps<typeof ButtonLink>['color']
   to: string
   title: ReactNode
   subtitle: ReactNode
@@ -33,9 +33,9 @@ export const ActionBlockWithButton: FC<{
   return (
     <ActionBlockInner className={colorCss[color]}>
       <TitleAndSubtitle title={title} subtitle={subtitle} />
-      <Button to={to} color={buttonColor}>
+      <ButtonLink to={to} color={buttonColor}>
         {buttonText}
-      </Button>
+      </ButtonLink>
     </ActionBlockInner>
   )
 }

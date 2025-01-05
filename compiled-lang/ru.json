@@ -11,6 +11,30 @@
       "value": "Посмотрите доступные опросы"
     }
   ],
+  "add-option": [
+    {
+      "type": 0,
+      "value": "Добавить вариант"
+    }
+  ],
+  "add-reward-placeholder": [
+    {
+      "type": 0,
+      "value": "Добавить вознаграждение"
+    }
+  ],
+  "blogger-commission-placeholder": [
+    {
+      "type": 0,
+      "value": "Комиссия блогера"
+    }
+  ],
+  "create-button": [
+    {
+      "type": 0,
+      "value": "Создать"
+    }
+  ],
   "create-voting": [
     {
       "type": 0,
@@ -20,13 +44,25 @@
   "create-voting-subtitle": [
     {
       "type": 0,
-      "value": "Выберите тип голосования и настройте параметры"
+      "value": "Запустите опрос и вовлеките аудиторию"
     }
   ],
   "create-voting-title": [
     {
       "type": 0,
       "value": "Создание голосования"
+    }
+  ],
+  "create-voting-type": [
+    {
+      "type": 0,
+      "value": "Выберите тип голосования и настройте параметры"
+    }
+  ],
+  "deadline-placeholder": [
+    {
+      "type": 0,
+      "value": "Установить дедлайн"
     }
   ],
   "how-it-works": [
@@ -59,10 +95,22 @@
       "value": "Монетизируйте ваш контент"
     }
   ],
+  "money-pool": [
+    {
+      "type": 0,
+      "value": "Денежный пул"
+    }
+  ],
   "money-pool-button": [
     {
       "type": 0,
       "value": "Создать голосование"
+    }
+  ],
+  "money-pool-description": [
+    {
+      "type": 0,
+      "value": "Победители делят деньги проигравших. Голосовать можно неограниченное количество раз."
     }
   ],
   "money-pool-subtitle": [
@@ -75,6 +123,12 @@
     {
       "type": 0,
       "value": "Денежный пул"
+    }
+  ],
+  "multiple-options-toggle": [
+    {
+      "type": 0,
+      "value": "Выбор нескольких вариантов"
     }
   ],
   "my-polls": [
@@ -101,6 +155,12 @@
       "value": "История ваших голосований"
     }
   ],
+  "option-placeholder": [
+    {
+      "type": 0,
+      "value": "Вариант ответа"
+    }
+  ],
   "paid-voting-button": [
     {
       "type": 0,
@@ -123,6 +183,30 @@
     {
       "type": 0,
       "value": "Способы оплаты"
+    }
+  ],
+  "poll": [
+    {
+      "type": 0,
+      "value": "Опрос"
+    }
+  ],
+  "poll-name-placeholder": [
+    {
+      "type": 0,
+      "value": "Название голосования"
+    }
+  ],
+  "question-placeholder": [
+    {
+      "type": 0,
+      "value": "Вопрос"
+    }
+  ],
+  "quiz-mode-toggle": [
+    {
+      "type": 0,
+      "value": "Режим викторины"
     }
   ],
   "support": [

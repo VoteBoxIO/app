@@ -5,38 +5,65 @@
   "active-voting-subtitle": {
     "defaultMessage": "View available polls"
   },
+  "add-option": {
+    "defaultMessage": "Add Option"
+  },
+  "add-reward-placeholder": {
+    "defaultMessage": "Add Reward"
+  },
+  "blogger-commission-placeholder": {
+    "defaultMessage": "Blogger Commission"
+  },
+  "create-button": {
+    "defaultMessage": "Create"
+  },
   "create-voting": {
     "defaultMessage": "Create Voting"
   },
   "create-voting-subtitle": {
-    "defaultMessage": "Select the type of voting and configure the parameters"
+    "defaultMessage": "Start a poll and engage your audience"
   },
   "create-voting-title": {
     "defaultMessage": "Create Voting"
   },
+  "create-voting-type": {
+    "defaultMessage": "Select the type of voting and configure the settings"
+  },
+  "deadline-placeholder": {
+    "defaultMessage": "Set Deadline"
+  },
   "how-it-works": {
-    "defaultMessage": "How does it work?"
+    "defaultMessage": "How it Works?"
   },
   "how-to-create": {
-    "defaultMessage": "How to create"
+    "defaultMessage": "How to Create"
   },
   "invite-friend": {
     "defaultMessage": "Invite a Friend"
   },
   "invite-friend-bonus": {
-    "defaultMessage": "Invite a friend and get bonuses"
+    "defaultMessage": "Invite a friend and earn bonuses"
   },
   "logo-subtitle": {
     "defaultMessage": "Monetize your content"
   },
+  "money-pool": {
+    "defaultMessage": "Money Pool"
+  },
   "money-pool-button": {
     "defaultMessage": "Create Voting"
+  },
+  "money-pool-description": {
+    "defaultMessage": "Winners share the money of the losers. Voting is unlimited."
   },
   "money-pool-subtitle": {
     "defaultMessage": "Winners share the money of the losers. Voting is unlimited."
   },
   "money-pool-title": {
     "defaultMessage": "Money Pool"
+  },
+  "multiple-options-toggle": {
+    "defaultMessage": "Allow Multiple Options"
   },
   "my-polls": {
     "defaultMessage": "My Polls"
@@ -50,17 +77,32 @@
   "my-votes-subtitle": {
     "defaultMessage": "History of your votes"
   },
+  "option-placeholder": {
+    "defaultMessage": "Answer Option"
+  },
   "paid-voting-button": {
     "defaultMessage": "Create Voting"
   },
   "paid-voting-subtitle": {
-    "defaultMessage": "All participants get access to the content. One vote – fixed cost."
+    "defaultMessage": "All participants gain access to content. One vote has a fixed cost."
   },
   "paid-voting-title": {
     "defaultMessage": "Paid Voting"
   },
   "payment-methods": {
     "defaultMessage": "Payment Methods"
+  },
+  "poll": {
+    "defaultMessage": "Poll"
+  },
+  "poll-name-placeholder": {
+    "defaultMessage": "Poll Name"
+  },
+  "question-placeholder": {
+    "defaultMessage": "Question"
+  },
+  "quiz-mode-toggle": {
+    "defaultMessage": "Quiz Mode"
   },
   "support": {
     "defaultMessage": "Support"

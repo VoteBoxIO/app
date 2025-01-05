@@ -23,7 +23,7 @@ export const PollTypePage: FC = () => {
           titleFontSize={24}
           subtitle={
             <FormattedMessage
-              id="create-voting-subtitle"
+              id="create-voting-type"
               defaultMessage="Выберите тип голосования и настройте параметры"
             />
           }
@@ -37,14 +37,11 @@ export const PollTypePage: FC = () => {
           buttonColor="purple"
           to={createMoneyPoolPagePath}
           title={
-            <FormattedMessage
-              id="money-pool-title"
-              defaultMessage="Денежный пул"
-            />
+            <FormattedMessage id="money-pool" defaultMessage="Денежный пул" />
           }
           subtitle={
             <FormattedMessage
-              id="money-pool-subtitle"
+              id="money-pool-description"
               defaultMessage="Победители делят деньги проигравших. Голосовать можно неограниченное количество раз."
             />
           }
