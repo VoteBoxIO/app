@@ -3,7 +3,7 @@ import React, { FC, FormEventHandler, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { AddVariantButton } from '../components/AddVariantButton'
 import { ButtonRegular } from '../ui/Button'
-import { InputDate, InputFile, InputText } from '../ui/Input'
+import { InputDate, InputFile, InputText, InputTextarea } from '../ui/Input'
 import { Rhytm } from '../ui/Rhytm'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { Toggle } from '../ui/Toggle'
@@ -16,6 +16,7 @@ export const CreateMoneyPoolPage: FC = () => {
     bloggerCommission: '',
     rewardFile: null as File | null,
     pollName: '',
+    pollDescription: '', // Added for description
     deadline: '',
     question: '',
     options: [''], // Start with one option
@@ -24,10 +25,10 @@ export const CreateMoneyPoolPage: FC = () => {
   })
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>,
     index?: number,
   ) => {
-    const { name, value, type, files } = e.target
+    const { name, value, type, files } = event.target
     if (type === 'file') {
       setFormData(prev => ({
         ...prev,
@@ -46,6 +47,16 @@ export const CreateMoneyPoolPage: FC = () => {
         [name]: value,
       }))
     }
+  }
+
+  const handleTextAreaChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = event.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }))
   }
 
   const handleToggleChange = (name: 'allowMultipleOptions' | 'quizMode') => {
@@ -111,6 +122,15 @@ export const CreateMoneyPoolPage: FC = () => {
               value={formData.pollName}
               onChange={handleInputChange}
             />
+            <InputTextarea
+              name="pollDescription"
+              placeholder={formatMessage({
+                id: 'poll-description-placeholder',
+                defaultMessage: 'Описание голосования',
+              })}
+              value={formData.pollDescription}
+              onChange={handleTextAreaChange}
+            />
             <InputDate
               name="deadline"
               placeholder={formatMessage({
@@ -171,7 +191,12 @@ export const CreateMoneyPoolPage: FC = () => {
           <ButtonRegular
             color="peach"
             type="submit"
-            style={{ marginTop: 20, width: '100%' }}
+            style={{
+              marginTop: 20,
+              width: '100%',
+              position: 'sticky',
+              bottom: 16,
+            }}
           >
             {formatMessage({
               id: 'create-button',

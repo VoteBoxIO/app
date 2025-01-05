@@ -10,18 +10,31 @@ export const InputFile: FC<ComponentProps<typeof StyledInput> & {}> = props => {
 export const InputDate: FC<ComponentProps<typeof StyledInput> & {}> = props => {
   return <StyledInput type="date" {...props} />
 }
+export const InputTextarea: FC<
+  ComponentProps<typeof StyledTextArea> & {}
+> = props => {
+  return <StyledTextArea {...props} />
+}
 
-const StyledInput = styled.input`
+const commonCss = `
   display: block;
   padding: 12px 16px;
   border-radius: 16px;
   border: none;
   background-color: #f5f5f5; /* Light gray background */
-  font-size: 14px;
-  color: black; /* Gray text color */
+  font-size: 16px;
+  font-weight: 400;
   outline: none;
-
   ::placeholder {
-    color: #aaa; /* Placeholder text color */
+    color: rgba(176, 176, 176, 1); /* Placeholder text color */
   }
+  color: black; /* Gray text color */
+`
+
+const StyledInput = styled.input`
+  ${commonCss};
+`
+const StyledTextArea = styled.textarea`
+  ${commonCss};
+  resize: none; /* Запрет изменения размера */
 `
