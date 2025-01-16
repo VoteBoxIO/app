@@ -12,12 +12,6 @@ export const AppContextProvider: FC<
   PropsWithChildren & { language: string }
 > = ({ children, language }) => {
   return (
-    <AppContext.Provider
-      value={{
-        language,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={{ language }}>{children}</AppContext.Provider>
   )
 }

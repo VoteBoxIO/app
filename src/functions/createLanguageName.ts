@@ -1,11 +1,10 @@
 export const createLanguageName = (language: string) => {
-  if (language === 'ru') {
-    return 'Русский'
+  switch (language) {
+    case 'ru':
+      return 'Русский'
+    case 'en':
+      return 'English'
+    default:
+      return 'English'
   }
-
-  if (language === 'en') {
-    return 'English'
-  }
-
-  return 'English'
 }
