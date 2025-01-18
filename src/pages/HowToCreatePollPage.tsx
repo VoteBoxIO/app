@@ -8,16 +8,18 @@ import { useNavigate } from 'react-router'
 
 export const HowToCreatePollPage: FC = () => {
   return (
-    <Stories
-      stories={stories}
-      defaultInterval={5000}
-      width="100%"
-      height="calc(100vh - 40px)"
-      storyContainerStyles={{
-        background: 'transparent',
-      }}
-      loop
-    />
+    <StoriesWrapper>
+      <Stories
+        stories={stories}
+        defaultInterval={5000}
+        width="100%"
+        height="100%"
+        storyContainerStyles={{
+          background: 'transparent',
+        }}
+        loop
+      />
+    </StoriesWrapper>
   )
 }
 
@@ -25,8 +27,6 @@ const StoryItem: FC<{
   title: ReactNode
   subtitle: ReactNode
 }> = ({ title, subtitle }) => {
-  let navigate = useNavigate()
-
   return (
     <StoryContainer>
       <TitleAndSubtitle
@@ -35,23 +35,11 @@ const StoryItem: FC<{
         title={title}
         subtitle={subtitle}
       />
-      <Button onClick={() => navigate(-1)}>
-        <CloseSvg />
-      </Button>
     </StoryContainer>
   )
 }
 
-const CloseSvg = styled(SvgCloseWhite)`
-  flex-shrink: 0;
-`
-const Button = styled.button`
-  position: absolute;
-  top: 24px;
-  right: 0;
-  cursor: pointer;
-  z-index: 10000;
-`
+const StoriesWrapper = styled.div``
 const StoryItem1: FC = () => {
   return (
     <StoryItem
@@ -72,7 +60,7 @@ const StoryItem2: FC = () => {
 const StoryContainer = styled.div`
   display: flex;
   align-items: end;
-  margin-top: auto;
+  margin-top: 30px;
   width: 100%;
   height: 100%;
 `

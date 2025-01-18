@@ -1,5 +1,4 @@
 import { Address } from '@ton/core'
-import { useEffect, useState } from 'react'
 import {
   MasterNftCollectionWrappers,
   VoteJettonMasterWrappers,
@@ -10,13 +9,12 @@ import { useContactAddresses } from './useContactAddresses'
 import { useTonClient } from './useTonClient'
 import { useTonConnect } from './useTonConnect'
 
-export function useJettonContract() {
+export function useInitializeContracts() {
   const { client } = useTonClient()
   const { wallet, sender } = useTonConnect()
-  const [balance, setBalance] = useState<string | null>()
   const contracts = useContactAddresses()
 
-  const nftCollection = useAsyncInitialize(async () => {
+  const masterNftCollection = useAsyncInitialize(async () => {
     if (!client || !wallet || !contracts) return
 
     const address = Address.parse(contracts.nftCollectionContractAddress)
@@ -26,7 +24,7 @@ export function useJettonContract() {
     return client.open(contract)
   }, [client, wallet])
 
-  const nftItem = useAsyncInitialize(async () => {
+  const votingNftItem = useAsyncInitialize(async () => {
     if (!client || !wallet || !contracts) return
 
     const address = Address.parse(contracts.nftItemContractAddress)
@@ -35,7 +33,7 @@ export function useJettonContract() {
     return client.open(contract)
   }, [client, wallet])
 
-  const masterJettonContract = useAsyncInitialize(async () => {
+  const voteJettonMaster = useAsyncInitialize(async () => {
     if (!client || !wallet || !contracts) return
 
     const address = Address.parse(contracts.jettonContractAddress)
@@ -45,18 +43,22 @@ export function useJettonContract() {
     return client.open(contract)
   }, [client, wallet])
 
-  const fetchData = async () => {
-    if (!nftCollection || !masterJettonContract || !nftItem) {
-      return
-    }
-
-    // const response = await nftCollection.getGetCollectionData()
-    // const response = await masterJettonContract.getGetJettonData()
-    const response = await nftItem.getGetNftData()
-    console.info(response)
+  if (
+    !client ||
+    !sender ||
+    !masterNftCollection ||
+    !votingNftItem ||
+    !voteJettonMaster
+  ) {
+    return
   }
 
-  useEffect(() => {
-    fetchData()
-  }, [nftCollection])
+  return {
+    client,
+    wallet,
+    sender,
+    masterNftCollection,
+    votingNftItem,
+    voteJettonMaster,
+  }
 }

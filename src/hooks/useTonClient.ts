@@ -1,9 +1,8 @@
 import { getHttpEndpoint } from '@orbs-network/ton-access'
-import { TonClient, WalletContractV4, internal } from '@ton/ton'
-import { mnemonicNew, mnemonicToPrivateKey } from '@ton/crypto'
+import { TonClient } from '@ton/ton'
+import { CHAIN } from '@tonconnect/protocol'
 import { useAsyncInitialize } from './useAsyncInitialize'
 import { useTonConnect } from './useTonConnect'
-import { CHAIN } from '@tonconnect/protocol'
 
 export function useTonClient() {
   const { network } = useTonConnect()

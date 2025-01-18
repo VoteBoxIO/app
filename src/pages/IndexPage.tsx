@@ -18,7 +18,9 @@ import { pollTypePagePath } from './PollTypePage'
 export const IndexPage: FC = () => {
   return (
     <IndexPageContainer>
-      <LogoBlock />
+      <Header>
+        <LogoBlock />
+      </Header>
       <Rhytm>
         <ActionBlockWithIcon
           to={activeVotingPagePath}
@@ -110,3 +112,4 @@ const Rhytm = styled.div`
 const TwoBlocks = styled(Rhytm)`
   grid-template-columns: 1fr 1fr;
 `
+const Header = styled.header``

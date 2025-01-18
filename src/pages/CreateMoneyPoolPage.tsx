@@ -8,9 +8,11 @@ import { Rhytm } from '../ui/Rhytm'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { Toggle } from '../ui/Toggle'
 import { Typography } from '../ui/Typography'
+import { useCreateVoting } from '../hooks/useCreateVoting'
 
 export const CreateMoneyPoolPage: FC = () => {
   const { formatMessage } = useIntl()
+  const { sendCreateVotingMessage } = useCreateVoting()
 
   const [formData, setFormData] = useState({
     bloggerCommission: '',
@@ -77,6 +79,8 @@ export const CreateMoneyPoolPage: FC = () => {
     event.preventDefault()
     console.log('Form Data:', formData)
     // Perform further actions, like sending the data to the server
+
+    sendCreateVotingMessage()
   }
 
   return (

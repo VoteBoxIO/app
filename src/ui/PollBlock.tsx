@@ -15,6 +15,7 @@ export const PollBlock: FC<{
   commission: ReactNode
   pollItems: Omit<PollBlockItemProps, 'onPollItemClick'>[]
   onPollItemClick: PollBlockItemProps['onPollItemClick']
+  bottomElement?: ReactNode
 }> = ({
   title,
   subtitle,
@@ -23,6 +24,7 @@ export const PollBlock: FC<{
   commission,
   pollItems,
   onPollItemClick,
+  bottomElement,
 }) => {
   return (
     <PollBlockContainer>
@@ -45,6 +47,7 @@ export const PollBlock: FC<{
           )
         })}
       </PollItems>
+      {bottomElement}
     </PollBlockContainer>
   )
 }
@@ -64,4 +67,7 @@ const PollBlockContainer = styled(Rhytm)`
   background: rgba(240, 240, 245, 1);
   padding: 16px;
   border-radius: 16px;
+  & > * + * {
+    margin-top: 12px;
+  }
 `

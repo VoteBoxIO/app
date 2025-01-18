@@ -2,14 +2,7 @@ import { styled } from '@linaria/react'
 import { Address } from '@ton/core'
 import { CHAIN, TonConnectButton } from '@tonconnect/ui-react'
 import React, { FC } from 'react'
-import {
-  MasterNftCollectionWrappers,
-  VoteJettonMasterWrappers,
-  VoteJettonWalletWrappers,
-  VotingNftItemWrappers,
-} from 'votebox_wrappers'
 import { Welcome } from '../components/Welcome'
-import { useJettonContract } from '../hooks/useJettonContract'
 import { useTonClient } from '../hooks/useTonClient'
 import { useTonConnect } from '../hooks/useTonConnect'
 import { useWalletBalance } from '../hooks/useWalletBalance'
@@ -18,7 +11,6 @@ export const SandboxPage: FC = () => {
   const { network, connected, wallet } = useTonConnect()
   const { client } = useTonClient()
   const balance = useWalletBalance(client)
-  useJettonContract()
 
   return (
     <div>

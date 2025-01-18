@@ -1,14 +1,14 @@
 import { styled } from '@linaria/react'
 import React, { ComponentProps, FC } from 'react'
-import { useParams } from 'react-router'
 import { FormattedMessage, useIntl } from 'react-intl'
+import { useParams } from 'react-router'
+import { PollBlock } from '../ui/PollBlock'
 import { Rhytm } from '../ui/Rhytm'
 import { Tabs } from '../ui/Tabs'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
-import { PollBlock } from '../ui/PollBlock'
 
 export const MyPollsPage: FC = () => {
-  const params = useParams() as { type: PollType }
+  const params = useParams() as { id: PollType }
   const { formatMessage } = useIntl()
 
   const TABS = [
@@ -27,7 +27,7 @@ export const MyPollsPage: FC = () => {
     },
   ]
 
-  const activeTabId = TABS.find(({ id }) => id === params.type)?.id!
+  const activeTabId = TABS.find(({ id }) => id === params.id)?.id!
 
   if (!activeTabId) {
     console.error('Active tab not found')
@@ -104,7 +104,7 @@ export const MyPollsPage: FC = () => {
 const MyVotingPageContainer = styled.div``
 
 export const myPollsPagePartPath = '/my-polls'
-export const myPollsPagePath = '/my-polls/:type'
+export const myPollsPagePath = '/my-polls/:id'
 
 export enum PollType {
   Active = 'active',
