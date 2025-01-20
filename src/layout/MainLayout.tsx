@@ -27,8 +27,8 @@ export const MainLayout: FC<{ background?: string }> = ({
       <MainLayoutInner>
         <Content>
           <Outlet />
+          {/* {context.client ? <Outlet /> : <Loader />} */}
         </Content>
-        {/* <Content>{context.client ? <Outlet /> : <Loader />}</Content> */}
       </MainLayoutInner>
     </MainLayoutWrapper>
   )

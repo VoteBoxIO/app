@@ -1,17 +1,15 @@
 import { CHAIN } from '@tonconnect/ui-react'
 import { useTonConnect } from './useTonConnect'
 
-export const useContactAddresses = ():
-  | {
-      nftItemContractAddress: string
-      jettonContractAddress: string
-      nftCollectionContractAddress: string
-    }
-  | undefined => {
+export const useContactAddresses = () => {
   const { network } = useTonConnect()
 
   if (!network) {
-    return
+    return {
+      nftItemContractAddress: '',
+      jettonContractAddress: '',
+      nftCollectionContractAddress: '',
+    }
   }
 
   if (network === CHAIN.TESTNET) {
