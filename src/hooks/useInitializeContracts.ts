@@ -2,7 +2,6 @@ import { Address } from '@ton/core'
 import {
   MasterNftCollectionWrappers,
   VoteJettonMasterWrappers,
-  VotingNftItemWrappers,
 } from 'votebox_wrappers'
 import { useAsyncInitialize } from './useAsyncInitialize'
 import { useContactAddresses } from './useContactAddresses'
@@ -24,15 +23,6 @@ export function useInitializeContracts() {
     return client.open(contract)
   }, [client, wallet])
 
-  const votingNftItem = useAsyncInitialize(async () => {
-    if (!client || !wallet || !contracts) return
-
-    const address = Address.parse(contracts.nftItemContractAddress)
-    const contract = VotingNftItemWrappers.VotingNftItem.fromAddress(address)
-
-    return client.open(contract)
-  }, [client, wallet])
-
   const voteJettonMaster = useAsyncInitialize(async () => {
     if (!client || !wallet || !contracts) return
 
@@ -43,13 +33,7 @@ export function useInitializeContracts() {
     return client.open(contract)
   }, [client, wallet])
 
-  if (
-    !client ||
-    !sender ||
-    !masterNftCollection ||
-    !votingNftItem ||
-    !voteJettonMaster
-  ) {
+  if (!client || !sender || !masterNftCollection || !voteJettonMaster) {
     return
   }
 
@@ -58,7 +42,6 @@ export function useInitializeContracts() {
     wallet,
     sender,
     masterNftCollection,
-    votingNftItem,
     voteJettonMaster,
   }
 }

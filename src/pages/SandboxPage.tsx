@@ -2,7 +2,6 @@ import { styled } from '@linaria/react'
 import { Address } from '@ton/core'
 import { CHAIN, TonConnectButton } from '@tonconnect/ui-react'
 import React, { FC } from 'react'
-import { Welcome } from '../components/Welcome'
 import { useTonClient } from '../hooks/useTonClient'
 import { useTonConnect } from '../hooks/useTonConnect'
 import { useWalletBalance } from '../hooks/useWalletBalance'
@@ -14,7 +13,6 @@ export const SandboxPage: FC = () => {
 
   return (
     <div>
-      <Welcome />
       <TonConnectButtonWrapper>
         <TonConnectButton />
       </TonConnectButtonWrapper>

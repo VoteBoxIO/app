@@ -4,7 +4,6 @@ import { OpenedContract, Sender } from '@ton/core'
 import { TonClient } from '@ton/ton'
 import { MasterNftCollection } from 'votebox_wrappers/dist/MasterNftCollection'
 import { VoteJettonMaster } from 'votebox_wrappers/dist/VoteJettonMaster'
-import { VotingNftItem } from 'votebox_wrappers/dist/VotingNftItem'
 import { useInitializeTonApiClient } from './hooks/useInitializeTonApiClient'
 import { TonApiClient } from '@ton-api/client'
 import { useContactAddresses } from './hooks/useContactAddresses'
@@ -15,7 +14,6 @@ const contextValue = {
   voteJettonMaster: undefined as unknown as OpenedContract<VoteJettonMaster>,
   masterNftCollection:
     undefined as unknown as OpenedContract<MasterNftCollection>,
-  votingNftItem: undefined as unknown as OpenedContract<VotingNftItem>,
   sender: undefined as unknown as Sender,
   wallet: null as string | null,
   tonApiClient: null as null | TonApiClient,

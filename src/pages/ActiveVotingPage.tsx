@@ -3,6 +3,7 @@ import { NftItem } from '@ton-api/client'
 import { Address } from '@ton/core'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { AppContext } from '../App.context'
+import { VoteSettings } from '../components/VoteSettings'
 
 export const ActiveVotingPage: FC = () => {
   const { tonApiClient, contractsAddresses } = useContext(AppContext)
@@ -23,7 +24,6 @@ export const ActiveVotingPage: FC = () => {
           address,
           { limit: 50 },
         )
-        console.log('Account events:', response)
         setNftItems(response.nftItems)
       } catch (error) {
         console.error('Error fetching NFT collection:', error)
@@ -36,13 +36,7 @@ export const ActiveVotingPage: FC = () => {
   return (
     <ActiveVotingPageContainer>
       {nftItems.map(item => {
-        return (
-          <div key={item.index}>
-            <img src={item.metadata.image} width={40} height={40} />
-            <p>{item.metadata.name}</p>
-            <p>{item.metadata.description}</p>
-          </div>
-        )
+        return <VoteSettings key={item.index} item={item} />
       })}
     </ActiveVotingPageContainer>
   )
