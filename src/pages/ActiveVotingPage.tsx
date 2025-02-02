@@ -24,7 +24,7 @@ export const ActiveVotingPage: FC = () => {
           address,
           { limit: 50 },
         )
-        setNftItems(response.nftItems)
+        setNftItems(response.nftItems.sort((a, b) => b.index - a.index))
       } catch (error) {
         console.error('Error fetching NFT collection:', error)
       }

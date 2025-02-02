@@ -36,6 +36,7 @@ export const CreateMoneyPoolPage: FC = () => {
         ...prev,
         rewardFile: files ? files[0] : null,
       }))
+      // Вариант ответа
     } else if (index !== undefined) {
       // Update specific option in options array
       setFormData(prev => {
@@ -78,9 +79,18 @@ export const CreateMoneyPoolPage: FC = () => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
     console.log('Form Data:', formData)
-    // Perform further actions, like sending the data to the server
 
-    sendCreateVotingMessage()
+    sendCreateVotingMessage({
+      name: formData.pollName,
+      description: formData.pollDescription,
+      choices: formData.options,
+      endTimeInSeconds: BigInt(Date.parse(formData.deadline) / 1000),
+      creatorBasisPoints: BigInt(formData.bloggerCommission),
+      rewardType: 0n,
+      hideVotes: false,
+      referral: null,
+      fixedVoteAmount: null,
+    })
   }
 
   return (

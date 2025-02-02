@@ -7,7 +7,27 @@ export function useCreateVoting() {
   const { sender, masterNftCollection } = useContext(AppContext)
 
   return {
-    sendCreateVotingMessage: async () => {
+    sendCreateVotingMessage: async ({
+      name,
+      description,
+      choices,
+      endTimeInSeconds,
+      creatorBasisPoints,
+      rewardType,
+      hideVotes,
+      referral,
+      fixedVoteAmount,
+    }: {
+      name: string
+      description: string
+      choices: Array<string>
+      endTimeInSeconds: bigint
+      creatorBasisPoints: bigint
+      rewardType: bigint
+      hideVotes: boolean
+      referral: string | null
+      fixedVoteAmount: bigint | null
+    }) => {
       try {
         console.log('Отправка сообщения для создания голосования...')
         // Создание объекта CreateVotingNft
@@ -19,17 +39,17 @@ export function useCreateVoting() {
           },
           {
             $$type: 'CreateVotingNft',
-            name: stringToSnakeCell('Голосование за лучшую тему'),
-            description: stringToSnakeCell(
-              'Выберите тему для следующей конференции',
-            ),
-            image: stringToSnakeCell(
-              'https://fastly.picsum.photos/id/1/200/300.jpg?hmac=jH5bDkLr6Tgy3oAg5khKCHeunZMHq0ehBZr6vGifPLY',
-            ),
-            choices: makeChoices(3),
-            end_time: BigInt(Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7), // 7 days
-            creator_basis_points: 500n,
-            reward_type: 0n,
+            name: stringToSnakeCell(name),
+            description: stringToSnakeCell(description),
+            // Вроде не нужна картинка
+            image: stringToSnakeCell(''),
+            choices: makeChoicesDictionary(choices),
+            // end_time: BigInt(Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7), // 7 days
+            end_time: endTimeInSeconds,
+            // creator_basis_points: 500n,
+            creator_basis_points: creatorBasisPoints,
+            // reward_type: 0n,
+            reward_type: rewardType,
             hide_votes: false,
             referral: null,
             fixed_vote_amount: null,
@@ -43,27 +63,15 @@ export function useCreateVoting() {
   }
 }
 
-function makeOptions(number_of_choices: number | bigint): Array<string> {
-  let options = []
-  for (let i = 0; i < number_of_choices; i++) {
-    options.push(`Option ${i}`)
-  }
-  return options
-}
-
-function makeChoices(
-  number_of_choices: number | bigint,
-): Dictionary<bigint, Cell> {
-  let options = makeOptions(number_of_choices)
-
-  let choices: Dictionary<bigint, Cell> = Dictionary.empty()
+function makeChoicesDictionary(choices: string[]): Dictionary<bigint, Cell> {
+  let choicesDictionary: Dictionary<bigint, Cell> = Dictionary.empty()
   let counter = 0
 
-  for (let option of options) {
+  for (let option of choices) {
     let cell = beginCell().storeStringTail(option).endCell()
-    choices.set(BigInt(counter), cell)
+    choicesDictionary.set(BigInt(counter), cell)
     counter += 1
   }
 
-  return choices
+  return choicesDictionary
 }

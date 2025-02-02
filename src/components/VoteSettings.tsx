@@ -3,24 +3,17 @@ import React, { FC, useContext, useEffect, useState } from 'react'
 import { VotingNftItemWrappers } from 'votebox_wrappers'
 import { AppContext } from '../App.context'
 import { useAsyncInitialize } from '../hooks/useAsyncInitialize'
-import { Dictionary, Cell } from '@ton/core'
+import { OpenedContract } from '@ton/core'
+import { parseChoices } from './parseChoices'
 
 export const VoteSettings: FC<{
   item: NftItem
 }> = ({ item }) => {
   const { client, wallet } = useContext(AppContext)
 
-  const [voteSettings, setVoteSettings] = useState<{
-    $$type: 'VoteSettings'
-    choices: Dictionary<bigint, Cell>
-    end_time: bigint
-    reward_type: bigint
-    hide_votes: boolean
-    fixed_vote_amount: bigint | null
-    min_vote_amount: bigint
-  }>()
+  const [voteSettings, setVoteSettings] = useState<VoteSettings | null>(null)
 
-  // Инициализируем контракт для каждого NftItem(голосования)
+  // Инициализируем контракт для каждого NftItem
   const votingNftItem = useAsyncInitialize(async () => {
     if (!client || !wallet) return
 
@@ -32,11 +25,9 @@ export const VoteSettings: FC<{
   }, [client, wallet])
 
   useEffect(() => {
-    ;(async () => {
-      if (votingNftItem) {
-        setVoteSettings(await votingNftItem.getVoteSettings())
-      }
-    })()
+    if (votingNftItem) {
+      votingNftItem.getVoteSettings().then(setVoteSettings)
+    }
   }, [votingNftItem])
 
   if (!voteSettings) {
@@ -51,18 +42,19 @@ export const VoteSettings: FC<{
       {parseChoices(voteSettings.choices).map((choice, index) => (
         <p key={index}>{choice}</p>
       ))}
+      <p>
+        {new Date(Number(voteSettings.end_time) * 1000).toLocaleDateString()}
+      </p>
     </div>
   )
 }
 
-const parseChoices = (choices: Dictionary<bigint, Cell>): string[] => {
-  const parsedChoices: string[] = []
+type VotingNftItemContract = OpenedContract<VotingNftItemWrappers.VotingNftItem>
+type VoteSettings = Awaited<
+  ReturnType<VotingNftItemContract['getVoteSettings']>
+>
 
-  for (const [index, cell] of choices) {
-    const slice = cell.beginParse() // Convert Cell into Slice
-    const option = slice.loadStringTail() // Read stored string
-    parsedChoices.push(option)
-  }
-
-  return parsedChoices
+const getTimeLeftInSeconds = (endTime: bigint) => {
+  const currentTime = BigInt(Math.floor(Date.now() / 1000))
+  return endTime
 }
