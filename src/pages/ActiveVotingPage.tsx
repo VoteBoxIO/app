@@ -4,6 +4,7 @@ import { Address } from '@ton/core'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { AppContext } from '../App.context'
 import { VoteSettings } from '../components/VoteSettings'
+import { Loader } from '../ui/Loader'
 
 export const ActiveVotingPage: FC = () => {
   const { tonApiClient, contractsAddresses } = useContext(AppContext)
@@ -32,6 +33,10 @@ export const ActiveVotingPage: FC = () => {
 
     fetchNftItemsFromCollection()
   }, [tonApiClient])
+
+  if (!nftItems.length) {
+    return <Loader />
+  }
 
   return (
     <ActiveVotingPageContainer>
