@@ -3,8 +3,10 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import { MainLayout } from './layout/MainLayout'
 import {
   ActiveVotingPage,
-  activeVotingPagePath,
-} from './pages/ActiveVotingPage'
+  activeVotingAccessToContentPagePath,
+  activeVotingMoneyPoolPagePath,
+} from './pages/ActiveVotingPage/ActiveVotingPage'
+import { ActiveVotingTab } from './pages/ActiveVotingPage/ActiveVotingPage.constants'
 import {
   CreateMoneyPoolPage,
   createMoneyPoolPagePath,
@@ -39,7 +41,20 @@ export const App: FC = () => {
       <Routes>
         <Route element={<MainLayout />}>
           <Route index path={indexPagePath} element={<IndexPage />} />
-          <Route path={activeVotingPagePath} element={<ActiveVotingPage />} />
+          <Route
+            path={activeVotingMoneyPoolPagePath}
+            element={
+              <ActiveVotingPage activeVotingTab={ActiveVotingTab.MoneyPool} />
+            }
+          />
+          <Route
+            path={activeVotingAccessToContentPagePath}
+            element={
+              <ActiveVotingPage
+                activeVotingTab={ActiveVotingTab.AccessToContent}
+              />
+            }
+          />
           <Route path={myVotingPagePath} element={<MyVotingPage />} />
           <Route path={pollTypePagePath} element={<PollTypePage />} />
           <Route path={sandboxPagePath} element={<SandboxPage />} />

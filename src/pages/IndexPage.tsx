@@ -10,7 +10,7 @@ import SvgPlus from '../svgr/Plus'
 import SvgPolls from '../svgr/Polls'
 import SvgVote from '../svgr/Vote'
 import { ActionBlockWithIcon } from '../ui/ActionBlock'
-import { activeVotingPagePath } from './ActiveVotingPage'
+import { activeVotingMoneyPoolPagePath } from './ActiveVotingPage/ActiveVotingPage'
 import { myPollsPagePartPath, PollType } from './MyPollsPage'
 import { myVotingPagePath } from './MyVotingPage'
 import { pollTypePagePath } from './PollTypePage'
@@ -23,7 +23,7 @@ export const IndexPage: FC = () => {
       </Header>
       <Rhytm>
         <ActionBlockWithIcon
-          to={activeVotingPagePath}
+          to={activeVotingMoneyPoolPagePath}
           color="purple"
           icon={<SvgVote />}
           title={
