@@ -12,7 +12,7 @@ import { linariaCssLoaderRules, linariaJsLoader } from './webpack/linaria'
 // Load environment variables from .env
 dotenv.config()
 const isDevelopment = process.env.NODE_ENV !== 'production'
-const httpsMode = process.env.HTTPS === 'true'
+const isHttpsMode = process.env.HTTPS === 'true'
 
 const config: Configuration = {
   mode: isDevelopment ? 'development' : 'production',
@@ -70,7 +70,7 @@ const config: Configuration = {
       overlay: true,
     },
     // ЕСЛИ НУЖНО ЗАПУСТИТЬ ПО HTTPS ДЛЯ TELEGRAM MINI APP
-    ...(httpsMode
+    ...(isHttpsMode
       ? {
           port: 443, // Set the port to 443
           https: {

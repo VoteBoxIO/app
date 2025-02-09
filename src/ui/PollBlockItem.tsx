@@ -4,30 +4,30 @@ import SvgPlusSmall from '../svgr/PlusSmall'
 import { Typography } from './Typography'
 
 export const PollBlockItem: FC<{
-  id: string | number
-  name: ReactNode
-  value: ReactNode
+  name: string
+  value: string | null
+  index: number
   progressPercent: number
   progressLineGradient: boolean
-  onPollItemClick: (id: string | number) => void
+  onPollItemClick: (index: number) => void
 }> = ({
-  id,
   name,
   value,
+  index,
   progressPercent,
   progressLineGradient,
   onPollItemClick,
 }) => {
   const handlePollItemClick = () => {
-    onPollItemClick(id)
+    onPollItemClick(index)
   }
 
   return (
-    <PollBlockItemContainer>
+    <PollBlockItemContainer onClick={handlePollItemClick}>
       <Block>
-        <VoteButton onClick={handlePollItemClick}>
+        <Plus>
           <SvgPlusSmall />
-        </VoteButton>
+        </Plus>
         <Content>
           <Typography fontSize={16} fontWeight={500}>
             {name}
@@ -64,7 +64,7 @@ const Block = styled.div`
   display: flex;
   gap: 8px;
 `
-const VoteButton = styled.button`
+const Plus = styled.div`
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -83,9 +83,10 @@ const Value = styled.div`
   margin-left: 8px;
   margin-top: 12px;
 `
-const PollBlockItemContainer = styled.div`
+const PollBlockItemContainer = styled.button`
   display: flex;
   justify-content: space-between;
+  width: 100%;
 `
 
 const PROGRESS_GRADIENT =

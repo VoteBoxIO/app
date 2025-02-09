@@ -41,20 +41,6 @@ export const App: FC = () => {
       <Routes>
         <Route element={<MainLayout />}>
           <Route index path={indexPagePath} element={<IndexPage />} />
-          <Route
-            path={activeVotingMoneyPoolPagePath}
-            element={
-              <ActiveVotingPage activeVotingTab={ActiveVotingTab.MoneyPool} />
-            }
-          />
-          <Route
-            path={activeVotingAccessToContentPagePath}
-            element={
-              <ActiveVotingPage
-                activeVotingTab={ActiveVotingTab.AccessToContent}
-              />
-            }
-          />
           <Route path={myVotingPagePath} element={<MyVotingPage />} />
           <Route path={pollTypePagePath} element={<PollTypePage />} />
           <Route path={sandboxPagePath} element={<SandboxPage />} />
@@ -77,6 +63,20 @@ export const App: FC = () => {
           <Route
             path={createMoneyPoolPagePath}
             element={<CreateMoneyPoolPage />}
+          />
+          <Route
+            path={activeVotingMoneyPoolPagePath}
+            element={
+              <ActiveVotingPage activeVotingTab={ActiveVotingTab.MoneyPool} />
+            }
+          />
+          <Route
+            path={activeVotingAccessToContentPagePath}
+            element={
+              <ActiveVotingPage
+                activeVotingTab={ActiveVotingTab.AccessToContent}
+              />
+            }
           />
         </Route>
 

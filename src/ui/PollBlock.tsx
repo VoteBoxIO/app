@@ -41,7 +41,7 @@ export const PollBlock: FC<{
         {pollItems.map(item => {
           return (
             <PollBlockItem
-              key={item.id}
+              key={item.name}
               {...item}
               onPollItemClick={onPollItemClick}
             />

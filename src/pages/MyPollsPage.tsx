@@ -66,30 +66,30 @@ export const MyPollsPage: FC = () => {
           commission="Комиссия 6%"
           pollItems={[
             {
-              id: 1,
+              index: 1,
               name: 'Тихий Дон',
-              value: 500,
+              value: '500',
               progressPercent: 90,
               progressLineGradient: true,
             },
             {
-              id: 2,
+              index: 2,
               name: 'Война и мир',
-              value: 550,
+              value: '550',
               progressPercent: 100,
               progressLineGradient: false,
             },
             {
-              id: 3,
+              index: 3,
               name: 'Вишнёвый сад',
-              value: 510,
+              value: '510',
               progressPercent: 70,
               progressLineGradient: false,
             },
             {
-              id: 4,
+              index: 4,
               name: 'Герой нашего времени',
-              value: 440,
+              value: '440',
               progressPercent: 40,
               progressLineGradient: false,
             },

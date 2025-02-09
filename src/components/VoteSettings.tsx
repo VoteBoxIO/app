@@ -1,4 +1,4 @@
-import { Address, OpenedContract } from '@ton/core'
+import { Address, fromNano, OpenedContract, toNano } from '@ton/core'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { VotingNftItemWrappers } from 'votebox_wrappers'
@@ -21,13 +21,16 @@ export const VoteSettings: FC<{
   activeVotingTab: ActiveVotingTab
 }> = ({ item, activeVotingTab }) => {
   const { address, name, description } = item
-  const { client, wallet } = useContext(AppContext)
+  const { sender, client, wallet } = useContext(AppContext)
 
   const [voteSettings, setVoteSettings] = useState<VoteSettings | null>(null)
-  const [totalVotes, setTotalVotes] = useState<number>(0)
+  const [totalVotes, setTotalVotes] = useState<bigint | null>(null)
   const [rewardDistributionSettings, setRewardDistributionSettings] =
     useState<RewardDistributionSettings | null>(null)
   const [pollItems, setPollItems] = useState<PollItem[]>([])
+  const [recommendedVoteGas, setRecommendedVoteGas] = useState<bigint | null>(
+    null,
+  )
 
   // Инициализируем контракт для каждого NftItem
   const votingNftItem = useAsyncInitialize(async () => {
@@ -38,46 +41,90 @@ export const VoteSettings: FC<{
 
   useEffect(() => {
     if (votingNftItem) {
-      votingNftItem.getVoteSettings().then(setVoteSettings)
-      votingNftItem.getTotalVotes().then(votes => setTotalVotes(Number(votes)))
-      votingNftItem
-        .getRewardDistributionSettings()
-        .then(setRewardDistributionSettings)
+      try {
+        votingNftItem.getVoteSettings().then(setVoteSettings)
+        votingNftItem.getTotalVotes().then(setTotalVotes)
+        votingNftItem
+          .getRewardDistributionSettings()
+          .then(setRewardDistributionSettings)
+        votingNftItem.getRecommendedVoteGas().then(setRecommendedVoteGas)
+      } catch (error) {
+        console.error('Error fetching votingNftItem data', error)
+      }
     }
   }, [votingNftItem])
+
+  const sendUserVote = async (index: number) => {
+    if (!votingNftItem) {
+      console.error(
+        `votingNftItem is ${votingNftItem}. Failed to send user vote`,
+      )
+      return
+    }
+    if (!recommendedVoteGas) {
+      console.error(
+        `recommendedVoteGas is ${votingNftItem}. Failed to send user vote`,
+      )
+      return
+    }
+
+    const userVotes = toNano('0.05')
+    const value = userVotes + recommendedVoteGas
+    const queryId = 1000n
+
+    try {
+      const result = await votingNftItem.send(
+        sender,
+        {
+          value,
+        },
+        {
+          $$type: 'Vote',
+          choice: BigInt(index),
+          votes: userVotes,
+          query_id: queryId,
+        },
+      )
+      console.log(result)
+    } catch (error) {
+      console.error('Error sending user vote', error)
+    }
+  }
+
+  const handlePollItemClick = (index: number) => {
+    sendUserVote(index)
+  }
 
   useEffect(() => {
     if (!voteSettings || !votingNftItem) return
 
-    const parsedChoices = parseChoices(voteSettings.choices)
+    const choices = parseChoices(voteSettings.choices)
 
     setPollItems(
-      parsedChoices.map(({ index, value }) => ({
-        id: Number(index),
+      choices.map(({ value }) => ({
         name: value,
         value: null,
         progressLineGradient: false,
         progressPercent: 0,
+        index: 0,
       })),
     )
     ;(async () => {
       const choicesWithVoteAmount = await Promise.allSettled(
-        parsedChoices.map(({ index, value }) =>
-          votingNftItem.getVoteAmount(index),
-        ),
+        choices.map(({ index }) => votingNftItem.getVoteAmount(index)),
       )
 
-      const finalChoices: PollItem[] = choicesWithVoteAmount.map(
+      const _choices: PollItem[] = choicesWithVoteAmount.map(
         (value, index) => ({
-          id: index,
-          name: parsedChoices[index].value,
-          value: value.status === 'fulfilled' ? Number(value.value) : null,
+          name: choices[index].value,
+          index: Number(choices[index].index),
+          value: value.status === 'fulfilled' ? fromNano(value.value) : null,
           progressLineGradient: false,
           progressPercent: 100,
         }),
       )
 
-      setPollItems(finalChoices)
+      setPollItems(_choices)
     })()
   }, [voteSettings, votingNftItem])
 
@@ -103,10 +150,10 @@ export const VoteSettings: FC<{
           defaultMessage="Еще {days} д и {hours} ч"
         />
       }
-      bid={<>{totalVotes} Ton</>}
+      bid={totalVotes === null ? '' : <>{Number(totalVotes)} Ton</>}
       commission={<>{createCommission(rewardDistributionSettings)}% комиссии</>}
       pollItems={pollItems}
-      onPollItemClick={() => {}}
+      onPollItemClick={handlePollItemClick}
     />
   )
 }
