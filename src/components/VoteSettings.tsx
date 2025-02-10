@@ -10,6 +10,7 @@ import {
 } from '../pages/ActiveVotingPage/ActiveVotingPage.constants'
 import { PollBlock, PollItem } from '../ui/PollBlock'
 import { parseChoices } from './parseChoices'
+import { EnterAmountDialog } from './EnterAmountDialog'
 
 export const VoteSettings: FC<{
   item: {
@@ -31,6 +32,10 @@ export const VoteSettings: FC<{
   const [recommendedVoteGas, setRecommendedVoteGas] = useState<bigint | null>(
     null,
   )
+
+  const [dialogOpenForOptionIndex, setDialogOpenForOptionIndex] = useState<
+    number | null
+  >(null)
 
   // Инициализируем контракт для каждого NftItem
   const votingNftItem = useAsyncInitialize(async () => {
@@ -54,7 +59,7 @@ export const VoteSettings: FC<{
     }
   }, [votingNftItem])
 
-  const sendUserVote = async (index: number) => {
+  const sendUserVote = async (index: number, amount: string) => {
     if (!votingNftItem) {
       console.error(
         `votingNftItem is ${votingNftItem}. Failed to send user vote`,
@@ -67,8 +72,12 @@ export const VoteSettings: FC<{
       )
       return
     }
+    if (!amount) {
+      console.error(`amount is: ${amount}`)
+      return
+    }
 
-    const userVotes = toNano('0.05')
+    const userVotes = toNano(amount)
     const value = userVotes + recommendedVoteGas
     const queryId = 1000n
 
@@ -92,7 +101,7 @@ export const VoteSettings: FC<{
   }
 
   const handlePollItemClick = (index: number) => {
-    sendUserVote(index)
+    setDialogOpenForOptionIndex(index)
   }
 
   useEffect(() => {
@@ -140,21 +149,31 @@ export const VoteSettings: FC<{
   const { days, hours } = getHoursAndDaysLeft(Number(voteSettings.end_time))
 
   return (
-    <PollBlock
-      title={name}
-      subtitle={description}
-      expiration={
-        <FormattedMessage
-          id="voteSettings.timeLeft"
-          values={{ days, hours }}
-          defaultMessage="Еще {days} д и {hours} ч"
+    <>
+      <PollBlock
+        title={name}
+        subtitle={description}
+        expiration={
+          <FormattedMessage
+            id="voteSettings.timeLeft"
+            values={{ days, hours }}
+            defaultMessage="Еще {days} д и {hours} ч"
+          />
+        }
+        bid={totalVotes === null ? '' : <>{fromNano(totalVotes)} Ton</>}
+        commission={
+          <>{createCommission(rewardDistributionSettings)}% комиссии</>
+        }
+        pollItems={pollItems}
+        onPollItemClick={handlePollItemClick}
+      />
+      {dialogOpenForOptionIndex !== null && (
+        <EnterAmountDialog
+          onSubmit={amount => sendUserVote(dialogOpenForOptionIndex, amount)}
+          onClose={() => setDialogOpenForOptionIndex(null)}
         />
-      }
-      bid={totalVotes === null ? '' : <>{Number(totalVotes)} Ton</>}
-      commission={<>{createCommission(rewardDistributionSettings)}% комиссии</>}
-      pollItems={pollItems}
-      onPollItemClick={handlePollItemClick}
-    />
+      )}
+    </>
   )
 }
 

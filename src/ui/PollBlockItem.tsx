@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import React, { FC, ReactNode } from 'react'
+import React, { FC } from 'react'
 import SvgPlusSmall from '../svgr/PlusSmall'
 import { Typography } from './Typography'
 
