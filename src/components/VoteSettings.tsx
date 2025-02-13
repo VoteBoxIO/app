@@ -211,4 +211,6 @@ export type VotingItem = {
   description: string
   index: number
   rewardType: 0 | 1
+  ownerAddress: Address
+  isCreatedByYourWallet: boolean
 }

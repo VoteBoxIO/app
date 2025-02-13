@@ -11,7 +11,7 @@ import { ActiveVotingTab } from './ActiveVotingPage.constants'
 export const ActiveVotingPage: FC<{ activeVotingTab: ActiveVotingTab }> = ({
   activeVotingTab,
 }) => {
-  const { tonApiClient, contractsAddresses } = useContext(AppContext)
+  const { tonApiClient, wallet, contractsAddresses } = useContext(AppContext)
   const [nftItems, setNftItems] = useState<VotingItem[]>([])
 
   useEffect(() => {
@@ -21,11 +21,9 @@ export const ActiveVotingPage: FC<{ activeVotingTab: ActiveVotingTab }> = ({
 
     const fetchNftItemsFromCollection = async () => {
       try {
-        const nftItems = await fetchNftCollectionFromTonCenterApi(
+        fetchNftCollectionFromTonCenterApi(
           contractsAddresses.nftCollectionContractAddress,
-        )
-
-        setNftItems(nftItems)
+        ).then(setNftItems)
       } catch (error) {
         console.error('Error fetching NFT collection:', error)
       }

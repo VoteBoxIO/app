@@ -4,6 +4,11 @@ import React, { ComponentProps, FC, ReactNode } from 'react'
 export const InputText: FC<ComponentProps<typeof StyledInput> & {}> = props => {
   return <StyledInput type="text" {...props} />
 }
+export const InputNumber: FC<
+  ComponentProps<typeof StyledInput> & {}
+> = props => {
+  return <StyledInput type="number" {...props} />
+}
 export const InputFile: FC<ComponentProps<typeof StyledInput> & {}> = props => {
   return <StyledInput type="file" {...props} />
 }
@@ -17,6 +22,7 @@ export const InputTextarea: FC<
 }
 
 const commonCss = `
+  width: 100%;
   display: block;
   padding: 12px 16px;
   border-radius: 16px;

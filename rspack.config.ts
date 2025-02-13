@@ -27,13 +27,13 @@ const config: Configuration = {
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }, ...linariaJsLoader(isDevelopment)],
+        use: [{ loader: 'babel-loader' }, linariaJsLoader(isDevelopment)],
       },
       {
         test: /\.(png|jpe?g|gif|webp)$/i, // Rule for image files including .webp
         type: 'asset/resource', // Rspack handles assets the same way
       },
-      ...linariaCssLoaderRules(isDevelopment),
+      linariaCssLoaderRules(isDevelopment),
     ],
   },
   resolve: {
@@ -64,7 +64,7 @@ const config: Configuration = {
     hot: true,
     historyApiFallback: true, // Support for React Router
     client: {
-      overlay: true,
+      overlay: false,
     },
     ...(isHttpsMode
       ? {
