@@ -1,15 +1,14 @@
-/* eslint-disable no-undef */
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import ReactRefreshRspackPlugin from '@rspack/plugin-react-refresh'
 import * as dotenv from 'dotenv'
 import fs from 'fs'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import HtmlRspackPlugin from 'html-webpack-plugin'
+import { rspack } from '@rspack/core'
 import path from 'path'
-import { Configuration, DefinePlugin, ProvidePlugin } from 'webpack'
-import 'webpack-dev-server'
+import { Configuration, DefinePlugin, ProvidePlugin } from '@rspack/core'
 import { linariaCssLoaderRules, linariaJsLoader } from './webpack/linaria'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
-// Load environment variables from .env
+// Load environment variables
 dotenv.config()
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const isHttpsMode = process.env.HTTPS === 'true'
@@ -32,7 +31,7 @@ const config: Configuration = {
       },
       {
         test: /\.(png|jpe?g|gif|webp)$/i, // Rule for image files including .webp
-        type: 'asset/resource', // Webpack 5 built-in asset module
+        type: 'asset/resource', // Rspack handles assets the same way
       },
       ...linariaCssLoaderRules(isDevelopment),
     ],
@@ -40,24 +39,22 @@ const config: Configuration = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     fallback: {
-      url: require.resolve('url/'), // Polyfill for the Node.js 'url' module
-      buffer: require.resolve('buffer/'), // Add Buffer polyfill
+      url: require.resolve('url/'),
+      buffer: require.resolve('buffer/'),
     },
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './public/index.html' }),
-    new MiniCssExtractPlugin({
+    new HtmlRspackPlugin({ template: './public/index.html' }),
+    new rspack.CssExtractRspackPlugin({
       filename: 'styles.css',
       chunkFilename: '[name].styles.css',
     }),
-    isDevelopment && new ReactRefreshWebpackPlugin(),
-    // ProvidePlugin for Buffer polyfill
+    isDevelopment && new ReactRefreshRspackPlugin(),
     new ProvidePlugin({
-      Buffer: ['buffer', 'Buffer'], // Ensures Buffer is globally available
+      Buffer: ['buffer', 'Buffer'],
     }),
-    // DefinePlugin to inject environment variables properly into browser code
     new DefinePlugin({
-      'process.env': JSON.stringify(process.env), // Inject all process.env variables
+      'process.env': JSON.stringify(process.env),
     }),
   ].filter(Boolean),
   devServer: {
@@ -65,25 +62,24 @@ const config: Configuration = {
       directory: path.join(__dirname, 'public'),
     },
     hot: true,
-    historyApiFallback: true, // For React Router
+    historyApiFallback: true, // Support for React Router
     client: {
       overlay: true,
     },
-    // ЕСЛИ НУЖНО ЗАПУСТИТЬ ПО HTTPS ДЛЯ TELEGRAM MINI APP
     ...(isHttpsMode
       ? {
-          port: 443, // Set the port to 443
+          port: 443,
           https: {
             key: fs.readFileSync(
               path.resolve(__dirname, '.cert/localhost-key.pem'),
-            ), // Your key path
+            ),
             cert: fs.readFileSync(
               path.resolve(__dirname, '.cert/localhost.pem'),
-            ), // Your cert path
+            ),
           },
-          allowedHosts: 'all', // Allow all hosts, including ngrok
+          allowedHosts: 'all',
           headers: {
-            'Access-Control-Allow-Origin': '*', // To allow ngrok access
+            'Access-Control-Allow-Origin': '*',
           },
         }
       : {

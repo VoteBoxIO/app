@@ -1,4 +1,4 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import { rspack } from '@rspack/core'
 
 export const linariaJsLoader = (isDevelopment: boolean) => [
   {
@@ -21,7 +21,7 @@ export const linariaCssLoaderRules = (isDevelopment: boolean) =>
           test: /\.css$/,
           use: [
             'css-hot-loader',
-            MiniCssExtractPlugin.loader,
+            rspack.CssExtractRspackPlugin.loader,
             {
               loader: 'css-loader',
               options: { sourceMap: true },
@@ -33,7 +33,7 @@ export const linariaCssLoaderRules = (isDevelopment: boolean) =>
         {
           test: /\.css$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            rspack.CssExtractRspackPlugin.loader,
             {
               loader: 'css-loader',
               options: { sourceMap: false },

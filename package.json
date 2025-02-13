@@ -22,9 +22,9 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix",
-    "development-https": "NODE_ENV=development HTTPS=true webpack serve --config webpack.config.ts",
-    "development": "NODE_ENV=development webpack serve --config webpack.config.ts",
-    "build": "rm -rf dist && npm run tsc && NODE_ENV=production webpack --config webpack.config.ts",
+    "development-https": "NODE_ENV=development HTTPS=true rspack serve --config rspack.config.ts",
+    "development": "NODE_ENV=development rspack serve --config rspack.config.ts",
+    "build": "rm -rf dist && npm run tsc && NODE_ENV=production rspack --config rspack.config.ts",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -70,6 +70,9 @@
     "@linaria/core": "6.2.0",
     "@linaria/react": "6.2.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
+    "@rspack/cli": "^1.2.3",
+    "@rspack/core": "^1.2.3",
+    "@rspack/plugin-react-refresh": "^1.0.1",
     "@types/cors": "2.8.17",
     "@types/node": "20.14.9",
     "@types/react": "18.3.11",
@@ -99,9 +102,6 @@
     "react-refresh": "0.14.0",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",
-    "url": "0.11.4",
-    "webpack": "5.88.2",
-    "webpack-cli": "5.1.4",
-    "webpack-dev-server": "4.15.1"
+    "url": "0.11.4"
   }
 }
