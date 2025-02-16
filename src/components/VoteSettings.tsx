@@ -39,7 +39,9 @@ export const VoteSettings: FC<{
 
   // Инициализируем контракт для каждого NftItem
   const votingNftItem = useAsyncInitialize(async () => {
-    if (!client || !wallet) return
+    if (!client) {
+      return
+    }
     const contract = VotingNftItemWrappers.VotingNftItem.fromAddress(address)
     return client.open(contract)
   }, [client, wallet])

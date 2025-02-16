@@ -11,12 +11,12 @@ import { useTonConnect } from './useTonConnect'
 export function useInitializeContracts() {
   const { client } = useTonClient()
   const { wallet, sender } = useTonConnect()
-  const contracts = useContactAddresses()
+  const contractsAddresses = useContactAddresses()
 
   const masterNftCollection = useAsyncInitialize(async () => {
-    if (!client || !wallet || !contracts) return
+    if (!client) return
 
-    const address = Address.parse(contracts.nftCollectionContractAddress)
+    const address = Address.parse(contractsAddresses.nftCollection)
     const contract =
       MasterNftCollectionWrappers.MasterNftCollection.fromAddress(address)
 
@@ -24,16 +24,16 @@ export function useInitializeContracts() {
   }, [client, wallet])
 
   const voteJettonMaster = useAsyncInitialize(async () => {
-    if (!client || !wallet || !contracts) return
+    if (!client) return
 
-    const address = Address.parse(contracts.jettonContractAddress)
+    const address = Address.parse(contractsAddresses.jetton)
     const contract =
       VoteJettonMasterWrappers.VoteJettonMaster.fromAddress(address)
 
     return client.open(contract)
   }, [client, wallet])
 
-  if (!client || !sender || !masterNftCollection || !voteJettonMaster) {
+  if (!client || !masterNftCollection || !voteJettonMaster) {
     return
   }
 

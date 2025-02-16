@@ -29,7 +29,7 @@ export const AppContextProvider: FC<
 > = ({ children, language }) => {
   const contractsData = useInitializeContracts()!
   const tonApiClient = useInitializeTonApiClient()
-  const contractsAddresses = useContactAddresses()!
+  const contractsAddresses = useContactAddresses()
 
   return (
     <AppContext.Provider

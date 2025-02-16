@@ -9,13 +9,13 @@ export function useTonClient() {
 
   return {
     client: useAsyncInitialize(async () => {
-      if (!network) {
-        return
-      }
-
       return new TonClient({
         endpoint: await getHttpEndpoint({
-          network: network === CHAIN.MAINNET ? 'mainnet' : 'testnet',
+          network: network
+            ? network === CHAIN.MAINNET
+              ? 'mainnet'
+              : 'testnet'
+            : 'testnet' /** @TODO потом заменить на 'mainnet', потому что без кошелька нужно ходить в бой. */,
         }),
       })
     }, [network]),
