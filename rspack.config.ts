@@ -1,12 +1,15 @@
+import {
+  Configuration,
+  DefinePlugin,
+  ProvidePlugin,
+  rspack,
+} from '@rspack/core'
 import ReactRefreshRspackPlugin from '@rspack/plugin-react-refresh'
 import * as dotenv from 'dotenv'
 import fs from 'fs'
 import HtmlRspackPlugin from 'html-webpack-plugin'
-import { rspack } from '@rspack/core'
 import path from 'path'
-import { Configuration, DefinePlugin, ProvidePlugin } from '@rspack/core'
-import { linariaCssLoaderRules, linariaJsLoader } from './webpack/linaria'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import { linariaCssLoaderRules } from './webpack/linaria'
 
 // Load environment variables
 dotenv.config()
@@ -27,7 +30,22 @@ const config: Configuration = {
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }, linariaJsLoader(isDevelopment)],
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: '@wyw-in-js/webpack-loader',
+            options: {
+              sourceMap: isDevelopment,
+              displayName: isDevelopment,
+              /** Для того, чтобы на даблклик можно было выделить название компонента отдельно от hash */
+              classNameSlug: isDevelopment
+                ? (hash: string, title: string) => `${title}-${hash}`
+                : undefined,
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|webp)$/i, // Rule for image files including .webp
