@@ -1,9 +1,7 @@
 import { styled } from '@linaria/react'
+import { useTonAddress } from '@tonconnect/ui-react'
 import React, { FC, useContext, useEffect, useState } from 'react'
-import {
-  // fetchNftCollectionFromTonAccessOrbApi,
-  fetchNftCollectionFromTonCenterApi,
-} from '../../api/fetchNftCollectionApi'
+import { fetchNftCollectionFromTonCenterApi } from '../../api/fetchNftCollectionApi'
 import { AppContext } from '../../App.context'
 import { VoteSettings, VotingItem } from '../../components/VoteSettings'
 import { Loader } from '../../ui/Loader'
@@ -14,19 +12,16 @@ import { ActiveVotingTab } from './ActiveVotingPage.constants'
 export const ActiveVotingPage: FC<{ activeVotingTab: ActiveVotingTab }> = ({
   activeVotingTab,
 }) => {
-  const { tonApiClient, contractsAddresses } = useContext(AppContext)
+  const { contractsAddresses } = useContext(AppContext)
   const [nftItems, setNftItems] = useState<VotingItem[]>([])
+  const currentWalletAddress = useTonAddress()
 
   useEffect(() => {
-    // if (!tonApiClient) {
-    //   return
-    // }
-
     const fetchNftItemsFromCollection = async () => {
       try {
         fetchNftCollectionFromTonCenterApi(
-          // tonApiClient,
           contractsAddresses.nftCollection,
+          currentWalletAddress,
         ).then(setNftItems)
       } catch (error) {
         console.error('Error fetching NFT collection:', error)
@@ -34,7 +29,7 @@ export const ActiveVotingPage: FC<{ activeVotingTab: ActiveVotingTab }> = ({
     }
 
     fetchNftItemsFromCollection()
-  }, [tonApiClient])
+  }, [])
 
   if (!nftItems.length) {
     return <Loader />

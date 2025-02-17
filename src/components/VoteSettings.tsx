@@ -22,7 +22,7 @@ export const VoteSettings: FC<{
   activeVotingTab: ActiveVotingTab
 }> = ({ item, activeVotingTab }) => {
   const { address, name, description } = item
-  const { sender, client, wallet } = useContext(AppContext)
+  const { sender, client } = useContext(AppContext)
 
   const [voteSettings, setVoteSettings] = useState<VoteSettings | null>(null)
   const [totalVotes, setTotalVotes] = useState<bigint | null>(null)
@@ -44,7 +44,7 @@ export const VoteSettings: FC<{
     }
     const contract = VotingNftItemWrappers.VotingNftItem.fromAddress(address)
     return client.open(contract)
-  }, [client, wallet])
+  }, [client])
 
   useEffect(() => {
     if (votingNftItem) {
@@ -148,7 +148,9 @@ export const VoteSettings: FC<{
     return null
   }
 
-  const { days, hours } = getHoursAndDaysLeft(Number(voteSettings.end_time))
+  const { days, hours, isExpired } = getHoursAndDaysLeft(
+    Number(voteSettings.end_time),
+  )
 
   return (
     <>
@@ -156,11 +158,15 @@ export const VoteSettings: FC<{
         title={name}
         subtitle={description}
         expiration={
-          <FormattedMessage
-            id="voteSettings.timeLeft"
-            values={{ days, hours }}
-            defaultMessage="Еще {days} д и {hours} ч"
-          />
+          isExpired ? (
+            'Завершен'
+          ) : (
+            <FormattedMessage
+              id="voteSettings.timeLeft"
+              values={{ days, hours }}
+              defaultMessage="Еще {days} д и {hours} ч"
+            />
+          )
         }
         bid={totalVotes === null ? '' : <>{fromNano(totalVotes)} Ton</>}
         commission={
@@ -197,7 +203,7 @@ const getHoursAndDaysLeft = (endTimeInSeconds: number) => {
   const diff = endTime - now
   const days = Math.floor(diff / (1000 * 60 * 60 * 24))
   const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-  return { days, hours }
+  return { days, hours, isExpired: now >= endTime }
 }
 
 type VotingNftItemContract = OpenedContract<VotingNftItemWrappers.VotingNftItem>
@@ -214,5 +220,5 @@ export type VotingItem = {
   index: number
   rewardType: 0 | 1
   ownerAddress: Address
-  isCreatedByYourWallet: boolean
+  isCreatedByYourWallet: boolean | undefined
 }

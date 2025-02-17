@@ -1,10 +1,12 @@
 import { styled } from '@linaria/react'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import { useTonConnectModal } from '@tonconnect/ui-react'
+import React, { FC, useContext, useEffect, useRef, useState } from 'react'
+import { AppContext } from '../App.context'
 import SvgClose from '../svgr/Close'
-import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
-import { InputNumber, InputText } from '../ui/Input'
 import { ButtonRegular } from '../ui/Button'
+import { InputNumber } from '../ui/Input'
 import { Rhytm } from '../ui/Rhytm'
+import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 
 export const EnterAmountDialog: FC<{
   onClose: VoidFunction
@@ -14,6 +16,8 @@ export const EnterAmountDialog: FC<{
   const [dialog, setDialog] = useState<HTMLDialogElement | null>(null)
   const [isVisible, setIsVisible] = useState(false)
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const { wallet } = useContext(AppContext)
+  const { open: openTonConnectModal } = useTonConnectModal()
 
   useEffect(() => {
     if (!dialog) {
@@ -35,6 +39,10 @@ export const EnterAmountDialog: FC<{
     onSubmit(amount)
     handleClose()
   }
+  const handleConnectWallet = () => {
+    handleClose()
+    openTonConnectModal()
+  }
 
   const handleClose = () => {
     setIsVisible(false)
@@ -49,24 +57,37 @@ export const EnterAmountDialog: FC<{
         <SvgClose />
       </CloseButton>
 
-      <Rhytm gap="24px">
-        <TitleAndSubtitle
-          titleFontSize={24}
-          title="Введите сумму"
-          subtitle="Введите сумму вашей ставки"
-        />
+      {wallet ? (
+        <Rhytm gap="24px">
+          <TitleAndSubtitle
+            titleFontSize={24}
+            title="Введите сумму"
+            subtitle="Введите сумму вашей ставки"
+          />
 
-        <InputNumber
-          type="number"
-          placeholder="Сумма ставки Ton"
-          value={amount}
-          onChange={e => setAmount(e.target.value)}
-        />
+          <InputNumber
+            type="number"
+            placeholder="Сумма ставки Ton"
+            value={amount}
+            onChange={e => setAmount(e.target.value)}
+          />
 
-        <ButtonRegular color="purple" onClick={handleSubmit}>
-          Готово
-        </ButtonRegular>
-      </Rhytm>
+          <ButtonRegular color="purple" onClick={handleSubmit}>
+            Готово
+          </ButtonRegular>
+        </Rhytm>
+      ) : (
+        <Rhytm gap="24px">
+          <TitleAndSubtitle
+            titleFontSize={24}
+            title="Подключить кошелек"
+            subtitle="Необходимо подключить кошелек, чтобы оплачивать участие и получать награду после завершения голосований. Это не займет много времени."
+          />
+          <ButtonRegular color="purple" onClick={handleConnectWallet}>
+            Подключить кошелек
+          </ButtonRegular>
+        </Rhytm>
+      )}
     </Dialog>
   )
 }
@@ -133,7 +154,4 @@ const CloseButton = styled.button`
   top: 16px;
   right: 16px;
   cursor: pointer;
-`
-const InputWrapper = styled.div`
-  margin-top: 20px;
 `

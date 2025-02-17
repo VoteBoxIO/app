@@ -3,7 +3,7 @@ import { VotingItem } from '../components/VoteSettings'
 
 export const fetchNftCollectionFromTonCenterApi = async (
   nftCollectionAddress: string,
-  walletAddress: string = '0QC9fkeure7JqHD9ViCt5_Ju1EPrTmKNwXc9OqmVR0j5NTGC',
+  walletAddress: string,
 ) => {
   const response = await fetch(
     `https://testnet.toncenter.com/api/v3/nft/items?collection_address=${nftCollectionAddress}&limit=50&offset=0`,
@@ -23,8 +23,9 @@ export const fetchNftCollectionFromTonCenterApi = async (
         index: Number(item.index),
         address: Address.parse(item.address),
         ownerAddress: Address.parse(item.owner_address),
-        isCreatedByYourWallet:
-          addressBook[walletAddress] === item.owner_address,
+        isCreatedByYourWallet: walletAddress
+          ? addressBook[walletAddress] === item.owner_address
+          : undefined,
         rewardType: Number(item.reward_type) as 0 | 1,
       }
 

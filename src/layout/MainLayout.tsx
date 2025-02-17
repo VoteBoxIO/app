@@ -1,16 +1,12 @@
 import { styled } from '@linaria/react'
-import React, { FC, useContext } from 'react'
-import { Outlet, useNavigate } from 'react-router'
-import { AppContext } from '../App.context'
-import { Loader } from '../ui/Loader'
 import { TonConnectButton } from '@tonconnect/ui-react'
-import SvgArrowBack from '../svgr/ArrowBack'
+import React, { FC } from 'react'
+import { Outlet, useNavigate } from 'react-router'
 import SvgArrowRight from '../svgr/ArrowRight'
 
 export const MainLayout: FC<{ background?: string }> = ({
   background = 'linear-gradient(168.43deg, rgba(254, 189, 152, 0.6) 68.74%, rgba(79, 82, 119, 0.5) 101.84%)',
 }) => {
-  const context = useContext(AppContext)
   const navigate = useNavigate()
 
   return (
@@ -27,7 +23,6 @@ export const MainLayout: FC<{ background?: string }> = ({
       <MainLayoutInner>
         <Content>
           <Outlet />
-          {/* {context.client ? <Outlet /> : <Loader />} */}
         </Content>
       </MainLayoutInner>
     </MainLayoutWrapper>
