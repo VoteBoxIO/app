@@ -44,40 +44,48 @@ const commonCss = css`
   font-style: normal;
   font-weight: 400;
   color: black;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    'Liberation Sans',
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
 `
 const typographyMap: Record<FontSize, LinariaClassName> = {
   28: css`
-    font-family: Manrope;
     font-size: 28px;
     font-weight: 600;
     line-height: 32px;
   `,
   24: css`
-    font-family: Manrope;
     font-size: 24px;
     font-weight: 600;
     line-height: 28px;
   `,
   20: css`
-    font-family: Manrope;
     font-size: 20px;
     font-weight: 600;
     line-height: 24px;
   `,
   16: css`
-    font-family: Manrope;
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
   `,
   14: css`
-    font-family: Manrope;
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
   `,
   12: css`
-    font-family: Manrope;
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
