@@ -6,8 +6,8 @@ import { AppContext } from '../App.context'
 import { useAsyncInitialize } from '../hooks/useAsyncInitialize'
 import {
   ACTIVE_PAGE_TO_REWARD_TYPE_MAP,
-  ActiveVotingTab,
-} from '../pages/ActiveVotingPage/ActiveVotingPage.constants'
+  PollTypeTab,
+} from '../pages/ActivePollsPage.constants'
 import { PollBlock, PollItem } from '../ui/PollBlock'
 import { parseChoices } from './parseChoices'
 import { EnterAmountDialog } from './EnterAmountDialog'
@@ -19,8 +19,12 @@ export const VoteSettings: FC<{
     description: string
     index: number
   }
-  activeVotingTab: ActiveVotingTab
-}> = ({ item, activeVotingTab }) => {
+  poolType?: PollTypeTab
+}> = ({
+  item,
+  // Пока только этот тип поддержан
+  poolType = PollTypeTab.MoneyPool,
+}) => {
   const { address, name, description } = item
   const { sender, client } = useContext(AppContext)
 
@@ -143,7 +147,7 @@ export const VoteSettings: FC<{
     !voteSettings ||
     // Фильтруем по типу вознаграждения, выбранного в качестве активной вкладки
     Number(voteSettings.reward_type) !==
-      ACTIVE_PAGE_TO_REWARD_TYPE_MAP[activeVotingTab]
+      ACTIVE_PAGE_TO_REWARD_TYPE_MAP[poolType]
   ) {
     return null
   }

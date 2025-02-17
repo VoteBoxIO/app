@@ -2,11 +2,11 @@ import React, { FC, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { MainLayout } from './layout/MainLayout'
 import {
-  ActiveVotingPage,
   activeVotingAccessToContentPagePath,
   activeVotingMoneyPoolPagePath,
-} from './pages/ActiveVotingPage/ActiveVotingPage'
-import { ActiveVotingTab } from './pages/ActiveVotingPage/ActiveVotingPage.constants'
+  ActivePollsPage,
+} from './pages/ActivePollsPage'
+import { PollTypeTab } from './pages/ActivePollsPage.constants'
 import {
   CreateMoneyPoolPage,
   createMoneyPoolPagePath,
@@ -19,7 +19,12 @@ import {
 } from './pages/HowToCreatePollPage'
 import { IndexPage, indexPagePath } from './pages/IndexPage'
 import { LanguagePage, languagePagePath } from './pages/LanguagePage'
-import { MyPollsPage, myPollsPagePath } from './pages/MyPollsPage'
+import {
+  myActivePollsPagePath,
+  myFinishedPollsPagePath,
+  MyPollsPage,
+} from './pages/MyPollsPage'
+import { MyPollsTab } from './pages/MyPollsPage.constants'
 import { MyVotingPage, myVotingPagePath } from './pages/MyVotingPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import {
@@ -59,23 +64,26 @@ export const App: FC = () => {
         </Route>
 
         <Route element={<MainLayout background="transparent" />}>
-          <Route path={myPollsPagePath} element={<MyPollsPage />} />
+          <Route
+            path={myActivePollsPagePath}
+            element={<MyPollsPage activeTab={MyPollsTab.Active} />}
+          />
+          <Route
+            path={myFinishedPollsPagePath}
+            element={<MyPollsPage activeTab={MyPollsTab.Finished} />}
+          />
           <Route
             path={createMoneyPoolPagePath}
             element={<CreateMoneyPoolPage />}
           />
           <Route
             path={activeVotingMoneyPoolPagePath}
-            element={
-              <ActiveVotingPage activeVotingTab={ActiveVotingTab.MoneyPool} />
-            }
+            element={<ActivePollsPage activeTab={PollTypeTab.MoneyPool} />}
           />
           <Route
             path={activeVotingAccessToContentPagePath}
             element={
-              <ActiveVotingPage
-                activeVotingTab={ActiveVotingTab.AccessToContent}
-              />
+              <ActivePollsPage activeTab={PollTypeTab.AccessToContent} />
             }
           />
         </Route>

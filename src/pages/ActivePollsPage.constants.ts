@@ -1,8 +1,8 @@
-export enum ActiveVotingTab {
+export enum PollTypeTab {
   MoneyPool = 'money-pool',
   AccessToContent = 'access-to-content',
 }
 export const ACTIVE_PAGE_TO_REWARD_TYPE_MAP = {
-  [ActiveVotingTab.MoneyPool]: 0,
-  [ActiveVotingTab.AccessToContent]: 1,
+  [PollTypeTab.MoneyPool]: 0,
+  [PollTypeTab.AccessToContent]: 1,
 }

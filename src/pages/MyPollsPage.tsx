@@ -1,44 +1,19 @@
 import { styled } from '@linaria/react'
-import React, { ComponentProps, FC } from 'react'
+import React, { FC } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { useParams } from 'react-router'
-import { PollBlock } from '../ui/PollBlock'
+import { VoteSettings } from '../components/VoteSettings'
+import { useFetchNftItems } from '../hooks/useFetchNftItems'
+import { Loader } from '../ui/Loader'
 import { Rhytm } from '../ui/Rhytm'
 import { Tabs } from '../ui/Tabs'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
+import { MyPollsTab } from './MyPollsPage.constants'
 
-export const MyPollsPage: FC = () => {
-  const params = useParams() as { id: PollType }
+export const MyPollsPage: FC<{
+  activeTab: MyPollsTab
+}> = ({ activeTab }) => {
   const { formatMessage } = useIntl()
-
-  const TABS = [
-    {
-      to: `${myPollsPagePartPath}/${PollType.Active}`,
-      id: PollType.Active,
-      label: formatMessage({ id: 'tab-active', defaultMessage: 'Активные' }),
-    },
-    {
-      to: `${myPollsPagePartPath}/${PollType.Finished}`,
-      id: PollType.Finished,
-      label: formatMessage({
-        id: 'tab-finished',
-        defaultMessage: 'Завершенные',
-      }),
-    },
-  ]
-
-  const activeTabId = TABS.find(({ id }) => id === params.id)?.id!
-
-  if (!activeTabId) {
-    console.error('Active tab not found')
-    return null
-  }
-
-  const handlePollItemClick: ComponentProps<
-    typeof PollBlock
-  >['onPollItemClick'] = id => {
-    console.info('poll item clicked', id)
-  }
+  const { loading, nftItems } = useFetchNftItems()
 
   return (
     <MyVotingPageContainer>
@@ -56,46 +31,38 @@ export const MyPollsPage: FC = () => {
       />
 
       <Rhytm style={{ marginTop: 24 }}>
-        <Tabs tabs={TABS} activeTabId={activeTabId} />
-
-        <PollBlock
-          title="Закрытый опрос"
-          subtitle="Проголосуй за лучшую книгу. Победители получат награду – ..."
-          expiration="Ещё 2 ч"
-          bid="2000 Ton"
-          commission="Комиссия 6%"
-          pollItems={[
+        <Tabs
+          tabs={[
             {
-              index: 1,
-              name: 'Тихий Дон',
-              value: '500',
-              progressPercent: 90,
-              progressLineGradient: true,
+              to: myActivePollsPagePath,
+              id: MyPollsTab.Active,
+              label: formatMessage({
+                id: 'tab-active',
+                defaultMessage: 'Активные',
+              }),
             },
             {
-              index: 2,
-              name: 'Война и мир',
-              value: '550',
-              progressPercent: 100,
-              progressLineGradient: false,
-            },
-            {
-              index: 3,
-              name: 'Вишнёвый сад',
-              value: '510',
-              progressPercent: 70,
-              progressLineGradient: false,
-            },
-            {
-              index: 4,
-              name: 'Герой нашего времени',
-              value: '440',
-              progressPercent: 40,
-              progressLineGradient: false,
+              to: myFinishedPollsPagePath,
+              id: MyPollsTab.Finished,
+              label: formatMessage({
+                id: 'tab-finished',
+                defaultMessage: 'Завершенные',
+              }),
             },
           ]}
-          onPollItemClick={handlePollItemClick}
+          activeTabId={activeTab}
         />
+
+        {loading ? (
+          <Loader />
+        ) : (
+          nftItems
+            // Только созданные текущим активным кошельком
+            .filter(item => item.isCreatedByYourWallet)
+            .map(item => {
+              return <VoteSettings key={item.index} item={item} />
+            })
+        )}
       </Rhytm>
     </MyVotingPageContainer>
   )
@@ -103,10 +70,5 @@ export const MyPollsPage: FC = () => {
 
 const MyVotingPageContainer = styled.div``
 
-export const myPollsPagePartPath = '/my-polls'
-export const myPollsPagePath = '/my-polls/:id'
-
-export enum PollType {
-  Active = 'active',
-  Finished = 'finished',
-}
+export const myActivePollsPagePath = '/my-polls/active'
+export const myFinishedPollsPagePath = '/my-polls/finished'

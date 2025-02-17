@@ -55,6 +55,9 @@ const MainLayoutInner = styled.div`
   min-height: 100%;
   padding: 0 20px 16px;
   width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 `
 const ArrowBack = styled(SvgArrowRight)`
   width: 30px;
