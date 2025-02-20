@@ -2,13 +2,13 @@ import { styled } from '@linaria/react'
 import React, { FC, FormEventHandler, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { AddVariantButton } from '../components/AddVariantButton'
+import { useCreateVoting } from '../hooks/useCreateVoting'
 import { ButtonRegular } from '../ui/Button'
-import { InputDate, InputFile, InputText, InputTextarea } from '../ui/Input'
+import { InputDate, InputNumber, InputText, InputTextarea } from '../ui/Input'
 import { Rhytm } from '../ui/Rhytm'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { Toggle } from '../ui/Toggle'
 import { Typography } from '../ui/Typography'
-import { useCreateVoting } from '../hooks/useCreateVoting'
 
 export const CreateMoneyPoolPage: FC = () => {
   const { formatMessage } = useIntl()
@@ -110,7 +110,7 @@ export const CreateMoneyPoolPage: FC = () => {
         />
         <form onSubmit={handleSubmit}>
           <Rhytm>
-            <InputText
+            <InputNumber
               name="bloggerCommission"
               placeholder={formatMessage({
                 id: 'blogger-commission-placeholder',
@@ -119,14 +119,14 @@ export const CreateMoneyPoolPage: FC = () => {
               value={formData.bloggerCommission}
               onChange={handleInputChange}
             />
-            <InputFile
+            {/* <InputFile
               name="rewardFile"
               placeholder={formatMessage({
                 id: 'add-reward-placeholder',
                 defaultMessage: 'Добавить вознаграждение',
               })}
               onChange={handleInputChange}
-            />
+            /> */}
             <InputText
               name="pollName"
               placeholder={formatMessage({
@@ -159,7 +159,7 @@ export const CreateMoneyPoolPage: FC = () => {
             <Typography fontSize={20} fontWeight={600}>
               <FormattedMessage id="poll" defaultMessage="Опрос" />
             </Typography>
-            <InputText
+            {/* <InputText
               name="question"
               placeholder={formatMessage({
                 id: 'question-placeholder',
@@ -167,7 +167,7 @@ export const CreateMoneyPoolPage: FC = () => {
               })}
               value={formData.question}
               onChange={handleInputChange}
-            />
+            /> */}
             {formData.options.map((option, index) => (
               <InputText
                 key={index}
@@ -192,14 +192,14 @@ export const CreateMoneyPoolPage: FC = () => {
               checked={formData.allowMultipleOptions}
               onChange={() => handleToggleChange('allowMultipleOptions')}
             />
-            <Toggle
+            {/* <Toggle
               label={formatMessage({
                 id: 'quiz-mode-toggle',
                 defaultMessage: 'Режим викторины',
               })}
               checked={formData.quizMode}
               onChange={() => handleToggleChange('quizMode')}
-            />
+            /> */}
           </Rhytm>
 
           <ButtonRegular
@@ -225,4 +225,8 @@ export const CreateMoneyPoolPage: FC = () => {
 
 export const createMoneyPoolPagePath = '/create-money-pool'
 
-const CreateMoneyPoolPageContainer = styled.div``
+const CreateMoneyPoolPageContainer = styled.div`
+  textarea {
+    min-height: 100px;
+  }
+`

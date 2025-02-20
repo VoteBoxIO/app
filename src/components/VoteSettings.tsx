@@ -196,9 +196,11 @@ const createCommission = (
     return 0
   }
 
-  return Number(
-    rewardDistributionSettings.creator_basis_points +
-      rewardDistributionSettings.platform_basis_points,
+  return (
+    Number(
+      rewardDistributionSettings.creator_basis_points +
+        rewardDistributionSettings.platform_basis_points,
+    ) / 100
   )
 }
 const getHoursAndDaysLeft = (endTimeInSeconds: number) => {
