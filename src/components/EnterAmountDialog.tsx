@@ -51,8 +51,22 @@ export const EnterAmountDialog: FC<{
     }, 300) // Duration of the hide animation
   }
 
+  // Handle backdrop click
+  const handleDialogClick = (
+    event: React.MouseEvent<HTMLDialogElement, MouseEvent>,
+  ) => {
+    if (event.target === dialog) {
+      handleClose()
+    }
+  }
+
   return (
-    <Dialog ref={setDialog} onClose={handleClose} isVisible={isVisible}>
+    <Dialog
+      ref={setDialog}
+      onClose={handleClose}
+      isVisible={isVisible}
+      onClick={handleDialogClick}
+    >
       <CloseButton onClick={handleClose}>
         <SvgClose />
       </CloseButton>
@@ -118,29 +132,8 @@ const Dialog = styled.dialog<{ isVisible: boolean }>`
   /* ::backdrop styling */
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
-    animation: ${props =>
-      props.isVisible
-        ? 'fadeInBackdrop 0.3s ease'
-        : 'fadeOutBackdrop 0.3s ease'};
-  }
-
-  /* Animations for the backdrop */
-  @keyframes fadeInBackdrop {
-    from {
-      background-color: rgba(0, 0, 0, 0);
-    }
-    to {
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-  }
-
-  @keyframes fadeOutBackdrop {
-    from {
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-    to {
-      background-color: rgba(0, 0, 0, 0);
-    }
+    opacity: ${props => (props.isVisible ? 1 : 0)};
+    transition: opacity 0.3s ease;
   }
 `
 

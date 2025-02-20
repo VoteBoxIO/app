@@ -54,9 +54,11 @@ export const PollBlock: FC<{
 }
 
 const PollItems = styled.div`
-  & > * + * {
-    margin-top: 12px;
-  }
+  display: grid;
+  align-items: center;
+  grid-template-columns: max-content auto max-content;
+  gap: 12px;
+  grid-gap: 12px;
 `
 const PollInfo = styled.div`
   display: grid;

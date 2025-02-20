@@ -51,17 +51,19 @@ export const VoteSettings: FC<{
   }, [client])
 
   useEffect(() => {
-    if (votingNftItem) {
-      try {
-        votingNftItem.getVoteSettings().then(setVoteSettings)
-        votingNftItem.getTotalVotes().then(setTotalVotes)
-        votingNftItem
-          .getRewardDistributionSettings()
-          .then(setRewardDistributionSettings)
-        votingNftItem.getRecommendedVoteGas().then(setRecommendedVoteGas)
-      } catch (error) {
-        console.error('Error fetching votingNftItem data', error)
-      }
+    if (!votingNftItem) {
+      return
+    }
+
+    try {
+      votingNftItem.getVoteSettings().then(setVoteSettings)
+      votingNftItem.getTotalVotes().then(setTotalVotes)
+      votingNftItem
+        .getRewardDistributionSettings()
+        .then(setRewardDistributionSettings)
+      votingNftItem.getRecommendedVoteGas().then(setRecommendedVoteGas)
+    } catch (error) {
+      console.error('Error fetching votingNftItem data', error)
     }
   }, [votingNftItem])
 
@@ -149,7 +151,17 @@ export const VoteSettings: FC<{
     Number(voteSettings.reward_type) !==
       ACTIVE_PAGE_TO_REWARD_TYPE_MAP[poolType]
   ) {
-    return null
+    return (
+      <PollBlock
+        title={name}
+        subtitle={description}
+        expiration="Loading"
+        bid="Loading"
+        commission="Loading"
+        pollItems={[]}
+        onPollItemClick={() => {}}
+      />
+    )
   }
 
   const { days, hours, isExpired } = getHoursAndDaysLeft(
@@ -172,7 +184,7 @@ export const VoteSettings: FC<{
             />
           )
         }
-        bid={totalVotes === null ? '' : <>{fromNano(totalVotes)} Ton</>}
+        bid={totalVotes === null ? 'Loading' : <>{fromNano(totalVotes)} Ton</>}
         commission={
           <>{createCommission(rewardDistributionSettings)}% комиссии</>
         }

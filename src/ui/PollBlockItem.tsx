@@ -23,28 +23,26 @@ export const PollBlockItem: FC<{
   }
 
   return (
-    <PollBlockItemContainer onClick={handlePollItemClick}>
-      <Block>
-        <Plus>
-          <SvgPlusSmall />
-        </Plus>
-        <Content>
-          <Typography fontSize={16} fontWeight={500}>
-            {name}
-          </Typography>
-          <ProgressBar
-            style={{ width: `${progressPercent}%` }}
-            progressLineGradient={progressLineGradient}
-          />
-        </Content>
-        <Value>
-          <Typography fontSize={16} fontWeight={700}>
-            {value}
-            <TonWrapper>TON</TonWrapper>
-          </Typography>
-        </Value>
-      </Block>
-    </PollBlockItemContainer>
+    <>
+      <Plus onClick={handlePollItemClick}>
+        <SvgPlusSmall />
+      </Plus>
+      <Content>
+        <Typography fontSize={16} fontWeight={500}>
+          {name}
+        </Typography>
+        <ProgressBar
+          style={{ width: `${progressPercent}%` }}
+          progressLineGradient={progressLineGradient}
+        />
+      </Content>
+      <Value>
+        <Typography fontSize={16} fontWeight={700}>
+          {value}
+          <TonWrapper>TON</TonWrapper>
+        </Typography>
+      </Value>
+    </>
   )
 }
 
@@ -56,13 +54,6 @@ const ProgressBar = styled.div<{ progressLineGradient: boolean }>`
   border-radius: 99px;
   background: ${({ progressLineGradient }) =>
     progressLineGradient ? PROGRESS_GRADIENT : PROGRESS_DEFAULT};
-`
-const Block = styled.div`
-  align-items: center;
-  flex-grow: 1;
-  justify-content: flex-start;
-  display: flex;
-  gap: 8px;
 `
 const Plus = styled.div`
   flex-shrink: 0;
@@ -80,13 +71,7 @@ const Content = styled.div`
 const Value = styled.div`
   display: flex;
   align-items: end;
-  margin-left: 8px;
-  margin-top: 12px;
-`
-const PollBlockItemContainer = styled.button`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+  margin-top: 15px;
 `
 
 const PROGRESS_GRADIENT =
