@@ -56,12 +56,11 @@ export const VoteSettings: FC<{
     }
 
     try {
-      votingNftItem.getVoteSettings().then(setVoteSettings)
-      votingNftItem.getTotalVotes().then(setTotalVotes)
-      votingNftItem
-        .getRewardDistributionSettings()
-        .then(setRewardDistributionSettings)
-      votingNftItem.getRecommendedVoteGas().then(setRecommendedVoteGas)
+      const nft = votingNftItem
+      nft.getVoteSettings().then(setVoteSettings)
+      nft.getTotalVotes().then(setTotalVotes)
+      nft.getRewardDistributionSettings().then(setRewardDistributionSettings)
+      nft.getRecommendedVoteGas().then(setRecommendedVoteGas)
     } catch (error) {
       console.error('Error fetching votingNftItem data', error)
     }
@@ -127,19 +126,23 @@ export const VoteSettings: FC<{
       })),
     )
     ;(async () => {
-      const choicesWithVoteAmount = await Promise.allSettled(
+      const choicesWithVoteAmount = await Promise.all(
         choices.map(({ index }) => votingNftItem.getVoteAmount(index)),
       )
 
-      const _choices: PollItem[] = choicesWithVoteAmount.map(
-        (value, index) => ({
+      const largestValue = Math.max(...choicesWithVoteAmount.map(Number))
+
+      const _choices: PollItem[] = choicesWithVoteAmount.map((value, index) => {
+        const _value = Number(value)
+
+        return {
           name: choices[index].value,
           index: Number(choices[index].index),
-          value: value.status === 'fulfilled' ? fromNano(value.value) : null,
-          progressLineGradient: false,
-          progressPercent: 100,
-        }),
-      )
+          value: fromNano(value),
+          progressLineGradient: largestValue === _value,
+          progressPercent: _value === 0 ? 0 : (_value / largestValue) * 100,
+        }
+      })
 
       setPollItems(_choices)
     })()
