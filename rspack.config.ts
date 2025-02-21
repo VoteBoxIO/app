@@ -9,12 +9,35 @@ import * as dotenv from 'dotenv'
 import fs from 'fs'
 import HtmlRspackPlugin from 'html-webpack-plugin'
 import path from 'path'
-import { linariaCssLoaderRules } from './webpack/linaria'
 
 // Load environment variables
 dotenv.config()
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const isHttpsMode = process.env.HTTPS === 'true'
+
+export const linariaCssLoaderRules = (isDevelopment: boolean) =>
+  isDevelopment
+    ? {
+        test: /\.css$/,
+        use: [
+          'css-hot-loader',
+          rspack.CssExtractRspackPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true },
+          },
+        ],
+      }
+    : {
+        test: /\.css$/,
+        use: [
+          rspack.CssExtractRspackPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { sourceMap: false },
+          },
+        ],
+      }
 
 const config: Configuration = {
   mode: isDevelopment ? 'development' : 'production',
