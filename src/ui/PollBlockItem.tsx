@@ -38,7 +38,7 @@ export const PollBlockItem: FC<{
       </Content>
       <Value>
         <Typography fontSize={16} fontWeight={700}>
-          {value}
+          {value === null ? 'Loading' : value}
           <TonWrapper>TON</TonWrapper>
         </Typography>
       </Value>

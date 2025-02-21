@@ -65,6 +65,7 @@ const ArrowBack = styled(SvgArrowRight)`
   transform: rotate(180deg);
 `
 const Content = styled.div`
+  display: flex;
   margin-top: 12px;
   flex-grow: 1;
 `
