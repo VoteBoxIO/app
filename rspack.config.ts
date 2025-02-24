@@ -109,15 +109,18 @@ const config: Configuration = {
     },
     ...(isHttpsMode
       ? {
-          port: 443,
-          https: {
-            key: fs.readFileSync(
-              path.resolve(__dirname, '.cert/localhost-key.pem'),
-            ),
-            cert: fs.readFileSync(
-              path.resolve(__dirname, '.cert/localhost.pem'),
-            ),
+          server: {
+            type: 'https',
+            options: {
+              key: fs.readFileSync(
+                path.resolve(__dirname, '.cert/localhost-key.pem'),
+              ),
+              cert: fs.readFileSync(
+                path.resolve(__dirname, '.cert/localhost.pem'),
+              ),
+            },
           },
+          port: 443,
           allowedHosts: 'all',
           headers: {
             'Access-Control-Allow-Origin': '*',
