@@ -1,13 +1,12 @@
 import { styled } from '@linaria/react'
 import React, { FC } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { ActionBlockWithButton } from '../ui/ActionBlock'
 import { Rhytm } from '../ui/Rhytm'
 import { TextWithArrow } from '../ui/TextWithArrow'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
-import { howToCreatePollPagePath } from './HowToCreatePollPage'
-import { FormattedMessage } from 'react-intl'
-import { create } from 'domain'
 import { createMoneyPoolPagePath } from './CreateMoneyPoolPage'
+import { howToCreatePollPagePath } from './HowToCreatePollPage'
 
 export const PollTypePage: FC = () => {
   return (
