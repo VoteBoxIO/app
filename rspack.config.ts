@@ -85,7 +85,10 @@ const config: Configuration = {
     },
   },
   plugins: [
-    new HtmlRspackPlugin({ template: './public/index.html' }),
+    new HtmlRspackPlugin({
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
+    }),
     new rspack.CssExtractRspackPlugin({
       filename: 'styles.css',
       chunkFilename: '[name].styles.css',
