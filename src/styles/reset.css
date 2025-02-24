@@ -8,7 +8,18 @@
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -21,7 +32,8 @@ body {
 }
 
 /* Reset list styles */
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
@@ -38,7 +50,11 @@ table {
 }
 
 /* Reset input, textarea, button */
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   font: inherit;
   margin: 0;
   border: none;
@@ -46,18 +62,25 @@ button, input, optgroup, select, textarea {
 }
 
 /* Reset media element styles */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
 /* Remove default quotes for blockquote and q */
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
-blockquote::before, blockquote::after,
-q::before, q::after {
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
   content: '';
 }
 
@@ -66,7 +89,8 @@ q::before, q::after {
   display: none;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   height: 100%;
 }

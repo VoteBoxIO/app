@@ -7,6 +7,7 @@ import { App } from './App'
 import { loadLocaleData } from './Index.functions'
 import { AppContextProvider } from './App.context'
 import { detectBrowserLanguage } from './functions/detectBrowserLanguage'
+import './styles/reset.css'
 
 const rootElement = document.getElementById('root')
 
