@@ -42,7 +42,13 @@ export const App: FC = () => {
   }, [])
 
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      basename={
+        process.env.NODE_ENV === 'production'
+          ? process.env.WEBPACK_PUBLIC_PATH
+          : '/'
+      }
+    >
       <Routes>
         <Route element={<MainLayout />}>
           <Route index path={indexPagePath} element={<IndexPage />} />

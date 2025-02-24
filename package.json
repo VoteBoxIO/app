@@ -26,10 +26,7 @@
     "development": "NODE_ENV=development webpack serve --config webpack.config.ts",
     "build": "rm -rf dist && npm run tsc && NODE_ENV=production webpack --config webpack.config.ts",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "vercel:build": "npm run build",
-    "vercel:deploy": "vercel --prod",
-    "vercel:preview": "vercel"
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx,json,css,scss,md}": [
