@@ -48,3 +48,4 @@ coverage/
 
 .DS_Store
 .cert
+.vercel

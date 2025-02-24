@@ -43,7 +43,6 @@ export const App: FC = () => {
 
   return (
     <BrowserRouter>
-      {/* <BrowserRouter basename="/app/"> */}
       <Routes>
         <Route element={<MainLayout />}>
           <Route index path={indexPagePath} element={<IndexPage />} />

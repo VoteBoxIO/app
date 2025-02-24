@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from 'react-router'
 import SvgArrowRight from '../svgr/ArrowRight'
 
 export const MainLayout: FC<{ background?: string }> = ({
-  background = 'linear-gradient(168.43deg, rgba(254, 189, 152, 0.6) 68.74%, rgba(79, 82, 119, 0.5) 101.84%)',
+  background = 'white',
 }) => {
   const navigate = useNavigate()
 
