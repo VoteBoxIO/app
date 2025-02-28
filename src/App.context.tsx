@@ -31,7 +31,7 @@ export const AppContextProvider: FC<
   const contractsData = useInitializeContracts()!
   const tonApiClient = useInitializeTonApiClient()
   const contractsAddresses = useContactAddresses()
-  const basePath = `/${process.env.WEBPACK_PUBLIC_PATH}` || '/'
+  const basePath = process.env.WEBPACK_PUBLIC_PATH || '/'
 
   return (
     <AppContext.Provider
