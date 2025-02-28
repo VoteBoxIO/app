@@ -2,31 +2,25 @@
   "active-voting": [
     {
       "type": 0,
-      "value": "Active Voting"
+      "value": "Active votings"
     }
   ],
   "active-voting-subtitle": [
     {
       "type": 0,
-      "value": "View available polls"
+      "value": "Browse available polls"
     }
   ],
   "add-option": [
     {
       "type": 0,
-      "value": "Add Option"
-    }
-  ],
-  "add-reward-placeholder": [
-    {
-      "type": 0,
-      "value": "Add Reward"
+      "value": "Add option"
     }
   ],
   "blogger-commission-placeholder": [
     {
       "type": 0,
-      "value": "Blogger Commission"
+      "value": "Blogger commission"
     }
   ],
   "create-button": [
@@ -38,7 +32,7 @@
   "create-voting": [
     {
       "type": 0,
-      "value": "Create Voting"
+      "value": "Create voting"
     }
   ],
   "create-voting-subtitle": [
@@ -50,43 +44,61 @@
   "create-voting-title": [
     {
       "type": 0,
-      "value": "Create Voting"
+      "value": "Creating a vote"
     }
   ],
   "create-voting-type": [
     {
       "type": 0,
-      "value": "Select the type of voting and configure the settings"
+      "value": "Choose a voting type and configure settings"
+    }
+  ],
+  "creator-basis-points-error": [
+    {
+      "type": 0,
+      "value": "Blogger commission must be between 0% and 100%"
+    }
+  ],
+  "deadline-error-too-early": [
+    {
+      "type": 0,
+      "value": "The deadline must be at least 2 hours from now"
+    }
+  ],
+  "deadline-error-too-late": [
+    {
+      "type": 0,
+      "value": "The deadline must not exceed 90 days"
     }
   ],
   "deadline-placeholder": [
     {
       "type": 0,
-      "value": "Set Deadline"
+      "value": "Set deadline"
     }
   ],
   "how-it-works": [
     {
       "type": 0,
-      "value": "How it Works?"
+      "value": "How does it work?"
     }
   ],
   "how-to-create": [
     {
       "type": 0,
-      "value": "How to Create"
+      "value": "How to create"
     }
   ],
   "invite-friend": [
     {
       "type": 0,
-      "value": "Invite a Friend"
+      "value": "Invite a friend"
     }
   ],
   "invite-friend-bonus": [
     {
       "type": 0,
-      "value": "Invite a friend and earn bonuses"
+      "value": "Invite a friend and get bonuses"
     }
   ],
   "logo-subtitle": [
@@ -98,73 +110,85 @@
   "money-pool": [
     {
       "type": 0,
-      "value": "Money Pool"
+      "value": "Money pool"
     }
   ],
   "money-pool-button": [
     {
       "type": 0,
-      "value": "Create Voting"
+      "value": "Create voting"
     }
   ],
   "money-pool-description": [
     {
       "type": 0,
-      "value": "Winners share the money of the losers. Voting is unlimited."
+      "value": "Winners split the losers' money. Unlimited votes are allowed."
     }
   ],
   "money-pool-subtitle": [
     {
       "type": 0,
-      "value": "Winners share the money of the losers. Voting is unlimited."
+      "value": "Winners split the losers' money. Unlimited votes are allowed."
     }
   ],
   "money-pool-title": [
     {
       "type": 0,
-      "value": "Money Pool"
+      "value": "Money pool"
     }
   ],
   "multiple-options-toggle": [
     {
       "type": 0,
-      "value": "Allow Multiple Options"
+      "value": "Multiple choice selection"
     }
   ],
   "my-polls": [
     {
       "type": 0,
-      "value": "My Polls"
+      "value": "My polls"
     }
   ],
   "my-polls-subtitle": [
     {
       "type": 0,
-      "value": "History of your polls"
+      "value": "Here you can find your active and finished polls."
+    }
+  ],
+  "my-polls-title": [
+    {
+      "type": 0,
+      "value": "My polls"
     }
   ],
   "my-votes": [
     {
       "type": 0,
-      "value": "My Votes"
+      "value": "My votes"
     }
   ],
   "my-votes-subtitle": [
     {
       "type": 0,
-      "value": "History of your votes"
+      "value": "Your voting history"
     }
   ],
   "option-placeholder": [
     {
       "type": 0,
-      "value": "Answer Option"
+      "value": "Answer option"
+    }
+  ],
+  "options-error": [
+    {
+      "type": 0,
+      "value": "Answer options must not be empty"
     }
   ],
   "paid-voting-button": [
     {
       "type": 0,
-      "value": "Create Voting"
+      "value": "Create voting"
     }
   ],
   "paid-voting-subtitle": [
@@ -176,13 +200,13 @@
   "paid-voting-title": [
     {
       "type": 0,
-      "value": "Paid Voting"
+      "value": "Paid voting"
     }
   ],
   "payment-methods": [
     {
       "type": 0,
-      "value": "Payment Methods"
+      "value": "Payment methods"
     }
   ],
   "poll": [
@@ -191,28 +215,52 @@
       "value": "Poll"
     }
   ],
+  "poll-name-error": [
+    {
+      "type": 0,
+      "value": "Voting name must not be empty"
+    }
+  ],
   "poll-name-placeholder": [
     {
       "type": 0,
-      "value": "Poll Name"
-    }
-  ],
-  "question-placeholder": [
-    {
-      "type": 0,
-      "value": "Question"
-    }
-  ],
-  "quiz-mode-toggle": [
-    {
-      "type": 0,
-      "value": "Quiz Mode"
+      "value": "Voting name"
     }
   ],
   "support": [
     {
       "type": 0,
       "value": "Support"
+    }
+  ],
+  "tab-active": [
+    {
+      "type": 0,
+      "value": "Active"
+    }
+  ],
+  "tab-finished": [
+    {
+      "type": 0,
+      "value": "Finished"
+    }
+  ],
+  "voteSettings.timeLeft": [
+    {
+      "type": 1,
+      "value": "days"
+    },
+    {
+      "type": 0,
+      "value": " d and "
+    },
+    {
+      "type": 1,
+      "value": "hours"
+    },
+    {
+      "type": 0,
+      "value": " h left"
     }
   ]
 }

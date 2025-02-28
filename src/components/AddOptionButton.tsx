@@ -4,20 +4,20 @@ import { Typography } from '../ui/Typography'
 import { FormattedMessage } from 'react-intl'
 import { styled } from '@linaria/react'
 
-export const AddVariantButton: FC<{
-  onClick: ComponentProps<typeof AddVariantButtonContainer>['onClick']
+export const AddOptionButton: FC<{
+  onClick: ComponentProps<typeof AddOptionButtonContainer>['onClick']
 }> = ({ onClick }) => {
   return (
-    <AddVariantButtonContainer onClick={onClick} type="button">
+    <AddOptionButtonContainer onClick={onClick} type="button">
       <Typography fontSize={14} fontWeight={700}>
         <FormattedMessage id="add-option" defaultMessage="Добавить вариант" />
       </Typography>
       <SvgPlusSmall />
-    </AddVariantButtonContainer>
+    </AddOptionButtonContainer>
   )
 }
 
-const AddVariantButtonContainer = styled.button`
+const AddOptionButtonContainer = styled.button`
   display: grid;
   grid-auto-flow: column;
   gap: 8px;

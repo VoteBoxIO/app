@@ -1,110 +1,128 @@
 {
   "active-voting": {
-    "defaultMessage": "Active Voting"
+    "defaultMessage": "Active votings"
   },
   "active-voting-subtitle": {
-    "defaultMessage": "View available polls"
+    "defaultMessage": "Browse available polls"
   },
   "add-option": {
-    "defaultMessage": "Add Option"
-  },
-  "add-reward-placeholder": {
-    "defaultMessage": "Add Reward"
+    "defaultMessage": "Add option"
   },
   "blogger-commission-placeholder": {
-    "defaultMessage": "Blogger Commission"
+    "defaultMessage": "Blogger commission"
   },
   "create-button": {
     "defaultMessage": "Create"
   },
   "create-voting": {
-    "defaultMessage": "Create Voting"
+    "defaultMessage": "Create voting"
   },
   "create-voting-subtitle": {
     "defaultMessage": "Start a poll and engage your audience"
   },
   "create-voting-title": {
-    "defaultMessage": "Create Voting"
+    "defaultMessage": "Creating a vote"
   },
   "create-voting-type": {
-    "defaultMessage": "Select the type of voting and configure the settings"
+    "defaultMessage": "Choose a voting type and configure settings"
+  },
+  "creator-basis-points-error": {
+    "defaultMessage": "Blogger commission must be between 0% and 100%"
+  },
+  "deadline-error-too-early": {
+    "defaultMessage": "The deadline must be at least 2 hours from now"
+  },
+  "deadline-error-too-late": {
+    "defaultMessage": "The deadline must not exceed 90 days"
   },
   "deadline-placeholder": {
-    "defaultMessage": "Set Deadline"
+    "defaultMessage": "Set deadline"
   },
   "how-it-works": {
-    "defaultMessage": "How it Works?"
+    "defaultMessage": "How does it work?"
   },
   "how-to-create": {
-    "defaultMessage": "How to Create"
+    "defaultMessage": "How to create"
   },
   "invite-friend": {
-    "defaultMessage": "Invite a Friend"
+    "defaultMessage": "Invite a friend"
   },
   "invite-friend-bonus": {
-    "defaultMessage": "Invite a friend and earn bonuses"
+    "defaultMessage": "Invite a friend and get bonuses"
   },
   "logo-subtitle": {
     "defaultMessage": "Monetize your content"
   },
   "money-pool": {
-    "defaultMessage": "Money Pool"
+    "defaultMessage": "Money pool"
   },
   "money-pool-button": {
-    "defaultMessage": "Create Voting"
+    "defaultMessage": "Create voting"
   },
   "money-pool-description": {
-    "defaultMessage": "Winners share the money of the losers. Voting is unlimited."
+    "defaultMessage": "Winners split the losers' money. Unlimited votes are allowed."
   },
   "money-pool-subtitle": {
-    "defaultMessage": "Winners share the money of the losers. Voting is unlimited."
+    "defaultMessage": "Winners split the losers' money. Unlimited votes are allowed."
   },
   "money-pool-title": {
-    "defaultMessage": "Money Pool"
+    "defaultMessage": "Money pool"
   },
   "multiple-options-toggle": {
-    "defaultMessage": "Allow Multiple Options"
+    "defaultMessage": "Multiple choice selection"
   },
   "my-polls": {
-    "defaultMessage": "My Polls"
+    "defaultMessage": "My polls"
   },
   "my-polls-subtitle": {
-    "defaultMessage": "History of your polls"
+    "defaultMessage": "Here you can find your active and finished polls."
+  },
+  "my-polls-title": {
+    "defaultMessage": "My polls"
   },
   "my-votes": {
-    "defaultMessage": "My Votes"
+    "defaultMessage": "My votes"
   },
   "my-votes-subtitle": {
-    "defaultMessage": "History of your votes"
+    "defaultMessage": "Your voting history"
   },
   "option-placeholder": {
-    "defaultMessage": "Answer Option"
+    "defaultMessage": "Answer option"
+  },
+  "options-error": {
+    "defaultMessage": "Answer options must not be empty"
   },
   "paid-voting-button": {
-    "defaultMessage": "Create Voting"
+    "defaultMessage": "Create voting"
   },
   "paid-voting-subtitle": {
     "defaultMessage": "All participants gain access to content. One vote has a fixed cost."
   },
   "paid-voting-title": {
-    "defaultMessage": "Paid Voting"
+    "defaultMessage": "Paid voting"
   },
   "payment-methods": {
-    "defaultMessage": "Payment Methods"
+    "defaultMessage": "Payment methods"
   },
   "poll": {
     "defaultMessage": "Poll"
   },
+  "poll-name-error": {
+    "defaultMessage": "Voting name must not be empty"
+  },
   "poll-name-placeholder": {
-    "defaultMessage": "Poll Name"
-  },
-  "question-placeholder": {
-    "defaultMessage": "Question"
-  },
-  "quiz-mode-toggle": {
-    "defaultMessage": "Quiz Mode"
+    "defaultMessage": "Voting name"
   },
   "support": {
     "defaultMessage": "Support"
+  },
+  "tab-active": {
+    "defaultMessage": "Active"
+  },
+  "tab-finished": {
+    "defaultMessage": "Finished"
+  },
+  "voteSettings.timeLeft": {
+    "defaultMessage": "{days} d and {hours} h left"
   }
 }

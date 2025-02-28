@@ -20,6 +20,7 @@ export const LanguagePage: FC = () => {
 }
 
 const LanguagePageContainer = styled.div`
+  height: 100%;
   display: grid;
   grid-gap: 8px;
   gap: 8px;

@@ -39,7 +39,12 @@ export const ButtonRegular: FC<
 
 type Color = 'purple' | 'peach'
 
-const StyledButton = styled.button``
+const StyledButton = styled.button`
+  transition: opacity 0.2s;
+  &:disabled {
+    opacity: 0.5;
+  }
+`
 const ButtonContainer = styled.div`
   padding: 16px 20px;
   border-radius: 26px;

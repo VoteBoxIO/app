@@ -15,6 +15,11 @@ export const InputFile: FC<ComponentProps<typeof StyledInput> & {}> = props => {
 export const InputDate: FC<ComponentProps<typeof StyledInput> & {}> = props => {
   return <StyledInput type="date" {...props} />
 }
+export const InputDateTime: FC<
+  ComponentProps<typeof StyledInput> & {}
+> = props => {
+  return <StyledInput type="datetime-local" {...props} />
+}
 export const InputTextarea: FC<
   ComponentProps<typeof StyledTextArea> & {}
 > = props => {

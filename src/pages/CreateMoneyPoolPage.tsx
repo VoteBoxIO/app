@@ -1,10 +1,12 @@
 import { styled } from '@linaria/react'
-import React, { FC, FormEventHandler, useState } from 'react'
+import React, { FC, FormEventHandler, useEffect, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { AddVariantButton } from '../components/AddVariantButton'
+import { AddOptionButton } from '../components/AddOptionButton'
+import { VOTING_SETTINGS } from '../constants'
 import { useCreateVoting } from '../hooks/useCreateVoting'
 import { ButtonRegular } from '../ui/Button'
-import { InputDate, InputNumber, InputText, InputTextarea } from '../ui/Input'
+import { ErrorText } from '../ui/ErrorText'
+import { InputDateTime, InputNumber, InputText } from '../ui/Input'
 import { Rhytm } from '../ui/Rhytm'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { Toggle } from '../ui/Toggle'
@@ -14,17 +16,99 @@ export const CreateMoneyPoolPage: FC = () => {
   const { formatMessage } = useIntl()
   const { sendCreateVotingMessage } = useCreateVoting()
 
-  const [formData, setFormData] = useState({
-    bloggerCommission: '',
-    rewardFile: null as File | null,
+  const [voting, setVoting] = useState({
+    creatorBasisPoints: '',
     pollName: '',
-    pollDescription: '', // Added for description
     deadline: '',
-    question: '',
-    options: [''], // Start with one option
+    options: [''],
     allowMultipleOptions: false,
-    quizMode: false,
+    // rewardFile: null as File | null,
+    // quizMode: false,
   })
+
+  const [error, setError] = useState({
+    creatorBasisPoints: '',
+    pollName: '',
+    deadline: '',
+    options: '',
+  })
+
+  const validateForm = (submitting: boolean) => {
+    let hasError = false
+
+    if (voting.creatorBasisPoints) {
+      if (+voting.creatorBasisPoints < 0 || +voting.creatorBasisPoints > 100) {
+        hasError = true
+        setError(prev => ({
+          ...prev,
+          creatorBasisPoints: formatMessage({
+            id: 'creator-basis-points-error',
+            defaultMessage: 'Комиссия блогера должна быть между 0% и 100%',
+          }),
+        }))
+      } else {
+        setError(prev => ({ ...prev, creatorBasisPoints: '' }))
+      }
+    }
+
+    if (submitting && !voting.pollName) {
+      hasError = true
+      setError(prev => ({
+        ...prev,
+        pollName: formatMessage({
+          id: 'poll-name-error',
+          defaultMessage: 'Название голосования не должно быть пустым',
+        }),
+      }))
+    } else {
+      setError(prev => ({ ...prev, pollName: '' }))
+    }
+
+    if (voting.deadline) {
+      const parsedDate = Date.parse(voting.deadline)
+
+      if (parsedDate < Date.now() + VOTING_SETTINGS.minDuration) {
+        hasError = true
+        setError(prev => ({
+          ...prev,
+          deadline: formatMessage({
+            id: 'deadline-error-too-early',
+            defaultMessage: 'Дедлайн должен быть не раньше чем через 2 часа',
+          }),
+        }))
+      } else if (parsedDate > Date.now() + VOTING_SETTINGS.maxDuration) {
+        hasError = true
+        setError(prev => ({
+          ...prev,
+          deadline: formatMessage({
+            id: 'deadline-error-too-late',
+            defaultMessage: 'Дедлайн должен быть не позже чем через 90 дней',
+          }),
+        }))
+      } else {
+        setError(prev => ({ ...prev, deadline: '' }))
+      }
+    }
+
+    if (submitting && voting.options.some(option => !option)) {
+      hasError = true
+      setError(prev => ({
+        ...prev,
+        options: formatMessage({
+          id: 'options-error',
+          defaultMessage: 'Варианты ответа не должны быть пустыми',
+        }),
+      }))
+    } else {
+      setError(prev => ({ ...prev, options: '' }))
+    }
+
+    return hasError
+  }
+
+  useEffect(() => {
+    validateForm(false)
+  }, [voting])
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -32,60 +116,51 @@ export const CreateMoneyPoolPage: FC = () => {
   ) => {
     const { name, value, type, files } = event.target
     if (type === 'file') {
-      setFormData(prev => ({
-        ...prev,
-        rewardFile: files ? files[0] : null,
-      }))
+      setVoting(prev => ({ ...prev, rewardFile: files ? files[0] : null }))
       // Вариант ответа
     } else if (index !== undefined) {
       // Update specific option in options array
-      setFormData(prev => {
+      setVoting(prev => {
         const updatedOptions = [...prev.options]
         updatedOptions[index] = value
         return { ...prev, options: updatedOptions }
       })
     } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value,
-      }))
+      setVoting(prev => ({ ...prev, [name]: value }))
     }
   }
 
-  const handleTextAreaChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>,
+  const handleToggleChange = (
+    name: 'allowMultipleOptions' /** | 'quizMode' */,
   ) => {
-    const { name, value } = event.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }))
+    setVoting(prev => ({ ...prev, [name]: !prev[name] }))
   }
 
-  const handleToggleChange = (name: 'allowMultipleOptions' | 'quizMode') => {
-    setFormData(prev => ({
-      ...prev,
-      [name]: !prev[name],
-    }))
-  }
+  const canAddOption = voting.options.length < VOTING_SETTINGS.maxChoices
 
   const addOption = () => {
-    setFormData(prev => ({
-      ...prev,
-      options: [...prev.options, ''],
-    }))
+    if (canAddOption) {
+      setVoting(prev => ({ ...prev, options: [...prev.options, ''] }))
+    }
+  }
+
+  const getIsFormIncomplete = () => {
+    validateForm(true)
   }
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
-    console.log('Form Data:', formData)
+
+    if (validateForm(true)) {
+      return
+    }
 
     sendCreateVotingMessage({
-      name: formData.pollName,
-      description: formData.pollDescription,
-      choices: formData.options,
-      endTimeInSeconds: BigInt(Date.parse(formData.deadline) / 1000),
-      creatorBasisPoints: BigInt(formData.bloggerCommission),
+      name: voting.pollName.trim(),
+      description: '@TODO Hardcoded description',
+      choices: voting.options.map(option => option.trim()),
+      endTimeInSeconds: BigInt(Date.parse(voting.deadline) / 1000),
+      creatorBasisPoints: BigInt(voting.creatorBasisPoints),
       rewardType: 0n,
       hideVotes: false,
       referral: null,
@@ -110,15 +185,20 @@ export const CreateMoneyPoolPage: FC = () => {
         />
         <form onSubmit={handleSubmit}>
           <Rhytm>
-            <InputNumber
-              name="bloggerCommission"
-              placeholder={formatMessage({
-                id: 'blogger-commission-placeholder',
-                defaultMessage: 'Комиссия блогера',
-              })}
-              value={formData.bloggerCommission}
-              onChange={handleInputChange}
-            />
+            <div>
+              <InputNumber
+                name="creatorBasisPoints"
+                placeholder={formatMessage({
+                  id: 'blogger-commission-placeholder',
+                  defaultMessage: 'Комиссия блогера',
+                })}
+                value={voting.creatorBasisPoints}
+                onChange={handleInputChange}
+              />
+              {error.creatorBasisPoints && (
+                <ErrorText>{error.creatorBasisPoints}</ErrorText>
+              )}
+            </div>
             {/* <InputFile
               name="rewardFile"
               placeholder={formatMessage({
@@ -133,42 +213,26 @@ export const CreateMoneyPoolPage: FC = () => {
                 id: 'poll-name-placeholder',
                 defaultMessage: 'Название голосования',
               })}
-              value={formData.pollName}
+              value={voting.pollName}
               onChange={handleInputChange}
+              maxLength={110}
             />
-            <InputTextarea
-              name="pollDescription"
-              placeholder={formatMessage({
-                id: 'poll-description-placeholder',
-                defaultMessage: 'Описание голосования',
-              })}
-              value={formData.pollDescription}
-              onChange={handleTextAreaChange}
-            />
-            <InputDate
+            <InputDateTime
               name="deadline"
               placeholder={formatMessage({
                 id: 'deadline-placeholder',
                 defaultMessage: 'Установить дедлайн',
               })}
-              value={formData.deadline}
+              value={voting.deadline}
               onChange={handleInputChange}
             />
+            {error.deadline && <ErrorText>{error.deadline}</ErrorText>}
           </Rhytm>
           <Rhytm style={{ marginTop: 20 }}>
             <Typography fontSize={20} fontWeight={600}>
               <FormattedMessage id="poll" defaultMessage="Опрос" />
             </Typography>
-            {/* <InputText
-              name="question"
-              placeholder={formatMessage({
-                id: 'question-placeholder',
-                defaultMessage: 'Вопрос',
-              })}
-              value={formData.question}
-              onChange={handleInputChange}
-            /> */}
-            {formData.options.map((option, index) => (
+            {voting.options.map((option, index) => (
               <InputText
                 key={index}
                 name={`option-${index}`}
@@ -178,9 +242,11 @@ export const CreateMoneyPoolPage: FC = () => {
                 })}
                 value={option}
                 onChange={event => handleInputChange(event, index)}
+                maxLength={55}
               />
             ))}
-            <AddVariantButton onClick={addOption} />
+            {error.options && <ErrorText>{error.options}</ErrorText>}
+            {canAddOption && <AddOptionButton onClick={addOption} />}
           </Rhytm>
 
           <Rhytm style={{ marginTop: 20 }}>
@@ -189,7 +255,7 @@ export const CreateMoneyPoolPage: FC = () => {
                 id: 'multiple-options-toggle',
                 defaultMessage: 'Выбор нескольких вариантов',
               })}
-              checked={formData.allowMultipleOptions}
+              checked={voting.allowMultipleOptions}
               onChange={() => handleToggleChange('allowMultipleOptions')}
             />
             {/* <Toggle
@@ -203,7 +269,7 @@ export const CreateMoneyPoolPage: FC = () => {
           </Rhytm>
 
           <ButtonRegular
-            color="peach"
+            color="purple"
             type="submit"
             style={{
               marginTop: 20,

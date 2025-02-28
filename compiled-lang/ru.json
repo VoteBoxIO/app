@@ -17,12 +17,6 @@
       "value": "Добавить вариант"
     }
   ],
-  "add-reward-placeholder": [
-    {
-      "type": 0,
-      "value": "Добавить вознаграждение"
-    }
-  ],
   "blogger-commission-placeholder": [
     {
       "type": 0,
@@ -57,6 +51,24 @@
     {
       "type": 0,
       "value": "Выберите тип голосования и настройте параметры"
+    }
+  ],
+  "creator-basis-points-error": [
+    {
+      "type": 0,
+      "value": "Комиссия блогера должна быть между 0% и 100%"
+    }
+  ],
+  "deadline-error-too-early": [
+    {
+      "type": 0,
+      "value": "Дедлайн должен быть не раньше чем через 2 часа"
+    }
+  ],
+  "deadline-error-too-late": [
+    {
+      "type": 0,
+      "value": "Дедлайн должен быть не позже чем через 90 дней"
     }
   ],
   "deadline-placeholder": [
@@ -140,7 +152,13 @@
   "my-polls-subtitle": [
     {
       "type": 0,
-      "value": "История ваших голосований"
+      "value": "Здесь собраны ваши опросы. Активные и завершенные."
+    }
+  ],
+  "my-polls-title": [
+    {
+      "type": 0,
+      "value": "Мои опросы"
     }
   ],
   "my-votes": [
@@ -159,6 +177,12 @@
     {
       "type": 0,
       "value": "Вариант ответа"
+    }
+  ],
+  "options-error": [
+    {
+      "type": 0,
+      "value": "Варианты ответа не должны быть пустыми"
     }
   ],
   "paid-voting-button": [
@@ -191,28 +215,56 @@
       "value": "Опрос"
     }
   ],
+  "poll-name-error": [
+    {
+      "type": 0,
+      "value": "Название голосования не должно быть пустым"
+    }
+  ],
   "poll-name-placeholder": [
     {
       "type": 0,
       "value": "Название голосования"
     }
   ],
-  "question-placeholder": [
-    {
-      "type": 0,
-      "value": "Вопрос"
-    }
-  ],
-  "quiz-mode-toggle": [
-    {
-      "type": 0,
-      "value": "Режим викторины"
-    }
-  ],
   "support": [
     {
       "type": 0,
       "value": "Поддержка"
+    }
+  ],
+  "tab-active": [
+    {
+      "type": 0,
+      "value": "Активные"
+    }
+  ],
+  "tab-finished": [
+    {
+      "type": 0,
+      "value": "Завершенные"
+    }
+  ],
+  "voteSettings.timeLeft": [
+    {
+      "type": 0,
+      "value": "Еще "
+    },
+    {
+      "type": 1,
+      "value": "days"
+    },
+    {
+      "type": 0,
+      "value": " д и "
+    },
+    {
+      "type": 1,
+      "value": "hours"
+    },
+    {
+      "type": 0,
+      "value": " ч"
     }
   ]
 }

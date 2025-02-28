@@ -8,9 +8,6 @@
   "add-option": {
     "defaultMessage": "Добавить вариант"
   },
-  "add-reward-placeholder": {
-    "defaultMessage": "Добавить вознаграждение"
-  },
   "blogger-commission-placeholder": {
     "defaultMessage": "Комиссия блогера"
   },
@@ -28,6 +25,15 @@
   },
   "create-voting-type": {
     "defaultMessage": "Выберите тип голосования и настройте параметры"
+  },
+  "creator-basis-points-error": {
+    "defaultMessage": "Комиссия блогера должна быть между 0% и 100%"
+  },
+  "deadline-error-too-early": {
+    "defaultMessage": "Дедлайн должен быть не раньше чем через 2 часа"
+  },
+  "deadline-error-too-late": {
+    "defaultMessage": "Дедлайн должен быть не позже чем через 90 дней"
   },
   "deadline-placeholder": {
     "defaultMessage": "Установить дедлайн"
@@ -69,7 +75,10 @@
     "defaultMessage": "Мои опросы"
   },
   "my-polls-subtitle": {
-    "defaultMessage": "История ваших голосований"
+    "defaultMessage": "Здесь собраны ваши опросы. Активные и завершенные."
+  },
+  "my-polls-title": {
+    "defaultMessage": "Мои опросы"
   },
   "my-votes": {
     "defaultMessage": "Мои голоса"
@@ -79,6 +88,9 @@
   },
   "option-placeholder": {
     "defaultMessage": "Вариант ответа"
+  },
+  "options-error": {
+    "defaultMessage": "Варианты ответа не должны быть пустыми"
   },
   "paid-voting-button": {
     "defaultMessage": "Создать голосование"
@@ -95,16 +107,22 @@
   "poll": {
     "defaultMessage": "Опрос"
   },
+  "poll-name-error": {
+    "defaultMessage": "Название голосования не должно быть пустым"
+  },
   "poll-name-placeholder": {
     "defaultMessage": "Название голосования"
   },
-  "question-placeholder": {
-    "defaultMessage": "Вопрос"
-  },
-  "quiz-mode-toggle": {
-    "defaultMessage": "Режим викторины"
-  },
   "support": {
     "defaultMessage": "Поддержка"
+  },
+  "tab-active": {
+    "defaultMessage": "Активные"
+  },
+  "tab-finished": {
+    "defaultMessage": "Завершенные"
+  },
+  "voteSettings.timeLeft": {
+    "defaultMessage": "Еще {days} д и {hours} ч"
   }
 }
