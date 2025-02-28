@@ -20,6 +20,7 @@ const contextValue = {
   contractsAddresses: undefined as unknown as ReturnType<
     typeof useContactAddresses
   >,
+  basePath: '/' as string,
 } as const
 
 export const AppContext = createContext<typeof contextValue>(contextValue)
@@ -30,6 +31,7 @@ export const AppContextProvider: FC<
   const contractsData = useInitializeContracts()!
   const tonApiClient = useInitializeTonApiClient()
   const contractsAddresses = useContactAddresses()
+  const basePath = `/${process.env.WEBPACK_PUBLIC_PATH}` || '/'
 
   return (
     <AppContext.Provider
@@ -38,6 +40,7 @@ export const AppContextProvider: FC<
         ...contractsData,
         tonApiClient,
         contractsAddresses,
+        basePath,
       }}
     >
       {children}

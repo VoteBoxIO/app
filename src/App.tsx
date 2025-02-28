@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useContext, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { MainLayout } from './layout/MainLayout'
 import {
@@ -34,21 +34,18 @@ import {
 import { PollTypePage, pollTypePagePath } from './pages/PollTypePage'
 import { SandboxPage, sandboxPagePath } from './pages/SandboxPage'
 import { SupportPage, supportPagePath } from './pages/SupportPage'
+import { AppContext } from './App.context'
 
 export const App: FC = () => {
+  const { basePath } = useContext(AppContext)
+
   useEffect(() => {
     window.Telegram.WebApp.ready()
     window.Telegram.WebApp.expand()
   }, [])
 
   return (
-    <BrowserRouter
-      basename={
-        process.env.NODE_ENV === 'production'
-          ? process.env.WEBPACK_PUBLIC_PATH
-          : '/'
-      }
-    >
+    <BrowserRouter basename={basePath}>
       <Routes>
         <Route element={<MainLayout />}>
           <Route index path={indexPagePath} element={<IndexPage />} />

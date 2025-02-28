@@ -14,6 +14,7 @@ import path from 'path'
 dotenv.config()
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const isHttpsMode = process.env.HTTPS === 'true'
+const GITHUB_PAGE_URL_POSTFIX = 'app'
 
 export const linariaCssLoaderRules = (isDevelopment: boolean) =>
   isDevelopment
@@ -45,7 +46,7 @@ const config: Configuration = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: isDevelopment ? '/' : '/app/',
+    publicPath: isDevelopment ? '/' : `/${GITHUB_PAGE_URL_POSTFIX}/`,
   },
   devtool: isDevelopment ? 'inline-source-map' : false,
   module: {
@@ -100,6 +101,12 @@ const config: Configuration = {
     new DefinePlugin({
       'process.env': JSON.stringify(process.env),
     }),
+    !isDevelopment &&
+      new DefinePlugin({
+        'process.env.WEBPACK_PUBLIC_PATH': JSON.stringify(
+          GITHUB_PAGE_URL_POSTFIX,
+        ),
+      }),
   ].filter(Boolean),
   devServer: {
     static: {

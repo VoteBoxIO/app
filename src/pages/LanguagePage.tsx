@@ -1,10 +1,13 @@
 import { styled } from '@linaria/react'
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
+import { AppContext } from '../App.context'
 
 export const LanguagePage: FC = () => {
+  const { basePath } = useContext(AppContext)
+
   const handleLanguageChange = (language: string) => {
     localStorage.setItem('language', language)
-    window.location.href = '/'
+    window.location.href = basePath
   }
 
   return (
