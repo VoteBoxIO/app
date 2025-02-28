@@ -8,13 +8,24 @@ import ReactRefreshRspackPlugin from '@rspack/plugin-react-refresh'
 import * as dotenv from 'dotenv'
 import fs from 'fs'
 import HtmlRspackPlugin from 'html-webpack-plugin'
-import path from 'path'
+import path, { format } from 'path'
 
 // Load environment variables
 dotenv.config()
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const isHttpsMode = process.env.HTTPS === 'true'
-const GITHUB_PAGE_URL_POSTFIX = '/app'
+const PUBLIC_PATH = '/app'
+
+export const formatDateTime = (date: Date = new Date()): string => {
+  return date.toLocaleString('ru', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  })
+}
 
 export const linariaCssLoaderRules = (isDevelopment: boolean) =>
   isDevelopment
@@ -46,7 +57,7 @@ const config: Configuration = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: isDevelopment ? '/' : `${GITHUB_PAGE_URL_POSTFIX}/`,
+    publicPath: isDevelopment ? '/' : `${PUBLIC_PATH}/`,
   },
   devtool: isDevelopment ? 'inline-source-map' : false,
   module: {
@@ -100,13 +111,11 @@ const config: Configuration = {
     }),
     new DefinePlugin({
       'process.env': JSON.stringify(process.env),
-    }),
-    !isDevelopment &&
-      new DefinePlugin({
-        'process.env.WEBPACK_PUBLIC_PATH': JSON.stringify(
-          GITHUB_PAGE_URL_POSTFIX,
-        ),
+      'process.env.RELEASE_DATE': JSON.stringify(formatDateTime()),
+      ...(!isDevelopment && {
+        'process.env.PUBLIC_PATH': JSON.stringify(PUBLIC_PATH),
       }),
+    }),
   ].filter(Boolean),
   devServer: {
     static: {

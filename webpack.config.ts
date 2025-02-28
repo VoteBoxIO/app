@@ -43,7 +43,7 @@ const config: Configuration = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: isDevelopment ? '/' : process.env.WEBPACK_PUBLIC_PATH,
+    publicPath: isDevelopment ? '/' : process.env.PUBLIC_PATH,
   },
   devtool: isDevelopment ? 'inline-source-map' : false,
   module: {

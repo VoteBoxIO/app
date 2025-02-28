@@ -16,7 +16,9 @@ export const MainLayout: FC<{ background?: string }> = ({
           <ArrowBack />
         </BackButton>
         {/** @TODO remove this code */}
-        <code style={{ fontSize: 10 }}>version: {formatDateTime()}</code>
+        <code style={{ fontSize: 10 }}>
+          version: {process.env.RELEASE_DATE}
+        </code>
         <TonConnectButtonWrapper>
           <TonConnectButton />
         </TonConnectButtonWrapper>
@@ -29,17 +31,6 @@ export const MainLayout: FC<{ background?: string }> = ({
       </MainLayoutInner>
     </MainLayoutWrapper>
   )
-}
-
-const formatDateTime = (date: Date = new Date()): string => {
-  return date.toLocaleString('ru', {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  })
 }
 
 const BackButton = styled.button`
