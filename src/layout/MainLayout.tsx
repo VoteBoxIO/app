@@ -15,6 +15,7 @@ export const MainLayout: FC<{ background?: string }> = ({
         <BackButton onClick={() => navigate(-1)}>
           <ArrowBack />
         </BackButton>
+        {/** @TODO remove this code */}
         <code style={{ fontSize: 10 }}>version: {getCurrentDateAndTime()}</code>
         <TonConnectButtonWrapper>
           <TonConnectButton />
