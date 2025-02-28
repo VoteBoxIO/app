@@ -16,7 +16,7 @@ export const MainLayout: FC<{ background?: string }> = ({
           <ArrowBack />
         </BackButton>
         {/** @TODO remove this code */}
-        <code style={{ fontSize: 10 }}>version: {getCurrentDateAndTime()}</code>
+        <code style={{ fontSize: 8 }}>version: {formatDateTime()}</code>
         <TonConnectButtonWrapper>
           <TonConnectButton />
         </TonConnectButtonWrapper>
@@ -31,9 +31,15 @@ export const MainLayout: FC<{ background?: string }> = ({
   )
 }
 
-const getCurrentDateAndTime = () => {
-  const currentDate = new Date()
-  return `${currentDate.getDate()}.${currentDate.getMonth()}.${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`
+const formatDateTime = (date: Date = new Date()): string => {
+  return date.toLocaleString('ru', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  })
 }
 
 const BackButton = styled.button`
