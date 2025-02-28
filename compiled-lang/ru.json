@@ -11,6 +11,12 @@
       "value": "Посмотрите доступные опросы"
     }
   ],
+  "active-voting-title": [
+    {
+      "type": 0,
+      "value": "Активные голосования"
+    }
+  ],
   "add-option": [
     {
       "type": 0,
@@ -21,6 +27,24 @@
     {
       "type": 0,
       "value": "Комиссия блогера"
+    }
+  ],
+  "connect-wallet.button": [
+    {
+      "type": 0,
+      "value": "Подключить кошелек"
+    }
+  ],
+  "connect-wallet.subtitle": [
+    {
+      "type": 0,
+      "value": "Необходимо подключить кошелек, чтобы оплачивать участие и получать награду после завершения голосований. Это не займет много времени."
+    }
+  ],
+  "connect-wallet.title": [
+    {
+      "type": 0,
+      "value": "Подключить кошелек"
     }
   ],
   "create-button": [
@@ -75,6 +99,30 @@
     {
       "type": 0,
       "value": "Установить дедлайн"
+    }
+  ],
+  "enter-amount.placeholder": [
+    {
+      "type": 0,
+      "value": "Сумма ставки Ton"
+    }
+  ],
+  "enter-amount.submit": [
+    {
+      "type": 0,
+      "value": "Готово"
+    }
+  ],
+  "enter-amount.subtitle": [
+    {
+      "type": 0,
+      "value": "Введите сумму вашей ставки"
+    }
+  ],
+  "enter-amount.title": [
+    {
+      "type": 0,
+      "value": "Введите сумму"
     }
   ],
   "how-it-works": [
@@ -209,6 +257,16 @@
       "value": "Способы оплаты"
     }
   ],
+  "percent-commission": [
+    {
+      "type": 1,
+      "value": "commission"
+    },
+    {
+      "type": 0,
+      "value": " комиссии"
+    }
+  ],
   "poll": [
     {
       "type": 0,
@@ -225,6 +283,30 @@
     {
       "type": 0,
       "value": "Название голосования"
+    }
+  ],
+  "poll-type-access-to-content": [
+    {
+      "type": 0,
+      "value": "Доступ к контенту"
+    }
+  ],
+  "poll-type-money-pool": [
+    {
+      "type": 0,
+      "value": "Денежный пул"
+    }
+  ],
+  "status-completed": [
+    {
+      "type": 0,
+      "value": "Завершен"
+    }
+  ],
+  "status-loading": [
+    {
+      "type": 0,
+      "value": "Загружается"
     }
   ],
   "support": [

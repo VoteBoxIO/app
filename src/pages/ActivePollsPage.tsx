@@ -6,6 +6,7 @@ import { Loader } from '../ui/Loader'
 import { Tabs } from '../ui/Tabs'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { PollTypeTab } from './ActivePollsPage.constants'
+import { FormattedMessage } from 'react-intl'
 
 export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
   activeTab,
@@ -19,8 +20,18 @@ export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
   return (
     <ActiveVotingPageContainer>
       <TitleAndSubtitle
-        title="Активные голосования"
-        subtitle="Здесь собраны опросы других пользователей. Вы можете принять участие "
+        title={
+          <FormattedMessage
+            id="active-voting-title"
+            defaultMessage="Активные голосования"
+          />
+        }
+        subtitle={
+          <FormattedMessage
+            id="active-voting-subtitle"
+            defaultMessage="Здесь собраны опросы других пользователей. Вы можете принять участие"
+          />
+        }
       />
       <Tabs
         activeTabId={activeTab}
@@ -28,12 +39,22 @@ export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
           {
             to: activeVotingMoneyPoolPagePath,
             id: PollTypeTab.MoneyPool,
-            label: 'Денежный пул',
+            label: (
+              <FormattedMessage
+                id="poll-type-money-pool"
+                defaultMessage="Денежный пул"
+              />
+            ),
           },
           {
             to: activeVotingAccessToContentPagePath,
             id: PollTypeTab.AccessToContent,
-            label: 'Доступ к контенту',
+            label: (
+              <FormattedMessage
+                id="poll-type-access-to-content"
+                defaultMessage="Доступ к контенту"
+              />
+            ),
           },
         ]}
       />

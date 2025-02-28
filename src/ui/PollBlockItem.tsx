@@ -2,6 +2,7 @@ import { styled } from '@linaria/react'
 import React, { FC } from 'react'
 import SvgPlusSmall from '../svgr/PlusSmall'
 import { Typography } from './Typography'
+import { LoadingMessage } from './LoadingMessage'
 
 export const PollBlockItem: FC<{
   name: string
@@ -38,7 +39,7 @@ export const PollBlockItem: FC<{
       </Content>
       <Value>
         <Typography fontSize={16} fontWeight={700}>
-          {value === null ? 'Loading' : value}
+          {value === null ? <LoadingMessage /> : value}
           <TonWrapper>TON</TonWrapper>
         </Typography>
       </Value>

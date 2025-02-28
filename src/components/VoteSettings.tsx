@@ -9,8 +9,9 @@ import {
   PollTypeTab,
 } from '../pages/ActivePollsPage.constants'
 import { PollBlock, PollItem } from '../ui/PollBlock'
-import { parseChoices } from './parseChoices'
+import { parseChoices } from '../functions/parseChoices'
 import { EnterAmountDialog } from './EnterAmountDialog'
+import { LoadingMessage } from '../ui/LoadingMessage'
 
 export const VoteSettings: FC<{
   item: {
@@ -158,9 +159,9 @@ export const VoteSettings: FC<{
       <PollBlock
         title={name}
         subtitle={description}
-        expiration="Loading"
-        bid="Loading"
-        commission="Loading"
+        expiration={<LoadingMessage />}
+        bid={<LoadingMessage />}
+        commission={<LoadingMessage />}
         pollItems={[]}
         onPollItemClick={() => {}}
       />
@@ -178,7 +179,7 @@ export const VoteSettings: FC<{
         subtitle={description}
         expiration={
           isExpired ? (
-            'Завершен'
+            <FormattedMessage id="status-completed" defaultMessage="Завершен" />
           ) : (
             <FormattedMessage
               id="voteSettings.timeLeft"
@@ -187,9 +188,21 @@ export const VoteSettings: FC<{
             />
           )
         }
-        bid={totalVotes === null ? 'Loading' : <>{fromNano(totalVotes)} Ton</>}
+        bid={
+          totalVotes === null ? (
+            <LoadingMessage />
+          ) : (
+            <>{fromNano(totalVotes)} Ton</>
+          )
+        }
         commission={
-          <>{createCommission(rewardDistributionSettings)}% комиссии</>
+          <FormattedMessage
+            id="percent-commission"
+            defaultMessage="{commission} комиссии"
+            values={{
+              commission: createCommission(rewardDistributionSettings),
+            }}
+          />
         }
         pollItems={pollItems}
         onPollItemClick={handlePollItemClick}

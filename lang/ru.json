@@ -5,11 +5,23 @@
   "active-voting-subtitle": {
     "defaultMessage": "Посмотрите доступные опросы"
   },
+  "active-voting-title": {
+    "defaultMessage": "Активные голосования"
+  },
   "add-option": {
     "defaultMessage": "Добавить вариант"
   },
   "blogger-commission-placeholder": {
     "defaultMessage": "Комиссия блогера"
+  },
+  "connect-wallet.button": {
+    "defaultMessage": "Подключить кошелек"
+  },
+  "connect-wallet.subtitle": {
+    "defaultMessage": "Необходимо подключить кошелек, чтобы оплачивать участие и получать награду после завершения голосований. Это не займет много времени."
+  },
+  "connect-wallet.title": {
+    "defaultMessage": "Подключить кошелек"
   },
   "create-button": {
     "defaultMessage": "Создать"
@@ -37,6 +49,18 @@
   },
   "deadline-placeholder": {
     "defaultMessage": "Установить дедлайн"
+  },
+  "enter-amount.placeholder": {
+    "defaultMessage": "Сумма ставки Ton"
+  },
+  "enter-amount.submit": {
+    "defaultMessage": "Готово"
+  },
+  "enter-amount.subtitle": {
+    "defaultMessage": "Введите сумму вашей ставки"
+  },
+  "enter-amount.title": {
+    "defaultMessage": "Введите сумму"
   },
   "how-it-works": {
     "defaultMessage": "Как это работает?"
@@ -104,6 +128,9 @@
   "payment-methods": {
     "defaultMessage": "Способы оплаты"
   },
+  "percent-commission": {
+    "defaultMessage": "{commission} комиссии"
+  },
   "poll": {
     "defaultMessage": "Опрос"
   },
@@ -112,6 +139,18 @@
   },
   "poll-name-placeholder": {
     "defaultMessage": "Название голосования"
+  },
+  "poll-type-access-to-content": {
+    "defaultMessage": "Доступ к контенту"
+  },
+  "poll-type-money-pool": {
+    "defaultMessage": "Денежный пул"
+  },
+  "status-completed": {
+    "defaultMessage": "Завершен"
+  },
+  "status-loading": {
+    "defaultMessage": "Загружается"
   },
   "support": {
     "defaultMessage": "Поддержка"

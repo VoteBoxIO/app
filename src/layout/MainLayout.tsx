@@ -16,7 +16,7 @@ export const MainLayout: FC<{ background?: string }> = ({
           <ArrowBack />
         </BackButton>
         {/** @TODO remove this code */}
-        <code style={{ fontSize: 8 }}>version: {formatDateTime()}</code>
+        <code style={{ fontSize: 10 }}>version: {formatDateTime()}</code>
         <TonConnectButtonWrapper>
           <TonConnectButton />
         </TonConnectButtonWrapper>

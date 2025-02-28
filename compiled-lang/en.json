@@ -2,25 +2,49 @@
   "active-voting": [
     {
       "type": 0,
-      "value": "Active votings"
+      "value": "Active Voting"
     }
   ],
   "active-voting-subtitle": [
     {
       "type": 0,
-      "value": "Browse available polls"
+      "value": "Check out the available polls"
+    }
+  ],
+  "active-voting-title": [
+    {
+      "type": 0,
+      "value": "Active Voting"
     }
   ],
   "add-option": [
     {
       "type": 0,
-      "value": "Add option"
+      "value": "Add Option"
     }
   ],
   "blogger-commission-placeholder": [
     {
       "type": 0,
-      "value": "Blogger commission"
+      "value": "Blogger Commission"
+    }
+  ],
+  "connect-wallet.button": [
+    {
+      "type": 0,
+      "value": "Connect Wallet"
+    }
+  ],
+  "connect-wallet.subtitle": [
+    {
+      "type": 0,
+      "value": "You need to connect your wallet to pay for participation and receive rewards after voting ends. It won't take long."
+    }
+  ],
+  "connect-wallet.title": [
+    {
+      "type": 0,
+      "value": "Connect Wallet"
     }
   ],
   "create-button": [
@@ -32,7 +56,7 @@
   "create-voting": [
     {
       "type": 0,
-      "value": "Create voting"
+      "value": "Create Voting"
     }
   ],
   "create-voting-subtitle": [
@@ -44,13 +68,13 @@
   "create-voting-title": [
     {
       "type": 0,
-      "value": "Creating a vote"
+      "value": "Create Voting"
     }
   ],
   "create-voting-type": [
     {
       "type": 0,
-      "value": "Choose a voting type and configure settings"
+      "value": "Choose the type of voting and set the parameters"
     }
   ],
   "creator-basis-points-error": [
@@ -68,31 +92,55 @@
   "deadline-error-too-late": [
     {
       "type": 0,
-      "value": "The deadline must not exceed 90 days"
+      "value": "The deadline must be no later than 90 days"
     }
   ],
   "deadline-placeholder": [
     {
       "type": 0,
-      "value": "Set deadline"
+      "value": "Set Deadline"
+    }
+  ],
+  "enter-amount.placeholder": [
+    {
+      "type": 0,
+      "value": "Bet Amount in Ton"
+    }
+  ],
+  "enter-amount.submit": [
+    {
+      "type": 0,
+      "value": "Done"
+    }
+  ],
+  "enter-amount.subtitle": [
+    {
+      "type": 0,
+      "value": "Enter your bet amount"
+    }
+  ],
+  "enter-amount.title": [
+    {
+      "type": 0,
+      "value": "Enter Amount"
     }
   ],
   "how-it-works": [
     {
       "type": 0,
-      "value": "How does it work?"
+      "value": "How It Works?"
     }
   ],
   "how-to-create": [
     {
       "type": 0,
-      "value": "How to create"
+      "value": "How to Create"
     }
   ],
   "invite-friend": [
     {
       "type": 0,
-      "value": "Invite a friend"
+      "value": "Invite a Friend"
     }
   ],
   "invite-friend-bonus": [
@@ -104,67 +152,67 @@
   "logo-subtitle": [
     {
       "type": 0,
-      "value": "Monetize your content"
+      "value": "Monetize Your Content"
     }
   ],
   "money-pool": [
     {
       "type": 0,
-      "value": "Money pool"
+      "value": "Money Pool"
     }
   ],
   "money-pool-button": [
     {
       "type": 0,
-      "value": "Create voting"
+      "value": "Create Voting"
     }
   ],
   "money-pool-description": [
     {
       "type": 0,
-      "value": "Winners split the losers' money. Unlimited votes are allowed."
+      "value": "Winners share the money of losers. You can vote an unlimited number of times."
     }
   ],
   "money-pool-subtitle": [
     {
       "type": 0,
-      "value": "Winners split the losers' money. Unlimited votes are allowed."
+      "value": "Winners share the money of losers. You can vote an unlimited number of times."
     }
   ],
   "money-pool-title": [
     {
       "type": 0,
-      "value": "Money pool"
+      "value": "Money Pool"
     }
   ],
   "multiple-options-toggle": [
     {
       "type": 0,
-      "value": "Multiple choice selection"
+      "value": "Multiple Choice"
     }
   ],
   "my-polls": [
     {
       "type": 0,
-      "value": "My polls"
+      "value": "My Polls"
     }
   ],
   "my-polls-subtitle": [
     {
       "type": 0,
-      "value": "Here you can find your active and finished polls."
+      "value": "Here are your polls. Active and completed."
     }
   ],
   "my-polls-title": [
     {
       "type": 0,
-      "value": "My polls"
+      "value": "My Polls"
     }
   ],
   "my-votes": [
     {
       "type": 0,
-      "value": "My votes"
+      "value": "My Votes"
     }
   ],
   "my-votes-subtitle": [
@@ -176,7 +224,7 @@
   "option-placeholder": [
     {
       "type": 0,
-      "value": "Answer option"
+      "value": "Answer Option"
     }
   ],
   "options-error": [
@@ -188,25 +236,35 @@
   "paid-voting-button": [
     {
       "type": 0,
-      "value": "Create voting"
+      "value": "Create Voting"
     }
   ],
   "paid-voting-subtitle": [
     {
       "type": 0,
-      "value": "All participants gain access to content. One vote has a fixed cost."
+      "value": "All participants get access to the content. One vote has a fixed cost."
     }
   ],
   "paid-voting-title": [
     {
       "type": 0,
-      "value": "Paid voting"
+      "value": "Paid Voting"
     }
   ],
   "payment-methods": [
     {
       "type": 0,
-      "value": "Payment methods"
+      "value": "Payment Methods"
+    }
+  ],
+  "percent-commission": [
+    {
+      "type": 1,
+      "value": "commission"
+    },
+    {
+      "type": 0,
+      "value": " commission"
     }
   ],
   "poll": [
@@ -218,13 +276,37 @@
   "poll-name-error": [
     {
       "type": 0,
-      "value": "Voting name must not be empty"
+      "value": "The poll name must not be empty"
     }
   ],
   "poll-name-placeholder": [
     {
       "type": 0,
-      "value": "Voting name"
+      "value": "Poll Name"
+    }
+  ],
+  "poll-type-access-to-content": [
+    {
+      "type": 0,
+      "value": "Access to Content"
+    }
+  ],
+  "poll-type-money-pool": [
+    {
+      "type": 0,
+      "value": "Money Pool"
+    }
+  ],
+  "status-completed": [
+    {
+      "type": 0,
+      "value": "Completed"
+    }
+  ],
+  "status-loading": [
+    {
+      "type": 0,
+      "value": "Loading"
     }
   ],
   "support": [

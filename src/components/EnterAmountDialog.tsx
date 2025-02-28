@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react'
 import { useTonConnectModal } from '@tonconnect/ui-react'
 import React, { FC, useContext, useEffect, useRef, useState } from 'react'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { AppContext } from '../App.context'
 import SvgClose from '../svgr/Close'
 import { ButtonRegular } from '../ui/Button'
@@ -18,6 +19,7 @@ export const EnterAmountDialog: FC<{
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const { wallet } = useContext(AppContext)
   const { open: openTonConnectModal } = useTonConnectModal()
+  const { formatMessage } = useIntl()
 
   useEffect(() => {
     if (!dialog) {
@@ -39,6 +41,7 @@ export const EnterAmountDialog: FC<{
     onSubmit(amount)
     handleClose()
   }
+
   const handleConnectWallet = () => {
     handleClose()
     openTonConnectModal()
@@ -75,30 +78,59 @@ export const EnterAmountDialog: FC<{
         <Rhytm gap="24px">
           <TitleAndSubtitle
             titleFontSize={24}
-            title="Введите сумму"
-            subtitle="Введите сумму вашей ставки"
+            title={
+              <FormattedMessage
+                id="enter-amount.title"
+                defaultMessage="Введите сумму"
+              />
+            }
+            subtitle={
+              <FormattedMessage
+                id="enter-amount.subtitle"
+                defaultMessage="Введите сумму вашей ставки"
+              />
+            }
           />
 
           <InputNumber
             type="number"
-            placeholder="Сумма ставки Ton"
+            placeholder={formatMessage({
+              id: 'enter-amount.placeholder',
+              defaultMessage: 'Сумма ставки Ton',
+            })}
             value={amount}
             onChange={e => setAmount(e.target.value)}
           />
 
           <ButtonRegular color="purple" onClick={handleSubmit}>
-            Готово
+            <FormattedMessage
+              id="enter-amount.submit"
+              defaultMessage="Готово"
+            />
           </ButtonRegular>
         </Rhytm>
       ) : (
         <Rhytm gap="24px">
           <TitleAndSubtitle
             titleFontSize={24}
-            title="Подключить кошелек"
-            subtitle="Необходимо подключить кошелек, чтобы оплачивать участие и получать награду после завершения голосований. Это не займет много времени."
+            title={
+              <FormattedMessage
+                id="connect-wallet.title"
+                defaultMessage="Подключить кошелек"
+              />
+            }
+            subtitle={
+              <FormattedMessage
+                id="connect-wallet.subtitle"
+                defaultMessage="Необходимо подключить кошелек, чтобы оплачивать участие и получать награду после завершения голосований. Это не займет много времени."
+              />
+            }
           />
           <ButtonRegular color="purple" onClick={handleConnectWallet}>
-            Подключить кошелек
+            <FormattedMessage
+              id="connect-wallet.button"
+              defaultMessage="Подключить кошелек"
+            />
           </ButtonRegular>
         </Rhytm>
       )}

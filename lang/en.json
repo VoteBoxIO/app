@@ -1,30 +1,42 @@
 {
   "active-voting": {
-    "defaultMessage": "Active votings"
+    "defaultMessage": "Active Voting"
   },
   "active-voting-subtitle": {
-    "defaultMessage": "Browse available polls"
+    "defaultMessage": "Check out the available polls"
+  },
+  "active-voting-title": {
+    "defaultMessage": "Active Voting"
   },
   "add-option": {
-    "defaultMessage": "Add option"
+    "defaultMessage": "Add Option"
   },
   "blogger-commission-placeholder": {
-    "defaultMessage": "Blogger commission"
+    "defaultMessage": "Blogger Commission"
+  },
+  "connect-wallet.button": {
+    "defaultMessage": "Connect Wallet"
+  },
+  "connect-wallet.subtitle": {
+    "defaultMessage": "You need to connect your wallet to pay for participation and receive rewards after voting ends. It won't take long."
+  },
+  "connect-wallet.title": {
+    "defaultMessage": "Connect Wallet"
   },
   "create-button": {
     "defaultMessage": "Create"
   },
   "create-voting": {
-    "defaultMessage": "Create voting"
+    "defaultMessage": "Create Voting"
   },
   "create-voting-subtitle": {
     "defaultMessage": "Start a poll and engage your audience"
   },
   "create-voting-title": {
-    "defaultMessage": "Creating a vote"
+    "defaultMessage": "Create Voting"
   },
   "create-voting-type": {
-    "defaultMessage": "Choose a voting type and configure settings"
+    "defaultMessage": "Choose the type of voting and set the parameters"
   },
   "creator-basis-points-error": {
     "defaultMessage": "Blogger commission must be between 0% and 100%"
@@ -33,85 +45,112 @@
     "defaultMessage": "The deadline must be at least 2 hours from now"
   },
   "deadline-error-too-late": {
-    "defaultMessage": "The deadline must not exceed 90 days"
+    "defaultMessage": "The deadline must be no later than 90 days"
   },
   "deadline-placeholder": {
-    "defaultMessage": "Set deadline"
+    "defaultMessage": "Set Deadline"
+  },
+  "enter-amount.placeholder": {
+    "defaultMessage": "Bet Amount in Ton"
+  },
+  "enter-amount.submit": {
+    "defaultMessage": "Done"
+  },
+  "enter-amount.subtitle": {
+    "defaultMessage": "Enter your bet amount"
+  },
+  "enter-amount.title": {
+    "defaultMessage": "Enter Amount"
   },
   "how-it-works": {
-    "defaultMessage": "How does it work?"
+    "defaultMessage": "How It Works?"
   },
   "how-to-create": {
-    "defaultMessage": "How to create"
+    "defaultMessage": "How to Create"
   },
   "invite-friend": {
-    "defaultMessage": "Invite a friend"
+    "defaultMessage": "Invite a Friend"
   },
   "invite-friend-bonus": {
     "defaultMessage": "Invite a friend and get bonuses"
   },
   "logo-subtitle": {
-    "defaultMessage": "Monetize your content"
+    "defaultMessage": "Monetize Your Content"
   },
   "money-pool": {
-    "defaultMessage": "Money pool"
+    "defaultMessage": "Money Pool"
   },
   "money-pool-button": {
-    "defaultMessage": "Create voting"
+    "defaultMessage": "Create Voting"
   },
   "money-pool-description": {
-    "defaultMessage": "Winners split the losers' money. Unlimited votes are allowed."
+    "defaultMessage": "Winners share the money of losers. You can vote an unlimited number of times."
   },
   "money-pool-subtitle": {
-    "defaultMessage": "Winners split the losers' money. Unlimited votes are allowed."
+    "defaultMessage": "Winners share the money of losers. You can vote an unlimited number of times."
   },
   "money-pool-title": {
-    "defaultMessage": "Money pool"
+    "defaultMessage": "Money Pool"
   },
   "multiple-options-toggle": {
-    "defaultMessage": "Multiple choice selection"
+    "defaultMessage": "Multiple Choice"
   },
   "my-polls": {
-    "defaultMessage": "My polls"
+    "defaultMessage": "My Polls"
   },
   "my-polls-subtitle": {
-    "defaultMessage": "Here you can find your active and finished polls."
+    "defaultMessage": "Here are your polls. Active and completed."
   },
   "my-polls-title": {
-    "defaultMessage": "My polls"
+    "defaultMessage": "My Polls"
   },
   "my-votes": {
-    "defaultMessage": "My votes"
+    "defaultMessage": "My Votes"
   },
   "my-votes-subtitle": {
     "defaultMessage": "Your voting history"
   },
   "option-placeholder": {
-    "defaultMessage": "Answer option"
+    "defaultMessage": "Answer Option"
   },
   "options-error": {
     "defaultMessage": "Answer options must not be empty"
   },
   "paid-voting-button": {
-    "defaultMessage": "Create voting"
+    "defaultMessage": "Create Voting"
   },
   "paid-voting-subtitle": {
-    "defaultMessage": "All participants gain access to content. One vote has a fixed cost."
+    "defaultMessage": "All participants get access to the content. One vote has a fixed cost."
   },
   "paid-voting-title": {
-    "defaultMessage": "Paid voting"
+    "defaultMessage": "Paid Voting"
   },
   "payment-methods": {
-    "defaultMessage": "Payment methods"
+    "defaultMessage": "Payment Methods"
+  },
+  "percent-commission": {
+    "defaultMessage": "{commission} commission"
   },
   "poll": {
     "defaultMessage": "Poll"
   },
   "poll-name-error": {
-    "defaultMessage": "Voting name must not be empty"
+    "defaultMessage": "The poll name must not be empty"
   },
   "poll-name-placeholder": {
-    "defaultMessage": "Voting name"
+    "defaultMessage": "Poll Name"
+  },
+  "poll-type-access-to-content": {
+    "defaultMessage": "Access to Content"
+  },
+  "poll-type-money-pool": {
+    "defaultMessage": "Money Pool"
+  },
+  "status-completed": {
+    "defaultMessage": "Completed"
+  },
+  "status-loading": {
+    "defaultMessage": "Loading"
   },
   "support": {
     "defaultMessage": "Support"
