@@ -8,7 +8,7 @@ import ReactRefreshRspackPlugin from '@rspack/plugin-react-refresh'
 import * as dotenv from 'dotenv'
 import fs from 'fs'
 import HtmlRspackPlugin from 'html-webpack-plugin'
-import path, { format } from 'path'
+import path from 'path'
 
 // Load environment variables
 dotenv.config()
@@ -59,7 +59,7 @@ const config: Configuration = {
     filename: 'bundle.js',
     publicPath: isDevelopment ? '/' : `${PUBLIC_PATH}/`,
   },
-  devtool: isDevelopment ? 'inline-source-map' : false,
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
