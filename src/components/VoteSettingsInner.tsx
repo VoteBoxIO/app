@@ -10,7 +10,7 @@ import {
   PollTypeTab,
 } from '../pages/ActivePollsPage.constants'
 import { LoadingMessage } from '../ui/LoadingMessage'
-import { PollBlock, PollItem } from '../ui/PollBlock'
+import { PollBlock, PollOption } from '../ui/PollBlock'
 import { EnterAmountDialog } from './EnterAmountDialog'
 
 export const VoteSettingsInner: FC<{
@@ -31,17 +31,18 @@ export const VoteSettingsInner: FC<{
   const { address, name, description } = item
   const { sender, client } = useContext(AppContext)
 
-  const [voteSettings, setVoteSettings] = useState<VoteSettings | null>(null)
   const [voteSettingsLoading, setVoteSettingsLoading] = useState(false)
   const [voteSettingsLoadingError, setVoteSettingsLoadingError] =
     useState(false)
-  const [totalVotes, setTotalVotes] = useState<bigint | null>(null)
-  const [rewardDistributionSettings, setRewardDistributionSettings] =
-    useState<RewardDistributionSettings | null>(null)
-  const [recommendedVoteGas, setRecommendedVoteGas] = useState<bigint | null>(
-    null,
-  )
-  const [pollOptions, setPollOptions] = useState<PollItem[]>([])
+
+  const [nftData, setNftData] = useState<{
+    pollOptions: PollOption[]
+    voteSettings: VoteSettings
+    totalVotes: bigint
+    rewardDistributionSettings: RewardDistributionSettings
+    recommendedVoteGas: bigint
+  } | null>(null)
+
   const [dialogOpenForOptionIndex, setDialogOpenForOptionIndex] = useState<
     number | null
   >(null)
@@ -85,22 +86,26 @@ export const VoteSettingsInner: FC<{
       )
 
       const largestValue = Math.max(...choicesWithVoteAmount.map(Number))
-      const _choices: PollItem[] = choicesWithVoteAmount.map((value, index) => {
-        const _value = Number(value)
-        return {
-          name: choices[index].value,
-          index: Number(choices[index].index),
-          value: fromNano(value),
-          progressLineGradient: largestValue === _value,
-          progressPercent: _value === 0 ? 0 : (_value / largestValue) * 100,
-        }
-      })
+      const pollOptions: PollOption[] = choicesWithVoteAmount.map(
+        (value, index) => {
+          const _value = Number(value)
+          return {
+            name: choices[index].value,
+            index: Number(choices[index].index),
+            value: fromNano(value),
+            progressLineGradient: largestValue === _value,
+            progressPercent: _value === 0 ? 0 : (_value / largestValue) * 100,
+          }
+        },
+      )
 
-      setPollOptions(_choices)
-      setVoteSettings(voteSettings)
-      setTotalVotes(totalVotes)
-      setRewardDistributionSettings(rewardDistributionSettings)
-      setRecommendedVoteGas(recommendedVoteGas)
+      setNftData({
+        pollOptions,
+        voteSettings,
+        totalVotes,
+        rewardDistributionSettings,
+        recommendedVoteGas,
+      })
     } catch (error) {
       setVoteSettingsLoadingError(true)
       console.error('Error fetching votingNftItem data', error)
@@ -111,6 +116,7 @@ export const VoteSettingsInner: FC<{
 
   useEffect(() => {
     if (
+      !nftData &&
       votingNftItem &&
       isIntersecting &&
       !voteSettingsLoading &&
@@ -127,7 +133,7 @@ export const VoteSettingsInner: FC<{
       )
       return
     }
-    if (!recommendedVoteGas) {
+    if (!nftData?.recommendedVoteGas) {
       console.error(
         `recommendedVoteGas is ${votingNftItem}. Failed to send user vote`,
       )
@@ -139,7 +145,7 @@ export const VoteSettingsInner: FC<{
     }
 
     const userVotes = toNano(amount)
-    const value = userVotes + recommendedVoteGas
+    const value = userVotes + nftData.recommendedVoteGas
     const queryId = 1000n
 
     try {
@@ -169,9 +175,9 @@ export const VoteSettingsInner: FC<{
   }
 
   if (
-    !voteSettings ||
+    !nftData?.voteSettings ||
     // Фильтруем по типу вознаграждения, выбранного в качестве активной вкладки
-    Number(voteSettings.reward_type) !==
+    Number(nftData.voteSettings.reward_type) !==
       ACTIVE_PAGE_TO_REWARD_TYPE_MAP[poolType]
   ) {
     return (
@@ -191,7 +197,7 @@ export const VoteSettingsInner: FC<{
   }
 
   const { days, hours, isExpired } = getHoursAndDaysLeft(
-    Number(voteSettings.end_time),
+    Number(nftData.voteSettings.end_time),
   )
 
   return (
@@ -217,10 +223,10 @@ export const VoteSettingsInner: FC<{
           )
         }
         bid={
-          totalVotes === null ? (
+          nftData.totalVotes === null ? (
             <LoadingMessage />
           ) : (
-            <>{fromNano(totalVotes)} Ton</>
+            <>{fromNano(nftData.totalVotes)} Ton</>
           )
         }
         commission={
@@ -228,11 +234,11 @@ export const VoteSettingsInner: FC<{
             id="percent-commission"
             defaultMessage="{commission}% комиссии"
             values={{
-              commission: createCommission(rewardDistributionSettings),
+              commission: createCommission(nftData.rewardDistributionSettings),
             }}
           />
         }
-        pollOption={pollOptions}
+        pollOption={nftData.pollOptions}
         loading={voteSettingsLoading}
         loadingError={voteSettingsLoadingError}
         onPollItemClick={handlePollItemClick}

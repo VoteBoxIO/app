@@ -9,7 +9,7 @@ import { TextInBubble } from './TextInBubble'
 import { TitleAndSubtitle } from './TitleAndSubtitle'
 
 type PollBlockItemProps = ComponentProps<typeof PollBlockItem>
-export type PollItem = Omit<PollBlockItemProps, 'onPollItemClick'>
+export type PollOption = Omit<PollBlockItemProps, 'onPollItemClick'>
 
 export const PollBlock: FC<{
   title: ReactNode
@@ -17,7 +17,7 @@ export const PollBlock: FC<{
   expiration: ReactNode
   bid: ReactNode
   commission: ReactNode
-  pollOption: PollItem[]
+  pollOption: PollOption[]
   loading: boolean
   loadingError: boolean
   onPollItemClick: PollBlockItemProps['onPollItemClick']
