@@ -25,7 +25,7 @@
     "development-https": "NODE_ENV=development HTTPS=true rspack serve --config rspack.config.ts",
     "development": "NODE_ENV=development rspack serve --config rspack.config.ts",
     "build": "rm -rf build && npm run tsc && NODE_ENV=production rspack --config rspack.config.ts",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && gh-pages -d build"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx,json,css,scss,md}": [
