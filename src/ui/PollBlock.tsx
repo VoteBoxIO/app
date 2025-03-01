@@ -1,5 +1,8 @@
 import { styled } from '@linaria/react'
 import React, { ComponentProps, FC, ReactNode } from 'react'
+import { FormattedMessage } from 'react-intl'
+import { ButtonRegular } from './Button'
+import { Loader } from './Loader'
 import { PollBlockItem } from './PollBlockItem'
 import { Rhytm } from './Rhytm'
 import { TextInBubble } from './TextInBubble'
@@ -14,18 +17,24 @@ export const PollBlock: FC<{
   expiration: ReactNode
   bid: ReactNode
   commission: ReactNode
-  pollItems: PollItem[]
+  pollOption: PollItem[]
+  loading: boolean
+  loadingError: boolean
   onPollItemClick: PollBlockItemProps['onPollItemClick']
   bottomElement?: ReactNode
+  onRetryLoading: VoidFunction
 }> = ({
   title,
   subtitle,
   expiration,
   bid,
   commission,
-  pollItems,
+  pollOption,
+  loading,
+  loadingError,
   onPollItemClick,
   bottomElement,
+  onRetryLoading,
 }) => {
   return (
     <PollBlockContainer>
@@ -37,17 +46,28 @@ export const PollBlock: FC<{
 
       <TitleAndSubtitle title={title} subtitle={subtitle} />
 
-      <PollItems>
-        {pollItems.map(item => {
-          return (
-            <PollBlockItem
-              key={item.name}
-              {...item}
-              onPollItemClick={onPollItemClick}
-            />
-          )
-        })}
-      </PollItems>
+      {loadingError ? (
+        <ButtonRegular color="peach" onClick={onRetryLoading}>
+          <FormattedMessage
+            id="error-loading"
+            defaultMessage="Ошибка загрузки. Повторить"
+          />
+        </ButtonRegular>
+      ) : loading ? (
+        <Loader />
+      ) : (
+        <PollItems>
+          {pollOption.map(item => {
+            return (
+              <PollBlockItem
+                key={item.name}
+                {...item}
+                onPollItemClick={onPollItemClick}
+              />
+            )
+          })}
+        </PollItems>
+      )}
       {bottomElement}
     </PollBlockContainer>
   )

@@ -62,6 +62,9 @@
   "enter-amount.title": {
     "defaultMessage": "Введите сумму"
   },
+  "error-loading": {
+    "defaultMessage": "Ошибка загрузки. Повторить"
+  },
   "how-it-works": {
     "defaultMessage": "Как это работает?"
   },
@@ -129,7 +132,7 @@
     "defaultMessage": "Способы оплаты"
   },
   "percent-commission": {
-    "defaultMessage": "{commission} комиссии"
+    "defaultMessage": "{commission}% комиссии"
   },
   "poll": {
     "defaultMessage": "Опрос"
@@ -163,5 +166,8 @@
   },
   "voteSettings.timeLeft": {
     "defaultMessage": "Еще {days} д и {hours} ч"
+  },
+  "voteSettings.timeLeftHoursOnly": {
+    "defaultMessage": "Еще {hours} ч"
   }
 }

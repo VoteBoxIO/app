@@ -264,7 +264,7 @@
     },
     {
       "type": 0,
-      "value": " комиссии"
+      "value": "% комиссии"
     }
   ],
   "poll": [
@@ -339,6 +339,20 @@
     {
       "type": 0,
       "value": " д и "
+    },
+    {
+      "type": 1,
+      "value": "hours"
+    },
+    {
+      "type": 0,
+      "value": " ч"
+    }
+  ],
+  "voteSettings.timeLeftHoursOnly": [
+    {
+      "type": 0,
+      "value": "Еще "
     },
     {
       "type": 1,

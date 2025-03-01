@@ -23,8 +23,8 @@ export const Typography = forwardRef<HTMLHeadingElement, Props>(
         ref={ref}
         style={style}
         className={cx(
-          commonCss,
           typographyMap[fontSize],
+          fontFamilyMap[fontSize],
           fontWeightMap[fontWeight],
           className,
         )}
@@ -40,25 +40,6 @@ export type FontSize = 28 | 24 | 20 | 16 | 14 | 12
 type FontWeight = 400 | 500 | 600 | 700
 
 const Text = styled.p``
-const commonCss = css`
-  font-style: normal;
-  font-weight: 400;
-  color: black;
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    'Noto Sans',
-    'Liberation Sans',
-    sans-serif,
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-    'Noto Color Emoji';
-`
 const typographyMap: Record<FontSize, LinariaClassName> = {
   28: css`
     font-size: 28px;
@@ -91,7 +72,6 @@ const typographyMap: Record<FontSize, LinariaClassName> = {
     line-height: 18px;
   `,
 }
-
 const fontWeightMap: Record<FontWeight, LinariaClassName> = {
   400: css`
     font-weight: 400;
@@ -105,4 +85,25 @@ const fontWeightMap: Record<FontWeight, LinariaClassName> = {
   700: css`
     font-weight: 700;
   `,
+}
+const manropeFontCss = css`
+  color: black;
+  font-family: 'Manrope', serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+`
+const robotoFontCss = css`
+  color: black;
+  font-family: 'Roboto', serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+`
+const fontFamilyMap: Record<FontSize, LinariaClassName> = {
+  28: robotoFontCss,
+  24: robotoFontCss,
+  20: robotoFontCss,
+  16: manropeFontCss,
+  14: manropeFontCss,
+  12: manropeFontCss,
 }

@@ -1,12 +1,12 @@
 import { styled } from '@linaria/react'
 import React, { FC } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { VoteSettings } from '../components/VoteSettings'
 import { useFetchNftItems } from '../hooks/useFetchNftItems'
 import { Loader } from '../ui/Loader'
 import { Tabs } from '../ui/Tabs'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { PollTypeTab } from './ActivePollsPage.constants'
-import { FormattedMessage } from 'react-intl'
 
 export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
   activeTab,
@@ -26,6 +26,7 @@ export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
             defaultMessage="Активные голосования"
           />
         }
+        titleFontSize={24}
         subtitle={
           <FormattedMessage
             id="active-voting-subtitle"
@@ -68,6 +69,7 @@ export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
 }
 
 const ActiveVotingPageContainer = styled.div`
+  height: 100%;
   display: grid;
   gap: 16px;
   grid-gap: 16px;

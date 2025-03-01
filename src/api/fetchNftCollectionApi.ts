@@ -1,5 +1,5 @@
 import { Address } from '@ton/core'
-import { VotingItem } from '../components/VoteSettings'
+import { VotingItem } from '../components/VoteSettingsInner'
 
 export const fetchNftCollectionFromTonCenterApi = async (
   nftCollectionAddress: string,

@@ -1,57 +1,57 @@
 {
   "active-voting": {
-    "defaultMessage": "Active Voting"
+    "defaultMessage": "Active votings"
   },
   "active-voting-subtitle": {
-    "defaultMessage": "Check out the available polls"
+    "defaultMessage": "View available polls"
   },
   "active-voting-title": {
-    "defaultMessage": "Active Voting"
+    "defaultMessage": "Active votings"
   },
   "add-option": {
-    "defaultMessage": "Add Option"
+    "defaultMessage": "Add option"
   },
   "blogger-commission-placeholder": {
-    "defaultMessage": "Blogger Commission"
+    "defaultMessage": "Blogger commission"
   },
   "connect-wallet.button": {
-    "defaultMessage": "Connect Wallet"
+    "defaultMessage": "Connect wallet"
   },
   "connect-wallet.subtitle": {
-    "defaultMessage": "You need to connect your wallet to pay for participation and receive rewards after voting ends. It won't take long."
+    "defaultMessage": "You need to connect a wallet to pay for participation and receive rewards after the voting ends. This won't take much time."
   },
   "connect-wallet.title": {
-    "defaultMessage": "Connect Wallet"
+    "defaultMessage": "Connect wallet"
   },
   "create-button": {
     "defaultMessage": "Create"
   },
   "create-voting": {
-    "defaultMessage": "Create Voting"
+    "defaultMessage": "Create voting"
   },
   "create-voting-subtitle": {
-    "defaultMessage": "Start a poll and engage your audience"
+    "defaultMessage": "Launch a poll and engage your audience"
   },
   "create-voting-title": {
-    "defaultMessage": "Create Voting"
+    "defaultMessage": "Create voting"
   },
   "create-voting-type": {
-    "defaultMessage": "Choose the type of voting and set the parameters"
+    "defaultMessage": "Choose the type of voting and set parameters"
   },
   "creator-basis-points-error": {
-    "defaultMessage": "Blogger commission must be between 0% and 100%"
+    "defaultMessage": "The blogger's commission must be between 0% and 100%"
   },
   "deadline-error-too-early": {
     "defaultMessage": "The deadline must be at least 2 hours from now"
   },
   "deadline-error-too-late": {
-    "defaultMessage": "The deadline must be no later than 90 days"
+    "defaultMessage": "The deadline must be no later than 90 days from now"
   },
   "deadline-placeholder": {
-    "defaultMessage": "Set Deadline"
+    "defaultMessage": "Set deadline"
   },
   "enter-amount.placeholder": {
-    "defaultMessage": "Bet Amount in Ton"
+    "defaultMessage": "Bet amount in Ton"
   },
   "enter-amount.submit": {
     "defaultMessage": "Done"
@@ -60,76 +60,76 @@
     "defaultMessage": "Enter your bet amount"
   },
   "enter-amount.title": {
-    "defaultMessage": "Enter Amount"
+    "defaultMessage": "Enter amount"
   },
   "how-it-works": {
-    "defaultMessage": "How It Works?"
+    "defaultMessage": "How it works?"
   },
   "how-to-create": {
-    "defaultMessage": "How to Create"
+    "defaultMessage": "How to create"
   },
   "invite-friend": {
-    "defaultMessage": "Invite a Friend"
+    "defaultMessage": "Invite a friend"
   },
   "invite-friend-bonus": {
-    "defaultMessage": "Invite a friend and get bonuses"
+    "defaultMessage": "Refer a friend and earn bonuses"
   },
   "logo-subtitle": {
-    "defaultMessage": "Monetize Your Content"
+    "defaultMessage": "Monetize your content"
   },
   "money-pool": {
-    "defaultMessage": "Money Pool"
+    "defaultMessage": "Money pool"
   },
   "money-pool-button": {
-    "defaultMessage": "Create Voting"
+    "defaultMessage": "Create voting"
   },
   "money-pool-description": {
-    "defaultMessage": "Winners share the money of losers. You can vote an unlimited number of times."
+    "defaultMessage": "Winners share the losers' money. Voting can be done an unlimited number of times."
   },
   "money-pool-subtitle": {
-    "defaultMessage": "Winners share the money of losers. You can vote an unlimited number of times."
+    "defaultMessage": "Winners share the losers' money. Voting can be done an unlimited number of times."
   },
   "money-pool-title": {
-    "defaultMessage": "Money Pool"
+    "defaultMessage": "Money pool"
   },
   "multiple-options-toggle": {
-    "defaultMessage": "Multiple Choice"
+    "defaultMessage": "Multiple choice"
   },
   "my-polls": {
-    "defaultMessage": "My Polls"
+    "defaultMessage": "My polls"
   },
   "my-polls-subtitle": {
     "defaultMessage": "Here are your polls. Active and completed."
   },
   "my-polls-title": {
-    "defaultMessage": "My Polls"
+    "defaultMessage": "My polls"
   },
   "my-votes": {
-    "defaultMessage": "My Votes"
+    "defaultMessage": "My votes"
   },
   "my-votes-subtitle": {
     "defaultMessage": "Your voting history"
   },
   "option-placeholder": {
-    "defaultMessage": "Answer Option"
+    "defaultMessage": "Answer option"
   },
   "options-error": {
     "defaultMessage": "Answer options must not be empty"
   },
   "paid-voting-button": {
-    "defaultMessage": "Create Voting"
+    "defaultMessage": "Create voting"
   },
   "paid-voting-subtitle": {
-    "defaultMessage": "All participants get access to the content. One vote has a fixed cost."
+    "defaultMessage": "All participants get access to content. One vote has a fixed cost."
   },
   "paid-voting-title": {
-    "defaultMessage": "Paid Voting"
+    "defaultMessage": "Paid voting"
   },
   "payment-methods": {
-    "defaultMessage": "Payment Methods"
+    "defaultMessage": "Payment methods"
   },
   "percent-commission": {
-    "defaultMessage": "{commission} commission"
+    "defaultMessage": "{commission}% commission"
   },
   "poll": {
     "defaultMessage": "Poll"
@@ -138,13 +138,13 @@
     "defaultMessage": "The poll name must not be empty"
   },
   "poll-name-placeholder": {
-    "defaultMessage": "Poll Name"
+    "defaultMessage": "Poll name"
   },
   "poll-type-access-to-content": {
-    "defaultMessage": "Access to Content"
+    "defaultMessage": "Access to content"
   },
   "poll-type-money-pool": {
-    "defaultMessage": "Money Pool"
+    "defaultMessage": "Money pool"
   },
   "status-completed": {
     "defaultMessage": "Completed"
@@ -159,9 +159,12 @@
     "defaultMessage": "Active"
   },
   "tab-finished": {
-    "defaultMessage": "Finished"
+    "defaultMessage": "Completed"
   },
   "voteSettings.timeLeft": {
     "defaultMessage": "{days} d and {hours} h left"
+  },
+  "voteSettings.timeLeftHoursOnly": {
+    "defaultMessage": "{hours} h left"
   }
 }
