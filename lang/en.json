@@ -18,7 +18,7 @@
     "defaultMessage": "Connect wallet"
   },
   "connect-wallet.subtitle": {
-    "defaultMessage": "You need to connect a wallet to pay for participation and receive rewards after the voting ends. This won't take much time."
+    "defaultMessage": "You need to connect your wallet to pay for participation and receive rewards after the voting ends. This won't take long."
   },
   "connect-wallet.title": {
     "defaultMessage": "Connect wallet"
@@ -39,10 +39,10 @@
     "defaultMessage": "Choose the type of voting and set parameters"
   },
   "creator-basis-points-error": {
-    "defaultMessage": "The blogger's commission must be between 0% and 100%"
+    "defaultMessage": "Blogger commission must be between 0% and 100%"
   },
   "deadline-error-too-early": {
-    "defaultMessage": "The deadline must be at least 2 hours from now"
+    "defaultMessage": "The deadline must be no earlier than 2 hours from now"
   },
   "deadline-error-too-late": {
     "defaultMessage": "The deadline must be no later than 90 days from now"
@@ -51,7 +51,7 @@
     "defaultMessage": "Set deadline"
   },
   "enter-amount.placeholder": {
-    "defaultMessage": "Bet amount in Ton"
+    "defaultMessage": "Ton bet amount"
   },
   "enter-amount.submit": {
     "defaultMessage": "Done"
@@ -61,6 +61,9 @@
   },
   "enter-amount.title": {
     "defaultMessage": "Enter amount"
+  },
+  "error-loading": {
+    "defaultMessage": "Error loading. Retry"
   },
   "how-it-works": {
     "defaultMessage": "How it works?"
@@ -84,10 +87,10 @@
     "defaultMessage": "Create voting"
   },
   "money-pool-description": {
-    "defaultMessage": "Winners share the losers' money. Voting can be done an unlimited number of times."
+    "defaultMessage": "Winners split the losers' money. Voting can be done an unlimited number of times."
   },
   "money-pool-subtitle": {
-    "defaultMessage": "Winners share the losers' money. Voting can be done an unlimited number of times."
+    "defaultMessage": "Winners split the losers' money. Voting can be done an unlimited number of times."
   },
   "money-pool-title": {
     "defaultMessage": "Money pool"

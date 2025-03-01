@@ -38,7 +38,7 @@
   "connect-wallet.subtitle": [
     {
       "type": 0,
-      "value": "You need to connect a wallet to pay for participation and receive rewards after the voting ends. This won't take much time."
+      "value": "You need to connect your wallet to pay for participation and receive rewards after the voting ends. This won't take long."
     }
   ],
   "connect-wallet.title": [
@@ -80,13 +80,13 @@
   "creator-basis-points-error": [
     {
       "type": 0,
-      "value": "The blogger's commission must be between 0% and 100%"
+      "value": "Blogger commission must be between 0% and 100%"
     }
   ],
   "deadline-error-too-early": [
     {
       "type": 0,
-      "value": "The deadline must be at least 2 hours from now"
+      "value": "The deadline must be no earlier than 2 hours from now"
     }
   ],
   "deadline-error-too-late": [
@@ -104,7 +104,7 @@
   "enter-amount.placeholder": [
     {
       "type": 0,
-      "value": "Bet amount in Ton"
+      "value": "Ton bet amount"
     }
   ],
   "enter-amount.submit": [
@@ -123,6 +123,12 @@
     {
       "type": 0,
       "value": "Enter amount"
+    }
+  ],
+  "error-loading": [
+    {
+      "type": 0,
+      "value": "Error loading. Retry"
     }
   ],
   "how-it-works": [
@@ -170,13 +176,13 @@
   "money-pool-description": [
     {
       "type": 0,
-      "value": "Winners share the losers' money. Voting can be done an unlimited number of times."
+      "value": "Winners split the losers' money. Voting can be done an unlimited number of times."
     }
   ],
   "money-pool-subtitle": [
     {
       "type": 0,
-      "value": "Winners share the losers' money. Voting can be done an unlimited number of times."
+      "value": "Winners split the losers' money. Voting can be done an unlimited number of times."
     }
   ],
   "money-pool-title": [
