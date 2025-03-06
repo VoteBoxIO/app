@@ -127,20 +127,8 @@ export const VoteSettingsInner: FC<{
   }, [votingNftItem, isIntersecting])
 
   const sendUserVote = async (index: number, amount: string) => {
-    if (!votingNftItem) {
-      console.error(
-        `votingNftItem is ${votingNftItem}. Failed to send user vote`,
-      )
-      return
-    }
-    if (!nftData?.recommendedVoteGas) {
-      console.error(
-        `recommendedVoteGas is ${votingNftItem}. Failed to send user vote`,
-      )
-      return
-    }
-    if (!amount) {
-      console.error(`amount is: ${amount}`)
+    if (!votingNftItem || !nftData?.recommendedVoteGas || amount) {
+      console.error('Failed to send user vote')
       return
     }
 
