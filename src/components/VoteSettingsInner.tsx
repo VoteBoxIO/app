@@ -3,14 +3,13 @@ import React, { FC, useContext, useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { VotingNftItemWrappers } from 'votebox_wrappers'
 import { AppContext } from '../App.context'
-import { parseChoices } from '../functions/parseChoices'
-import { useAsyncInitialize } from '../hooks/useAsyncInitialize'
+import { useFetchNftDataFromBlockchain } from '../hooks/useFetchNftDataFromBlockchain'
 import {
   ACTIVE_PAGE_TO_REWARD_TYPE_MAP,
   PollTypeTab,
 } from '../pages/ActivePollsPage.constants'
 import { LoadingMessage } from '../ui/LoadingMessage'
-import { PollBlock, PollOption } from '../ui/PollBlock'
+import { PollBlock } from '../ui/PollBlock'
 import { EnterAmountDialog } from './EnterAmountDialog'
 
 export const VoteSettingsInner: FC<{
@@ -29,105 +28,34 @@ export const VoteSettingsInner: FC<{
   isIntersecting,
 }) => {
   const { address, name, description } = item
-  const { sender, client } = useContext(AppContext)
+  const { sender } = useContext(AppContext)
 
-  const [voteSettingsLoading, setVoteSettingsLoading] = useState(false)
-  const [voteSettingsLoadingError, setVoteSettingsLoadingError] =
-    useState(false)
-
-  const [nftData, setNftData] = useState<{
-    pollOptions: PollOption[]
-    voteSettings: VoteSettings
-    totalVotes: bigint
-    rewardDistributionSettings: RewardDistributionSettings
-    recommendedVoteGas: bigint
-  } | null>(null)
+  const {
+    votingNftItemContract,
+    fetchNftData,
+    nftData,
+    voteSettingsLoading,
+    voteSettingsLoadingError,
+  } = useFetchNftDataFromBlockchain(address)
 
   const [dialogOpenForOptionIndex, setDialogOpenForOptionIndex] = useState<
     number | null
   >(null)
 
-  // Инициализируем контракт для каждого NftItem
-  const votingNftItem = useAsyncInitialize(async () => {
-    if (!client) {
-      return
-    }
-    const contract = VotingNftItemWrappers.VotingNftItem.fromAddress(address)
-    return client.open(contract)
-  }, [client])
-
-  const fetchNftData = async () => {
-    if (!votingNftItem) {
-      return
-    }
-
-    try {
-      setVoteSettingsLoading(true)
-      setVoteSettingsLoadingError(false)
-      const nft = votingNftItem
-
-      const [
-        voteSettings,
-        totalVotes,
-        rewardDistributionSettings,
-        recommendedVoteGas,
-      ] = await Promise.all([
-        nft.getVoteSettings(),
-        nft.getTotalVotes(),
-        nft.getRewardDistributionSettings(),
-        nft.getRecommendedVoteGas(),
-      ])
-
-      const choices = parseChoices(voteSettings.choices)
-      const choicesWithVoteAmount = await Promise.all(
-        choices.map(({ index }) => {
-          return votingNftItem.getVoteAmount(index)
-        }),
-      )
-
-      const largestValue = Math.max(...choicesWithVoteAmount.map(Number))
-      const pollOptions: PollOption[] = choicesWithVoteAmount.map(
-        (value, index) => {
-          const _value = Number(value)
-          return {
-            name: choices[index].value,
-            index: Number(choices[index].index),
-            value: fromNano(value),
-            progressLineGradient: largestValue === _value,
-            progressPercent: _value === 0 ? 0 : (_value / largestValue) * 100,
-          }
-        },
-      )
-
-      setNftData({
-        pollOptions,
-        voteSettings,
-        totalVotes,
-        rewardDistributionSettings,
-        recommendedVoteGas,
-      })
-    } catch (error) {
-      setVoteSettingsLoadingError(true)
-      console.error('Error fetching votingNftItem data', error)
-    } finally {
-      setVoteSettingsLoading(false)
-    }
-  }
-
   useEffect(() => {
     if (
       !nftData &&
-      votingNftItem &&
+      votingNftItemContract &&
       isIntersecting &&
       !voteSettingsLoading &&
       !voteSettingsLoadingError
     ) {
       fetchNftData()
     }
-  }, [votingNftItem, isIntersecting])
+  }, [votingNftItemContract, isIntersecting])
 
   const sendUserVote = async (index: number, amount: string) => {
-    if (!votingNftItem || !nftData?.recommendedVoteGas || amount) {
+    if (!votingNftItemContract || !nftData?.recommendedVoteGas || amount) {
       console.error('Failed to send user vote')
       return
     }
@@ -137,11 +65,9 @@ export const VoteSettingsInner: FC<{
     const queryId = 1000n
 
     try {
-      const result = await votingNftItem.send(
+      const result = await votingNftItemContract.send(
         sender,
-        {
-          value,
-        },
+        { value },
         {
           $$type: 'Vote',
           choice: BigInt(index),
