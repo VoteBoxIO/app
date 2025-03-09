@@ -144,10 +144,6 @@ export const CreateMoneyPoolPage: FC = () => {
     }
   }
 
-  const getIsFormIncomplete = () => {
-    validateForm(true)
-  }
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
 

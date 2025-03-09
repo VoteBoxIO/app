@@ -170,9 +170,6 @@ const getHoursAndDaysLeft = (endTimeInSeconds: number) => {
 }
 
 type VotingNftItemContract = OpenedContract<VotingNftItemWrappers.VotingNftItem>
-type VoteSettings = Awaited<
-  ReturnType<VotingNftItemContract['getVoteSettings']>
->
 type RewardDistributionSettings = Awaited<
   ReturnType<VotingNftItemContract['getRewardDistributionSettings']>
 >

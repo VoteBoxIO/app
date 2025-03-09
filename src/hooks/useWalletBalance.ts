@@ -16,7 +16,7 @@ export function useWalletBalance(client: TonClient | undefined) {
         const walletAddress = wallet.toString()
         const balance = await client.getBalance(Address.parse(walletAddress))
         setBalance(balance)
-      } catch (error) {
+      } catch {
         throw new Error('Error fetching balance')
       }
     }

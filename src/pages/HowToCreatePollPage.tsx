@@ -3,8 +3,6 @@ import React, { FC, ReactNode } from 'react'
 import Stories from 'react-insta-stories'
 import { Story } from 'react-insta-stories/dist/interfaces'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
-import SvgCloseWhite from '../svgr/CloseWhite'
-import { useNavigate } from 'react-router'
 
 export const HowToCreatePollPage: FC = () => {
   return (

@@ -57,7 +57,7 @@ type Response = {
         address: 'string'
         code_hash: 'string'
         collection_content: {
-          additionalProp1: {}
+          additionalProp1: object
         }
         data_hash: 'string'
         last_transaction_lt: '0'

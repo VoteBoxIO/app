@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import React, { ComponentProps, FC, ReactNode } from 'react'
+import React, { ComponentProps, FC } from 'react'
 
 export const InputText: FC<ComponentProps<typeof StyledInput> & {}> = props => {
   return <StyledInput type="text" {...props} />

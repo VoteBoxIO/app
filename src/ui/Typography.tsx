@@ -35,6 +35,7 @@ export const Typography = forwardRef<HTMLHeadingElement, Props>(
     )
   },
 )
+Typography.displayName = 'Typography'
 
 export type FontSize = 28 | 24 | 20 | 16 | 14 | 12
 type FontWeight = 400 | 500 | 600 | 700

@@ -20,7 +20,7 @@ export function buildOnchainMetadata(data: {
   description: string
   image: string
 }): Cell {
-  let dict = Dictionary.empty(
+  const dict = Dictionary.empty(
     Dictionary.Keys.BigUint(256),
     Dictionary.Values.Cell(),
   )
@@ -43,7 +43,7 @@ export function stringToSnakeCell(value: string): Cell {
 
 export function makeSnakeCell(data: Buffer) {
   // Create a cell that package the data
-  let chunks = bufferToChunks(data, CELL_MAX_SIZE_BYTES)
+  const chunks = bufferToChunks(data, CELL_MAX_SIZE_BYTES)
 
   const b = chunks.reduceRight((curCell, chunk, index) => {
     if (index === 0) {
@@ -61,7 +61,7 @@ export function makeSnakeCell(data: Buffer) {
 }
 
 function bufferToChunks(buff: Buffer, chunkSize: number) {
-  let chunks: Buffer[] = []
+  const chunks: Buffer[] = []
   while (buff.byteLength > 0) {
     chunks.push(buff.slice(0, chunkSize))
     buff = buff.slice(chunkSize)

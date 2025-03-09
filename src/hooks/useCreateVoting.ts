@@ -17,9 +17,9 @@ export function useCreateVoting() {
         endTimeInSeconds,
         creatorBasisPoints,
         rewardType,
-        hideVotes,
-        referral,
-        fixedVoteAmount,
+        // hideVotes,
+        // referral,
+        // fixedVoteAmount,
       } = voting
 
       try {

@@ -25,8 +25,17 @@ export const useFetchJettonData = () => {
       return
     }
 
-    const result = await voteJettonMaster.getUnclaimedVotes()
-    result
+    const result = await Promise.allSettled([
+      voteJettonMaster.getClaimble(),
+      voteJettonMaster.getConfirmedVotes(),
+      voteJettonMaster.getFund(),
+      voteJettonMaster.getGetJettonData(),
+      voteJettonMaster.getMinBalance(),
+      voteJettonMaster.getUnclaimedVotes(),
+      voteJettonMaster.getWinner(),
+    ])
+
+    console.log(result)
   }
 
   return {
