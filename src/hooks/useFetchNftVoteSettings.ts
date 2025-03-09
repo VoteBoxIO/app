@@ -3,10 +3,10 @@ import { useContext, useState } from 'react'
 import { VotingNftItemWrappers } from 'votebox_wrappers'
 import { AppContext } from '../App.context'
 import { parseChoices } from '../functions/parseChoices'
-import { useAsyncInitialize } from '../hooks/useAsyncInitialize'
+import { useAsyncInitialize } from './useAsyncInitialize'
 import { PollOption } from '../ui/PollBlock'
 
-export const useFetchNftDataFromBlockchain = (votingNftAddress: Address) => {
+export const useFetchNftVoteSettings = (votingNftAddress: Address) => {
   const { client } = useContext(AppContext)
 
   const [voteSettingsLoading, setVoteSettingsLoading] = useState(false)

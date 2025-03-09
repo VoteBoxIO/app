@@ -12,7 +12,8 @@ import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 export const EnterAmountDialog: FC<{
   onClose: VoidFunction
   onSubmit: (amount: string) => void
-}> = ({ onClose, onSubmit }) => {
+  isValidVotingAmount: (amount: string) => boolean
+}> = ({ onClose, onSubmit, isValidVotingAmount }) => {
   const [amount, setAmount] = useState('')
   const [dialog, setDialog] = useState<HTMLDialogElement | null>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -102,7 +103,11 @@ export const EnterAmountDialog: FC<{
             onChange={e => setAmount(e.target.value)}
           />
 
-          <ButtonRegular color="purple" onClick={handleSubmit}>
+          <ButtonRegular
+            color="purple"
+            onClick={handleSubmit}
+            disabled={!isValidVotingAmount(amount)}
+          >
             <FormattedMessage
               id="enter-amount.submit"
               defaultMessage="Готово"

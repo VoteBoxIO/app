@@ -1,9 +1,9 @@
-import { Address, fromNano, OpenedContract, toNano } from '@ton/core'
-import React, { FC, useContext, useEffect, useState } from 'react'
+import { Address, fromNano, OpenedContract } from '@ton/core'
+import React, { FC, useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { VotingNftItemWrappers } from 'votebox_wrappers'
-import { AppContext } from '../App.context'
-import { useFetchNftDataFromBlockchain } from '../hooks/useFetchNftDataFromBlockchain'
+import { useFetchNftVoteSettings } from '../hooks/useFetchNftVoteSettings'
+import { useSendUserVote } from '../hooks/useSendUserVote'
 import {
   ACTIVE_PAGE_TO_REWARD_TYPE_MAP,
   PollTypeTab,
@@ -28,7 +28,6 @@ export const VoteSettingsInner: FC<{
   isIntersecting,
 }) => {
   const { address, name, description } = item
-  const { sender } = useContext(AppContext)
 
   const {
     votingNftItemContract,
@@ -36,7 +35,12 @@ export const VoteSettingsInner: FC<{
     nftData,
     voteSettingsLoading,
     voteSettingsLoadingError,
-  } = useFetchNftDataFromBlockchain(address)
+  } = useFetchNftVoteSettings(address)
+
+  const { sendUserVote, isValidVotingAmount } = useSendUserVote(
+    votingNftItemContract,
+    nftData?.recommendedVoteGas,
+  )
 
   const [dialogOpenForOptionIndex, setDialogOpenForOptionIndex] = useState<
     number | null
@@ -53,33 +57,6 @@ export const VoteSettingsInner: FC<{
       fetchNftData()
     }
   }, [votingNftItemContract, isIntersecting])
-
-  const sendUserVote = async (index: number, amount: string) => {
-    if (!votingNftItemContract || !nftData?.recommendedVoteGas || amount) {
-      console.error('Failed to send user vote')
-      return
-    }
-
-    const userVotes = toNano(amount)
-    const value = userVotes + nftData.recommendedVoteGas
-    const queryId = 1000n
-
-    try {
-      const result = await votingNftItemContract.send(
-        sender,
-        { value },
-        {
-          $$type: 'Vote',
-          choice: BigInt(index),
-          votes: userVotes,
-          query_id: queryId,
-        },
-      )
-      console.log(result)
-    } catch (error) {
-      console.error('Error sending user vote', error)
-    }
-  }
 
   const handlePollItemClick = (index: number) => {
     setDialogOpenForOptionIndex(index)
@@ -162,6 +139,7 @@ export const VoteSettingsInner: FC<{
         <EnterAmountDialog
           onSubmit={amount => sendUserVote(dialogOpenForOptionIndex, amount)}
           onClose={() => setDialogOpenForOptionIndex(null)}
+          isValidVotingAmount={isValidVotingAmount}
         />
       )}
     </>
