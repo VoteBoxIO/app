@@ -37,13 +37,13 @@ export const CreateMoneyPoolPage: FC = () => {
     let hasError = false
 
     if (voting.creatorBasisPoints) {
-      if (+voting.creatorBasisPoints < 0 || +voting.creatorBasisPoints > 100) {
+      if (+voting.creatorBasisPoints < 0 || +voting.creatorBasisPoints > 15) {
         hasError = true
         setError(prev => ({
           ...prev,
           creatorBasisPoints: formatMessage({
             id: 'creator-basis-points-error',
-            defaultMessage: 'Комиссия блогера должна быть между 0% и 100%',
+            defaultMessage: 'Комиссия блогера должна быть между 0% и 15%',
           }),
         }))
       } else {

@@ -12,7 +12,7 @@ import SvgVote from '../svgr/Vote'
 import { ActionBlockWithIcon } from '../ui/ActionBlock'
 import { activeVotingMoneyPoolPagePath } from './ActivePollsPage'
 import { myActivePollsPagePath } from './MyPollsPage'
-import { myVotingPagePath } from './MyVotingPage'
+import { myActiveVotesPagePath } from './MyVotesPage'
 import { pollTypePagePath } from './PollTypePage'
 
 export const IndexPage: FC = () => {
@@ -40,7 +40,7 @@ export const IndexPage: FC = () => {
           }
         />
         <ActionBlockWithIcon
-          to={myVotingPagePath}
+          to={myActiveVotesPagePath}
           color="peach"
           icon={<SvgFolder />}
           title={<FormattedMessage id="my-votes" defaultMessage="Мои голоса" />}

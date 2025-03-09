@@ -11,6 +11,7 @@ export const PollBlockItem: FC<{
   progressPercent: number
   progressLineGradient: boolean
   onPollItemClick: (index: number) => void
+  isExpired: boolean
 }> = ({
   name,
   value,
@@ -18,14 +19,26 @@ export const PollBlockItem: FC<{
   progressPercent,
   progressLineGradient,
   onPollItemClick,
+  isExpired,
 }) => {
   const handlePollItemClick = () => {
+    if (isExpired) {
+      return
+    }
     onPollItemClick(index)
   }
 
   return (
     <>
-      <Plus onClick={handlePollItemClick}>
+      <Plus
+        onClick={handlePollItemClick}
+        {...(isExpired && {
+          style: {
+            opacity: 0.5,
+            cursor: 'not-allowed',
+          },
+        })}
+      >
         <SvgPlusSmall />
       </Plus>
       <Content>
@@ -65,6 +78,7 @@ const Plus = styled.div`
   height: 40px;
   background: rgba(255, 255, 255, 1);
   border-radius: 12px;
+  cursor: pointer;
 `
 const Content = styled.div`
   width: 100%;

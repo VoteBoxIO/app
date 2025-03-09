@@ -9,7 +9,10 @@ import { TextInBubble } from './TextInBubble'
 import { TitleAndSubtitle } from './TitleAndSubtitle'
 
 type PollBlockItemProps = ComponentProps<typeof PollBlockItem>
-export type PollOption = Omit<PollBlockItemProps, 'onPollItemClick'>
+export type PollOption = Omit<
+  PollBlockItemProps,
+  'onPollItemClick' | 'isExpired'
+>
 
 export const PollBlock: FC<{
   title: ReactNode
@@ -23,6 +26,7 @@ export const PollBlock: FC<{
   onPollItemClick: PollBlockItemProps['onPollItemClick']
   bottomElement?: ReactNode
   onRetryLoading: VoidFunction
+  isExpired: boolean
 }> = ({
   title,
   subtitle,
@@ -35,6 +39,7 @@ export const PollBlock: FC<{
   onPollItemClick,
   bottomElement,
   onRetryLoading,
+  isExpired,
 }) => {
   return (
     <PollBlockContainer>
@@ -63,6 +68,7 @@ export const PollBlock: FC<{
                 key={item.name}
                 {...item}
                 onPollItemClick={onPollItemClick}
+                isExpired={isExpired}
               />
             )
           })}

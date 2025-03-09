@@ -1,14 +1,16 @@
+import { JettonsBalances } from '@ton-api/client'
 import { Address } from '@ton/core'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { VoteJettonMasterWrappers } from 'votebox_wrappers'
+import { getAccountJettonsBalancesApi } from '../api/getAccountJettonsBalancesApi'
+import { AppContext } from '../App.context'
 import { useAsyncInitialize } from './useAsyncInitialize'
-import { useContactAddresses } from './useContactAddresses'
-import { useTonClient } from './useTonClient'
-import { useTonConnect } from './useTonConnect'
 
 export const useFetchJettonData = () => {
-  const { client } = useTonClient()
-  const { wallet } = useTonConnect()
-  const contractsAddresses = useContactAddresses()
+  const { tonApiClient, wallet, client, contractsAddresses } =
+    useContext(AppContext)
+  const [loading, setLoading] = useState(false)
+  const [jettonsBalances, setJettonsBalances] = useState<JettonsBalances>()
 
   const voteJettonMaster = useAsyncInitialize(async () => {
     if (!client) return
@@ -20,25 +22,41 @@ export const useFetchJettonData = () => {
     return client.open(contract)
   }, [client, wallet])
 
-  const fetchJettonData = async () => {
-    if (!voteJettonMaster) {
+  const fetchJettonsBalances = useCallback(async () => {
+    if (
+      !voteJettonMaster ||
+      !tonApiClient ||
+      !wallet ||
+      loading ||
+      jettonsBalances
+    ) {
       return
     }
 
-    const result = await Promise.allSettled([
-      voteJettonMaster.getClaimble(),
-      voteJettonMaster.getConfirmedVotes(),
-      voteJettonMaster.getFund(),
-      voteJettonMaster.getGetJettonData(),
-      voteJettonMaster.getMinBalance(),
-      voteJettonMaster.getUnclaimedVotes(),
-      voteJettonMaster.getWinner(),
-    ])
+    try {
+      setLoading(true)
 
-    console.log(result)
-  }
+      const response = await getAccountJettonsBalancesApi(
+        tonApiClient,
+        Address.parse(wallet),
+      )
+
+      setJettonsBalances(response)
+    } catch (error) {
+      console.error('Failed to fetch jetton data', error)
+    } finally {
+      setLoading(false)
+    }
+  }, [jettonsBalances, loading, tonApiClient, voteJettonMaster, wallet])
+
+  useEffect(() => {
+    if (!loading || jettonsBalances) {
+      fetchJettonsBalances()
+    }
+  }, [fetchJettonsBalances, jettonsBalances, loading])
 
   return {
-    fetchJettonData,
+    jettonsBalances,
+    jettonsBalancesLoading: loading,
   }
 }

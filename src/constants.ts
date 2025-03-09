@@ -31,3 +31,8 @@ export const VOTING_SETTINGS = {
   referralExpiration: 60 * 60 * 24 * 30, // 30 days DEFAULT_REFERRAL_EXPIRATION
   minVoteAmount: toNano('0.05'), // DEFAULT_MIN_VOTE_AMOUNT
 }
+
+export enum PollsActivityType {
+  Active = 'active',
+  Finished = 'finished',
+}

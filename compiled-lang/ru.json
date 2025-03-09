@@ -80,7 +80,7 @@
   "creator-basis-points-error": [
     {
       "type": 0,
-      "value": "Комиссия блогера должна быть между 0% и 100%"
+      "value": "Комиссия блогера должна быть между 0% и 15%"
     }
   ],
   "deadline-error-too-early": [

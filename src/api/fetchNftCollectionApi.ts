@@ -1,13 +1,25 @@
 import { Address } from '@ton/core'
 import { VotingItem } from '../components/VoteSettingsInner'
+// import { TonApiClient } from '@ton-api/client'
 
 export const fetchNftCollectionFromTonCenterApi = async (
   nftCollectionAddress: string,
   walletAddress: string,
+  indexes?: number[],
 ) => {
-  const response = await fetch(
-    `https://testnet.toncenter.com/api/v3/nft/items?collection_address=${nftCollectionAddress}&limit=50&offset=0`,
-  )
+  let url = `https://testnet.toncenter.com/api/v3/nft/items?collection_address=${nftCollectionAddress}&limit=50&offset=0`
+
+  if (indexes?.length) {
+    // Тут подставим '&index=1&index=2&index=...', чтобы запросить список голосований по индексам
+    const queryStringPart = indexes.reduce(
+      (acc, value) => `${acc}&index=${value}`,
+      '',
+    )
+
+    url += queryStringPart
+  }
+
+  const response = await fetch(url)
   const json: Response = await response.json()
 
   const addressBook: Record<string, string> = Object.entries(
@@ -31,8 +43,6 @@ export const fetchNftCollectionFromTonCenterApi = async (
 
       return votingItem
     })
-
-  console.log(nftItems)
 
   return nftItems
 }
@@ -100,6 +110,8 @@ type Response = {
 //         address: item.address,
 //         rewardType: 0, // Пока что всегда 0
 //         createdBy: '',
+//         isCreatedByYourWallet: false,
+//         ownerAddress: item.owner!.address,
 //       }
 //     })
 

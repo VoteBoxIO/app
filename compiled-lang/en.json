@@ -80,7 +80,7 @@
   "creator-basis-points-error": [
     {
       "type": 0,
-      "value": "Blogger commission must be between 0% and 100%"
+      "value": "Blogger commission must be between 0% and 15%"
     }
   ],
   "deadline-error-too-early": [

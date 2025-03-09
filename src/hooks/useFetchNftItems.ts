@@ -1,5 +1,5 @@
 import { useTonAddress } from '@tonconnect/ui-react'
-import { useContext, useState, useEffect } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { fetchNftCollectionFromTonCenterApi } from '../api/fetchNftCollectionApi'
 import { AppContext } from '../App.context'
 import { VotingItem } from '../components/VoteSettingsInner'
@@ -10,13 +10,14 @@ export const useFetchNftItems = () => {
   const [loading, setLoading] = useState(false)
   const currentWalletAddress = useTonAddress()
 
-  useEffect(() => {
-    const fetchNftItemsFromCollection = async () => {
+  const fetchNftItemsFromCollection = useCallback(
+    async (indexes?: number[]) => {
       try {
         setLoading(true)
         const items = await fetchNftCollectionFromTonCenterApi(
           contractsAddresses.nftCollection,
           currentWalletAddress,
+          indexes,
         )
         setNftItems(items)
       } catch (error) {
@@ -24,10 +25,13 @@ export const useFetchNftItems = () => {
       } finally {
         setLoading(false)
       }
-    }
+    },
+    [wallet],
+  )
 
-    fetchNftItemsFromCollection()
-  }, [wallet])
-
-  return { nftItems, loading }
+  return {
+    fetchNftItemsFromCollection,
+    nftItems,
+    nftItemsLoading: loading,
+  }
 }

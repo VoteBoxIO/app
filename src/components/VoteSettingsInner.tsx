@@ -56,6 +56,8 @@ export const VoteSettingsInner: FC<{
     ) {
       fetchNftData()
     }
+    // Только если есть контракт и изменился isIntersecting
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [votingNftItemContract, isIntersecting])
 
   const handlePollItemClick = (index: number) => {
@@ -83,6 +85,7 @@ export const VoteSettingsInner: FC<{
         pollOption={[]}
         onPollItemClick={() => {}}
         onRetryLoading={handleRetryLoading}
+        isExpired={false}
       />
     )
   }
@@ -134,6 +137,7 @@ export const VoteSettingsInner: FC<{
         loadingError={voteSettingsLoadingError}
         onPollItemClick={handlePollItemClick}
         onRetryLoading={handleRetryLoading}
+        isExpired={isExpired}
       />
       {dialogOpenForOptionIndex !== null && (
         <EnterAmountDialog

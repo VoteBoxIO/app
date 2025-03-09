@@ -3,7 +3,7 @@ import React, { FC, ReactNode } from 'react'
 import { Typography } from './Typography'
 import { NavLink } from 'react-router'
 
-type TabId = string | number
+export type TabId = string | number
 type Tab = { to: string; id: TabId; label: ReactNode }
 
 export const Tabs: FC<{

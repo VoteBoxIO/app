@@ -39,7 +39,7 @@
     "defaultMessage": "Choose the type of voting and set parameters"
   },
   "creator-basis-points-error": {
-    "defaultMessage": "Blogger commission must be between 0% and 100%"
+    "defaultMessage": "Blogger commission must be between 0% and 15%"
   },
   "deadline-error-too-early": {
     "defaultMessage": "The deadline must be no earlier than 2 hours from now"
