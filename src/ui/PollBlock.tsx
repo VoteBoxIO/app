@@ -16,7 +16,6 @@ export type PollOption = Omit<
 
 export const PollBlock: FC<{
   title: ReactNode
-  subtitle: ReactNode
   expiration: ReactNode
   bid: ReactNode
   commission: ReactNode
@@ -29,7 +28,6 @@ export const PollBlock: FC<{
   isExpired: boolean
 }> = ({
   title,
-  subtitle,
   expiration,
   bid,
   commission,
@@ -49,7 +47,7 @@ export const PollBlock: FC<{
         <TextInBubble>{commission}</TextInBubble>
       </PollInfo>
 
-      <TitleAndSubtitle title={title} subtitle={subtitle} />
+      <TitleAndSubtitle title={title} />
 
       {loadingError ? (
         <ButtonRegular color="peach" onClick={onRetryLoading}>

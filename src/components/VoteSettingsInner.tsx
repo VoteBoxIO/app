@@ -16,7 +16,6 @@ export const VoteSettingsInner: FC<{
   item: {
     address: Address
     name: string
-    description: string
     index: number
   }
   poolType?: PollTypeTab
@@ -27,7 +26,7 @@ export const VoteSettingsInner: FC<{
   poolType = PollTypeTab.MoneyPool,
   isIntersecting,
 }) => {
-  const { address, name, description } = item
+  const { address, name } = item
 
   const {
     votingNftItemContract,
@@ -76,7 +75,6 @@ export const VoteSettingsInner: FC<{
     return (
       <PollBlock
         title={name}
-        subtitle={description}
         expiration={<LoadingMessage />}
         bid={<LoadingMessage />}
         commission={<LoadingMessage />}
@@ -98,7 +96,6 @@ export const VoteSettingsInner: FC<{
     <>
       <PollBlock
         title={name}
-        subtitle={description}
         expiration={
           isExpired ? (
             <FormattedMessage id="status-completed" defaultMessage="Завершен" />

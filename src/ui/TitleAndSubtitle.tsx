@@ -5,7 +5,7 @@ import { Typography } from './Typography'
 export const TitleAndSubtitle: FC<{
   title: ReactNode
   titleFontSize?: ComponentProps<typeof Typography>['fontSize']
-  subtitle: ReactNode
+  subtitle?: ReactNode
   gap?: string
 }> = ({ title, subtitle, titleFontSize = 20, gap = '4px' }) => {
   return (
@@ -13,9 +13,11 @@ export const TitleAndSubtitle: FC<{
       <Typography fontSize={titleFontSize} fontWeight={600}>
         {title}
       </Typography>
-      <Typography fontSize={16} fontWeight={400}>
-        {subtitle}
-      </Typography>
+      {subtitle && (
+        <Typography fontSize={16} fontWeight={400}>
+          {subtitle}
+        </Typography>
+      )}
     </Block>
   )
 }
