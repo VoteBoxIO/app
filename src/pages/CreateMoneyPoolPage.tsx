@@ -127,6 +127,7 @@ export const CreateMoneyPoolPage: FC = () => {
         return { ...prev, options: updatedOptions }
       })
     } else {
+      // Все остальные инпуты
       setVoting(prev => ({ ...prev, [name]: value }))
     }
   }
