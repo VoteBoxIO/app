@@ -8,6 +8,7 @@ import { ButtonRegular } from '../ui/Button'
 import { InputNumber } from '../ui/Input'
 import { Rhytm } from '../ui/Rhytm'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
+import { AddWallet } from './AddWallet'
 
 export const EnterAmountDialog: FC<{
   onClose: VoidFunction
@@ -115,29 +116,7 @@ export const EnterAmountDialog: FC<{
           </ButtonRegular>
         </Rhytm>
       ) : (
-        <Rhytm gap="24px">
-          <TitleAndSubtitle
-            titleFontSize={24}
-            title={
-              <FormattedMessage
-                id="connect-wallet.title"
-                defaultMessage="Подключить кошелек"
-              />
-            }
-            subtitle={
-              <FormattedMessage
-                id="connect-wallet.subtitle"
-                defaultMessage="Необходимо подключить кошелек, чтобы оплачивать участие и получать награду после завершения голосований. Это не займет много времени."
-              />
-            }
-          />
-          <ButtonRegular color="purple" onClick={handleConnectWallet}>
-            <FormattedMessage
-              id="connect-wallet.button"
-              defaultMessage="Подключить кошелек"
-            />
-          </ButtonRegular>
-        </Rhytm>
+        <AddWallet connectWallet={handleConnectWallet} />
       )}
     </Dialog>
   )

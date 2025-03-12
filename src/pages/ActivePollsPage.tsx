@@ -58,6 +58,7 @@ export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
           <VoteSettings key={item.index} item={item} poolType={activeTab} />
         )
       })}
+      showAddWalletStub={false}
     />
   )
 }

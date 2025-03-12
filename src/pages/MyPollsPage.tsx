@@ -1,14 +1,16 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useContext, useEffect } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { VoteSettings } from '../components/VoteSettings'
 import { PollsActivityType } from '../constants'
 import { useFetchNftItems } from '../hooks/useFetchNftItems'
 import { PollsLayout } from '../layout/PollsLayout'
 import { Tabs } from '../ui/Tabs'
+import { AppContext } from '../App.context'
 
 export const MyPollsPage: FC<{
   activeTab: PollsActivityType
 }> = ({ activeTab }) => {
+  const { wallet } = useContext(AppContext)
   const { formatMessage } = useIntl()
   const { fetchNftItemsFromCollection, nftItemsLoading, nftItems } =
     useFetchNftItems()
@@ -53,6 +55,7 @@ export const MyPollsPage: FC<{
         .map(item => {
           return <VoteSettings key={item.index} item={item} />
         })}
+      showAddWalletStub={!wallet}
     />
   )
 }

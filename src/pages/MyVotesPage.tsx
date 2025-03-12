@@ -1,6 +1,6 @@
 import { JettonsBalances } from '@ton-api/client'
 import { Address } from '@ton/core'
-import React, { FC, useEffect } from 'react'
+import React, { FC, useContext, useEffect } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { VoteSettings } from '../components/VoteSettings'
 import { PollsActivityType } from '../constants'
@@ -9,12 +9,14 @@ import { useFetchJettonData } from '../hooks/useFetchJettonData'
 import { useFetchNftItems } from '../hooks/useFetchNftItems'
 import { PollsLayout } from '../layout/PollsLayout'
 import { Tabs } from '../ui/Tabs'
+import { AppContext } from '../App.context'
 
 export const MyVotesPage: FC = () => {
   const { formatMessage } = useIntl()
   const { jettonsBalances, jettonsBalancesLoading } = useFetchJettonData()
   const { fetchNftItemsFromCollection, nftItems, nftItemsLoading } =
     useFetchNftItems()
+  const { wallet } = useContext(AppContext)
 
   useEffect(() => {
     if (!jettonsBalances) {
@@ -65,6 +67,7 @@ export const MyVotesPage: FC = () => {
       pollsElement={nftItems.map(item => {
         return <VoteSettings key={item.index} item={item} />
       })}
+      showAddWalletStub={!wallet}
     />
   )
 }
