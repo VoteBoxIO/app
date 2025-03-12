@@ -18,7 +18,7 @@ export const PollsLayout: FC<{
   loading,
 }) => {
   return (
-    <ActiveVotingPageContainer>
+    <PollsLayoutContainer>
       <TitleAndSubtitle
         title={titleElement}
         titleFontSize={24}
@@ -33,11 +33,12 @@ export const PollsLayout: FC<{
           {pollsElement}
         </Rhytm>
       )}
-    </ActiveVotingPageContainer>
+    </PollsLayoutContainer>
   )
 }
 
-const ActiveVotingPageContainer = styled.div`
+const PollsLayoutContainer = styled.div`
+  width: 100%;
   height: 100%;
   display: grid;
   gap: 16px;

@@ -11,6 +11,7 @@ import { Rhytm } from '../ui/Rhytm'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { Toggle } from '../ui/Toggle'
 import { Typography } from '../ui/Typography'
+import { formatPercentInBasisPoints } from '../functions/formatPercentInBasisPoints'
 
 export const CreateMoneyPoolPage: FC = () => {
   const { formatMessage } = useIntl()
@@ -156,7 +157,9 @@ export const CreateMoneyPoolPage: FC = () => {
       description: '@TODO Hardcoded description',
       choices: voting.options.map(option => option.trim()),
       endTimeInSeconds: BigInt(Date.parse(voting.deadline) / 1000),
-      creatorBasisPoints: BigInt(voting.creatorBasisPoints),
+      creatorBasisPoints: BigInt(
+        formatPercentInBasisPoints(Number(voting.creatorBasisPoints)),
+      ),
       rewardType: 0n,
       hideVotes: false,
       referral: null,
