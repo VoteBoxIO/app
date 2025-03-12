@@ -26,12 +26,6 @@ export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
           defaultMessage="Активные голосования"
         />
       }
-      subtitleElement={
-        <FormattedMessage
-          id="active-voting-subtitle"
-          defaultMessage="Здесь собраны опросы других пользователей. Вы можете принять участие"
-        />
-      }
       tabsElement={
         <Tabs
           activeTabId={activeTab}

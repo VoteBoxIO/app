@@ -39,12 +39,6 @@ export const MyVotesPage: FC = () => {
       titleElement={
         <FormattedMessage id="my-votes" defaultMessage="Мои голоса" />
       }
-      subtitleElement={
-        <FormattedMessage
-          id="my-votes-subtitle"
-          defaultMessage="История ваших голосований"
-        />
-      }
       tabsElement={
         <Tabs
           tabs={[

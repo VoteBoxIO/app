@@ -24,12 +24,6 @@ export const MyPollsPage: FC<{
       titleElement={
         <FormattedMessage id="my-polls-title" defaultMessage="Мои опросы" />
       }
-      subtitleElement={
-        <FormattedMessage
-          id="my-polls-subtitle"
-          defaultMessage="Здесь собраны ваши опросы. Активные и завершенные."
-        />
-      }
       tabsElement={
         <Tabs
           tabs={[

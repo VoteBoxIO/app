@@ -6,29 +6,23 @@ import { Loader } from '../ui/Loader'
 
 export const PollsLayout: FC<{
   titleElement: ReactNode
-  subtitleElement: ReactNode
   tabsElement: ReactNode
   pollsElement: ReactNode
   loading: boolean
 }> = ({
   titleElement,
-  subtitleElement,
   // tabsElement,
   pollsElement,
   loading,
 }) => {
   return (
     <PollsLayoutContainer>
-      <TitleAndSubtitle
-        title={titleElement}
-        titleFontSize={24}
-        subtitle={subtitleElement}
-      />
+      <TitleAndSubtitle title={titleElement} titleFontSize={24} />
 
       {loading ? (
         <Loader />
       ) : (
-        <Rhytm style={{ marginTop: 24 }}>
+        <Rhytm>
           {/* {tabsElement} */}
           {pollsElement}
         </Rhytm>
