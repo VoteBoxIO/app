@@ -25,7 +25,7 @@
     "development": "NODE_ENV=development HTTPS=true rspack serve --config rspack.config.ts",
     "development-localhost": "NODE_ENV=development rspack serve --config rspack.config.ts",
     "test": "jest",
-    "build": "rm -rf build && npm run tsc && NODE_ENV=production rspack --config rspack.config.ts",
+    "build": "npm run test && rm -rf build && npm run tsc && NODE_ENV=production rspack --config rspack.config.ts",
     "analyze": "rspack build --analyze",
     "deploy": "npm run build && gh-pages -d build"
   },
