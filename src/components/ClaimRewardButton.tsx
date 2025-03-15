@@ -1,45 +1,76 @@
-import React, { FC, useContext, useEffect } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { VoteJettonMasterWrappers } from 'votebox_wrappers'
+import {
+  VoteJettonMasterWrappers,
+  VoteJettonWalletWrappers,
+} from 'votebox_wrappers'
 import { AppContext } from '../App.context'
 import { JettonBalanceCustom } from '../commonTypes'
 import { useAsyncInitialize } from '../hooks/useAsyncInitialize'
 import { ButtonRegular } from '../ui/Button'
+import { fromNano, toNano } from '@ton/core'
 
 export const ClaimRewardButton: FC<{
   jettonBalance: JettonBalanceCustom
 }> = ({ jettonBalance }) => {
-  const { client } = useContext(AppContext)
+  const { client, sender } = useContext(AppContext)
+  const [enabled, setEnabled] = useState(false)
 
-  useEffect(() => {
-    console.log(
-      'jettonBalance >>>',
-      jettonBalance,
-      jettonBalance.jetton.address.toString(),
-    )
-  }, [jettonBalance])
+  useEffect(() => {}, [jettonBalance])
 
-  const voteJettonMaster = useAsyncInitialize(async () => {
+  const voteJettonMasterContract = useAsyncInitialize(async () => {
     if (!client) return
-
     const contract = VoteJettonMasterWrappers.VoteJettonMaster.fromAddress(
       jettonBalance.jetton.address,
     )
+    return client.open(contract)
+  }, [client])
 
+  const voteJettonWalletContract = useAsyncInitialize(async () => {
+    if (!client) return
+    const contract = VoteJettonWalletWrappers.VoteJettonWallet.fromAddress(
+      jettonBalance.walletAddress.address,
+    )
     return client.open(contract)
   }, [client])
 
   useEffect(() => {
-    if (!voteJettonMaster) return
+    if (!voteJettonMasterContract) return
     ;(async () => {
-      const result = await voteJettonMaster.getWinner()
-      console.log({ result })
+      if (
+        jettonBalance.balance &&
+        (await voteJettonMasterContract.getClaimble())
+      ) {
+        setEnabled(true)
+      }
     })()
-  }, [voteJettonMaster])
+  }, [jettonBalance.balance, voteJettonMasterContract])
+
+  const handleClaimReward = async () => {
+    if (!voteJettonWalletContract) {
+      throw new Error('voteJettonWalletContract is not available')
+    }
+
+    const result = await voteJettonWalletContract.send(
+      sender,
+      { value: toNano('0.01') },
+      {
+        $$type: 'ClaimUserRewardRequest',
+        query_id: 1n,
+      },
+    )
+
+    console.log({ result })
+  }
 
   return (
-    <ButtonRegular color="purple">
-      <FormattedMessage id="claim-win" defaultMessage="Забрать выигрыш" />
+    <ButtonRegular
+      color="purple"
+      onClick={handleClaimReward}
+      disabled={!enabled}
+    >
+      <FormattedMessage id="claim-win" defaultMessage="Забрать выигрыш" />{' '}
+      {fromNano(jettonBalance.balance)}TON
     </ButtonRegular>
   )
 }
