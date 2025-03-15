@@ -8,9 +8,11 @@ import {
   ACTIVE_PAGE_TO_REWARD_TYPE_MAP,
   PollTypeTab,
 } from '../pages/ActivePollsPage.constants'
+import { JettonBalanceCustom } from '../commonTypes'
 import { LoadingMessage } from '../ui/LoadingMessage'
 import { PollBlock } from '../ui/PollBlock'
 import { EnterAmountDialog } from './EnterAmountDialog'
+import { ClaimRewardButton } from './ClaimRewardButton'
 
 export const VoteSettingsInner: FC<{
   item: {
@@ -18,6 +20,7 @@ export const VoteSettingsInner: FC<{
     name: string
     index: number
   }
+  jettonBalanceList?: JettonBalanceCustom[]
   poolType?: PollTypeTab
   isIntersecting: boolean | undefined
 }> = ({
@@ -25,7 +28,12 @@ export const VoteSettingsInner: FC<{
   // Пока только этот тип поддержан
   poolType = PollTypeTab.MoneyPool,
   isIntersecting,
+  jettonBalanceList,
 }) => {
+  const [dialogOpenForOptionIndex, setDialogOpenForOptionIndex] = useState<
+    number | null
+  >(null)
+
   const { address, name } = item
 
   const {
@@ -40,10 +48,6 @@ export const VoteSettingsInner: FC<{
     votingNftItemContract,
     nftData?.recommendedVoteGas,
   )
-
-  const [dialogOpenForOptionIndex, setDialogOpenForOptionIndex] = useState<
-    number | null
-  >(null)
 
   useEffect(() => {
     if (
@@ -129,6 +133,12 @@ export const VoteSettingsInner: FC<{
             }}
           />
         }
+        bottomElement={jettonBalanceList?.map(jettonBalance => (
+          <ClaimRewardButton
+            key={`${jettonBalance.pollIndex}${jettonBalance.pollOptionIndex}`}
+            jettonBalance={jettonBalance}
+          />
+        ))}
         pollOption={nftData.pollOptions}
         loading={voteSettingsLoading}
         loadingError={voteSettingsLoadingError}

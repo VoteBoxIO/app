@@ -1,7 +1,7 @@
 import { JettonsBalances } from '@ton-api/client'
-import { Address } from '@ton/core'
-import React, { FC, useContext, useEffect } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
+import { AppContext } from '../App.context'
 import { VoteSettings } from '../components/VoteSettings'
 import { PollsActivityType } from '../constants'
 import { parseVotingJettonSymbol } from '../functions/parseVotingJettonSymbol'
@@ -9,7 +9,7 @@ import { useFetchJettonData } from '../hooks/useFetchJettonData'
 import { useFetchNftItems } from '../hooks/useFetchNftItems'
 import { PollsLayout } from '../layout/PollsLayout'
 import { Tabs } from '../ui/Tabs'
-import { AppContext } from '../App.context'
+import { JettonBalanceCustom } from '../commonTypes'
 
 export const MyVotesPage: FC = () => {
   const { formatMessage } = useIntl()
@@ -17,23 +17,34 @@ export const MyVotesPage: FC = () => {
   const { fetchNftItemsFromCollection, nftItems, nftItemsLoading } =
     useFetchNftItems()
   const { wallet } = useContext(AppContext)
+  const [jettonBalancesList, setJettonBalancesList] = useState<
+    JettonBalanceCustom[]
+  >([])
 
   useEffect(() => {
     if (!jettonsBalances) {
       return
     }
-
+    // Получим только валидные жетоны, которые устраивают названию типа Vote1Box2
     const parsedJettonBalances = parseJettonBalances(jettonsBalances)
 
     if (!parsedJettonBalances.length) {
       return
     }
 
-    fetchNftItemsFromCollection([
-      ...new Set(parsedJettonBalances.map(value => value.pollIndex)),
-    ])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setJettonBalancesList(parsedJettonBalances)
   }, [jettonsBalances])
+
+  // Запросим
+  useEffect(() => {
+    if (jettonBalancesList.length) {
+      fetchNftItemsFromCollection([
+        ...new Set(jettonBalancesList.map(value => value.pollIndex)),
+      ])
+    }
+  }, [fetchNftItemsFromCollection, jettonBalancesList])
+
+  // console.log({ nftItems, jettonsBalances, jettonBalancesList })
 
   return (
     <PollsLayout
@@ -64,20 +75,20 @@ export const MyVotesPage: FC = () => {
           activeTabId={PollsActivityType.Active}
         />
       }
-      pollsElement={nftItems.map(item => {
-        return <VoteSettings key={item.index} item={item} />
+      pollsElement={nftItems.map(nftItem => {
+        return (
+          <VoteSettings
+            key={nftItem.index}
+            item={nftItem}
+            jettonBalanceList={jettonBalancesList.filter(
+              item => item.pollIndex === nftItem.index,
+            )}
+          />
+        )
       })}
       showAddWalletStub={!wallet}
     />
   )
-}
-
-type JettonBalances = {
-  balance: number
-  walletAddress: Address
-  name: string
-  pollIndex: number
-  pollOptionIndex: number
 }
 
 export const myActiveVotesPagePath = '/my-votes/active'
@@ -90,10 +101,8 @@ const parseJettonBalances = (jettonsBalances: JettonsBalances) => {
 
       const { pollIndex, pollOptionIndex } = parseJettonName
 
-      const accItem: JettonBalances = {
-        balance: Number(item.balance),
-        walletAddress: item.walletAddress.address,
-        name: item.jetton.name,
+      const accItem: JettonBalanceCustom = {
+        ...item,
         pollIndex,
         pollOptionIndex,
       }
@@ -103,5 +112,5 @@ const parseJettonBalances = (jettonsBalances: JettonsBalances) => {
       // Неподходящие Jettons
       return acc
     }
-  }, [] as JettonBalances[])
+  }, [] as JettonBalanceCustom[])
 }
