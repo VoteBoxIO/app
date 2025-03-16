@@ -7,7 +7,7 @@ import {
   fontWeightMapCss,
   typographyMapCss,
 } from './Typography'
-import { cx } from '@linaria/core'
+import { css, cx } from '@linaria/core'
 
 export const InputText: FC<InputBaseProps> = props => {
   return <InputBase type="text" {...props} />
@@ -18,11 +18,8 @@ export const InputNumber: FC<InputBaseProps> = props => {
 export const InputFile: FC<InputBaseProps> = props => {
   return <InputBase type="file" {...props} />
 }
-export const InputDate: FC<InputBaseProps> = props => {
-  return <InputBase type="date" {...props} />
-}
 export const InputDateTime: FC<InputBaseProps> = props => {
-  return <InputBase type="datetime-local" {...props} />
+  return <InputBase type="datetime-local" {...props} className={dateTimeCss} />
 }
 export const InputTextarea: FC<TextAreaBaseProps> = props => {
   return <TextAreaBase {...props} />
@@ -43,6 +40,7 @@ const InputBase: FC<ComponentProps<typeof StyledInput> & CommonProps> = ({
     <StyledInput
       {...restProps}
       className={cx(
+        restProps.className,
         typographyMapCss[fontSize],
         fontFamilyMapCss[fontSize],
         fontWeightMapCss[fontWeight],
@@ -71,6 +69,7 @@ const TextAreaBase: FC<ComponentProps<typeof StyledTextArea> & CommonProps> = ({
 }
 
 const commonCss = `
+  height: 42px;
   width: 100%;
   display: block;
   padding: 12px 16px;
@@ -84,6 +83,13 @@ const commonCss = `
     color: rgba(176, 176, 176, 1); /* Placeholder text color */
   }
   color: black; /* Gray text color */
+  box-sizing: border-box;
+`
+const dateTimeCss = css`
+  -webkit-appearance: none;
+  &::-webkit-date-and-time-value {
+    text-align: left;
+  }
 `
 
 const StyledInput = styled.input`
