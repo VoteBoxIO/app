@@ -1,19 +1,16 @@
 import React, { ComponentProps, FC } from 'react'
-import { VoteSettingsInner } from './VoteSettingsInner'
+import { PollInner } from './PollInner'
 import { IntersectionObserver } from '../system/IntersectionObserver'
 
-export const VoteSettings: FC<
-  Omit<ComponentProps<typeof VoteSettingsInner>, 'isIntersecting'> & {}
+export const Poll: FC<
+  Omit<ComponentProps<typeof PollInner>, 'isIntersecting'> & {}
 > = props => {
   return (
     <IntersectionObserver>
       {({ setNode, entry }) => {
         return (
           <div ref={setNode}>
-            <VoteSettingsInner
-              {...props}
-              isIntersecting={entry?.isIntersecting}
-            />
+            <PollInner {...props} isIntersecting={entry?.isIntersecting} />
           </div>
         )
       }}

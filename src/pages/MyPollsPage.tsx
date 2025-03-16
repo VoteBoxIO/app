@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { VoteSettings } from '../components/VoteSettings'
+import { Poll } from '../components/Poll'
 import { PollsActivityType } from '../constants'
 import { useFetchNftItems } from '../hooks/useFetchNftItems'
 import { PollsLayout } from '../layout/PollsLayout'
@@ -53,7 +53,7 @@ export const MyPollsPage: FC<{
         // Только созданные текущим активным кошельком
         .filter(item => item.isCreatedByYourWallet)
         .map(item => {
-          return <VoteSettings key={item.index} item={item} />
+          return <Poll key={item.index} item={item} />
         })}
       showAddWalletStub={!wallet}
     />

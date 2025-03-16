@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { VoteSettings } from '../components/VoteSettings'
+import { Poll } from '../components/Poll'
 import { useFetchNftItems } from '../hooks/useFetchNftItems'
 import { PollsLayout } from '../layout/PollsLayout'
 import { Tabs } from '../ui/Tabs'
@@ -54,9 +54,7 @@ export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
         />
       }
       pollsElement={nftItems.map(item => {
-        return (
-          <VoteSettings key={item.index} item={item} poolType={activeTab} />
-        )
+        return <Poll key={item.index} item={item} poolType={activeTab} />
       })}
       showAddWalletStub={false}
     />

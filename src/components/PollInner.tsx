@@ -14,7 +14,7 @@ import { PollBlock } from '../ui/PollBlock'
 import { EnterAmountDialog } from './EnterAmountDialog'
 import { ClaimRewardButton } from './ClaimRewardButton'
 
-export const VoteSettingsInner: FC<{
+export const PollInner: FC<{
   item: {
     address: Address
     name: string

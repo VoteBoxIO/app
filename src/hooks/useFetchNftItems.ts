@@ -2,7 +2,7 @@ import { useTonAddress } from '@tonconnect/ui-react'
 import { useCallback, useContext, useState } from 'react'
 import { fetchNftCollectionFromTonCenterApi } from '../api/fetchNftCollectionApi'
 import { AppContext } from '../App.context'
-import { VotingItem } from '../components/VoteSettingsInner'
+import { VotingItem } from '../components/PollInner'
 
 export const useFetchNftItems = () => {
   const { contractsAddresses, wallet } = useContext(AppContext)

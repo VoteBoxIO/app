@@ -2,7 +2,7 @@ import { JettonsBalances } from '@ton-api/client'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { AppContext } from '../App.context'
-import { VoteSettings } from '../components/VoteSettings'
+import { Poll } from '../components/Poll'
 import { PollsActivityType } from '../constants'
 import { parseVotingJettonSymbol } from '../functions/parseVotingJettonSymbol'
 import { useFetchJettonData } from '../hooks/useFetchJettonData'
@@ -77,7 +77,7 @@ export const MyVotesPage: FC = () => {
       }
       pollsElement={nftItems.map(nftItem => {
         return (
-          <VoteSettings
+          <Poll
             key={nftItem.index}
             item={nftItem}
             jettonBalanceList={jettonBalancesList.filter(

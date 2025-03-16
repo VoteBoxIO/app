@@ -23,9 +23,9 @@ export const Typography = forwardRef<HTMLHeadingElement, Props>(
         ref={ref}
         style={style}
         className={cx(
-          typographyMap[fontSize],
-          fontFamilyMap[fontSize],
-          fontWeightMap[fontWeight],
+          typographyMapCss[fontSize],
+          fontFamilyMapCss[fontSize],
+          fontWeightMapCss[fontWeight],
           className,
         )}
         as={tag}
@@ -38,10 +38,10 @@ export const Typography = forwardRef<HTMLHeadingElement, Props>(
 Typography.displayName = 'Typography'
 
 export type FontSize = 28 | 24 | 20 | 16 | 14 | 12
-type FontWeight = 400 | 500 | 600 | 700
+export type FontWeight = 400 | 500 | 600 | 700
 
 const Text = styled.p``
-const typographyMap: Record<FontSize, LinariaClassName> = {
+export const typographyMapCss: Record<FontSize, LinariaClassName> = {
   28: css`
     font-size: 28px;
     font-weight: 600;
@@ -73,7 +73,7 @@ const typographyMap: Record<FontSize, LinariaClassName> = {
     line-height: 18px;
   `,
 }
-const fontWeightMap: Record<FontWeight, LinariaClassName> = {
+export const fontWeightMapCss: Record<FontWeight, LinariaClassName> = {
   400: css`
     font-weight: 400;
   `,
@@ -100,7 +100,7 @@ const robotoFontCss = css`
   font-style: normal;
   font-variation-settings: 'wdth' 100;
 `
-const fontFamilyMap: Record<FontSize, LinariaClassName> = {
+export const fontFamilyMapCss: Record<FontSize, LinariaClassName> = {
   28: robotoFontCss,
   24: robotoFontCss,
   20: robotoFontCss,
