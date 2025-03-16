@@ -1,35 +1,16 @@
 import { JettonsBalances } from '@ton-api/client'
 import { Address } from '@ton/core'
 import { useCallback, useContext, useEffect, useState } from 'react'
-import { VoteJettonMasterWrappers } from 'votebox_wrappers'
 import { getAccountJettonsBalancesApi } from '../api/getAccountJettonsBalancesApi'
 import { AppContext } from '../App.context'
-import { useAsyncInitialize } from './useAsyncInitialize'
 
 export const useFetchJettonData = () => {
-  const { tonApiClient, wallet, client, contractsAddresses } =
-    useContext(AppContext)
+  const { tonApiClient, wallet } = useContext(AppContext)
   const [loading, setLoading] = useState(false)
   const [jettonsBalances, setJettonsBalances] = useState<JettonsBalances>()
 
-  const voteJettonMaster = useAsyncInitialize(async () => {
-    if (!client) return
-
-    const address = Address.parse(contractsAddresses.jetton)
-    const contract =
-      VoteJettonMasterWrappers.VoteJettonMaster.fromAddress(address)
-
-    return client.open(contract)
-  }, [client, wallet])
-
   const fetchJettonsBalances = useCallback(async () => {
-    if (
-      !voteJettonMaster ||
-      !tonApiClient ||
-      !wallet ||
-      loading ||
-      jettonsBalances
-    ) {
+    if (!tonApiClient || !wallet || loading || jettonsBalances) {
       return
     }
 
@@ -47,7 +28,7 @@ export const useFetchJettonData = () => {
     } finally {
       setLoading(false)
     }
-  }, [jettonsBalances, loading, tonApiClient, voteJettonMaster, wallet])
+  }, [jettonsBalances, loading, tonApiClient, wallet])
 
   useEffect(() => {
     if (!loading || jettonsBalances) {
