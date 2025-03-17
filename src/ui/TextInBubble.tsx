@@ -1,12 +1,12 @@
 import { styled } from '@linaria/react'
 import React, { FC, PropsWithChildren } from 'react'
+import { textOverflowCss } from '../styles/textOverflowCss'
 import { Typography } from './Typography'
-import { textOverflowStyles } from '../styles/textOverflowCss'
 
 export const TextInBubble: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <TextInBubbleContainer className={textOverflowStyles}>
-      <Typography fontSize={14} fontWeight={500} className={textOverflowStyles}>
+    <TextInBubbleContainer className={textOverflowCss}>
+      <Typography fontSize={14} fontWeight={500} className={textOverflowCss}>
         {children}
       </Typography>
     </TextInBubbleContainer>

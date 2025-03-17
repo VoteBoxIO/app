@@ -1,7 +1,8 @@
 import { styled } from '@linaria/react'
 import React, { FC, ReactNode } from 'react'
-import { Typography } from './Typography'
 import { NavLink } from 'react-router'
+import { textOverflowCss } from '../styles/textOverflowCss'
+import { Typography } from './Typography'
 
 export type TabId = string | number
 type Tab = { to: string; id: TabId; label: ReactNode }
@@ -18,12 +19,19 @@ export const Tabs: FC<{
   return (
     <TabsContainer>
       {tabs.map(tab => (
-        <NavLink key={tab.id} to={tab.to} style={{ width: '100%' }} replace>
+        <NavLink
+          className={textOverflowCss}
+          key={tab.id}
+          to={tab.to}
+          style={{ width: '100%' }}
+          replace
+        >
           <Tab
+            className={textOverflowCss}
             isActive={tab.id === activeTabId}
             onClick={() => handleTabClick(tab.id)}
           >
-            <Label fontSize={16} fontWeight={500}>
+            <Label className={textOverflowCss} fontSize={16} fontWeight={500}>
               {tab.label}
             </Label>
           </Tab>
