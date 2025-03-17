@@ -1,17 +1,15 @@
-import React, { createContext, FC, PropsWithChildren } from 'react'
-import { useInitializeContracts } from './hooks/useInitializeContracts'
+import { TonApiClient } from '@ton-api/client'
 import { OpenedContract, Sender } from '@ton/core'
 import { TonClient } from '@ton/ton'
+import React, { createContext, FC, PropsWithChildren } from 'react'
 import { MasterNftCollection } from 'votebox_wrappers/dist/MasterNftCollection'
-import { VoteJettonMaster } from 'votebox_wrappers/dist/VoteJettonMaster'
-import { useInitializeTonApiClient } from './hooks/useInitializeTonApiClient'
-import { TonApiClient } from '@ton-api/client'
 import { useContactAddresses } from './hooks/useContactAddresses'
+import { useInitializeContracts } from './hooks/useInitializeContracts'
+import { useInitializeTonApiClient } from './hooks/useInitializeTonApiClient'
 
 const contextValue = {
   language: '' as string,
   client: undefined as unknown as TonClient,
-  voteJettonMaster: undefined as unknown as OpenedContract<VoteJettonMaster>,
   masterNftCollection:
     undefined as unknown as OpenedContract<MasterNftCollection>,
   sender: undefined as unknown as Sender,
@@ -37,7 +35,10 @@ export const AppContextProvider: FC<
     <AppContext.Provider
       value={{
         language,
-        ...contractsData,
+        client: contractsData.client,
+        wallet: contractsData.wallet,
+        sender: contractsData.sender,
+        masterNftCollection: contractsData.masterNftCollection,
         tonApiClient,
         contractsAddresses,
         basePath,
