@@ -53,11 +53,12 @@ export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
           ]}
         />
       }
-      pollsElement={nftItems.map(item => {
+      showAddWalletStub={false}
+    >
+      {nftItems.map(item => {
         return <Poll key={item.index} item={item} poolType={activeTab} />
       })}
-      showAddWalletStub={false}
-    />
+    </PollsLayout>
   )
 }
 

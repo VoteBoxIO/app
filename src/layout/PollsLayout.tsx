@@ -1,35 +1,45 @@
 import { styled } from '@linaria/react'
-import React, { FC, ReactNode } from 'react'
+import React, { FC, PropsWithChildren, ReactNode, useContext } from 'react'
 import { Rhytm } from '../ui/Rhytm'
 import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { Loader } from '../ui/Loader'
 import { AddWallet } from '../components/AddWallet'
+import { AppContext } from '../App.context'
 
-export const PollsLayout: FC<{
-  titleElement: ReactNode
-  tabsElement: ReactNode
-  pollsElement: ReactNode
-  loading: boolean
-  showAddWalletStub: boolean
-}> = ({
+export const PollsLayout: FC<
+  {
+    titleElement: ReactNode
+    subtitleElement?: ReactNode
+    tabsElement: ReactNode
+    loading: boolean
+    showAddWalletStub: boolean
+  } & PropsWithChildren
+> = ({
   titleElement,
+  subtitleElement,
   // tabsElement,
-  pollsElement,
+  children,
   loading,
   showAddWalletStub,
 }) => {
+  const { wallet } = useContext(AppContext)
+
   return (
     <PollsLayoutContainer>
-      <TitleAndSubtitle title={titleElement} titleFontSize={24} />
+      <TitleAndSubtitle
+        title={titleElement}
+        subtitle={subtitleElement}
+        titleFontSize={24}
+      />
 
-      {showAddWalletStub ? (
+      {showAddWalletStub && !wallet ? (
         <AddWallet showTitle={false} />
       ) : loading ? (
         <Loader />
       ) : (
         <Rhytm>
           {/* {tabsElement} */}
-          {pollsElement}
+          {children}
         </Rhytm>
       )}
     </PollsLayoutContainer>

@@ -1,14 +1,14 @@
 import { styled } from '@linaria/react'
 import React, { FC } from 'react'
-import { Typography } from '../ui/Typography'
 import { FormattedMessage } from 'react-intl'
-import SvgArrowBack from '../svgr/ArrowBack'
-import { Link } from 'react-router'
 import { howItWorksPagePath } from '../pages/HowItWorksPage'
+import SvgArrowBack from '../svgr/ArrowBack'
+import { RouterLink } from '../ui/RouterLink'
+import { Typography } from '../ui/Typography'
 
 export const HowItWorksLink: FC = () => {
   return (
-    <Link to={howItWorksPagePath}>
+    <RouterLink to={howItWorksPagePath}>
       <HowItWorksLinkContainer>
         <Typography fontSize={16} fontWeight={700}>
           <FormattedMessage
@@ -18,7 +18,7 @@ export const HowItWorksLink: FC = () => {
         </Typography>
         <Arrow />
       </HowItWorksLinkContainer>
-    </Link>
+    </RouterLink>
   )
 }
 

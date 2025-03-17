@@ -1,10 +1,11 @@
 import React, { FC } from 'react'
 import SvgLoader from '../svgr/Loader'
-import { css } from '@linaria/core'
+import { css, cx } from '@linaria/core'
+import { WithClassName } from '../commonTypes'
 
-export const Loader: FC = () => {
+export const Loader: FC<WithClassName> = ({ className }) => {
   return (
-    <div className={wrapperCss}>
+    <div className={cx(wrapperCss, className)}>
       <div className={spinnerCss}>
         <SvgLoader />
       </div>

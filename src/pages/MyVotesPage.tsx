@@ -1,7 +1,7 @@
 import { JettonsBalances } from '@ton-api/client'
-import React, { FC, useContext, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { AppContext } from '../App.context'
+import { JettonBalanceCustom } from '../commonTypes'
 import { Poll } from '../components/Poll'
 import { PollsActivityType } from '../constants'
 import { parseVotingJettonSymbol } from '../functions/parseVotingJettonSymbol'
@@ -9,14 +9,12 @@ import { useFetchJettonData } from '../hooks/useFetchJettonData'
 import { useFetchNftItems } from '../hooks/useFetchNftItems'
 import { PollsLayout } from '../layout/PollsLayout'
 import { Tabs } from '../ui/Tabs'
-import { JettonBalanceCustom } from '../commonTypes'
 
 export const MyVotesPage: FC = () => {
   const { formatMessage } = useIntl()
   const { jettonsBalances, jettonsBalancesLoading } = useFetchJettonData()
   const { fetchNftItemsFromCollection, nftItems, nftItemsLoading } =
     useFetchNftItems()
-  const { wallet } = useContext(AppContext)
   const [jettonBalancesList, setJettonBalancesList] = useState<
     JettonBalanceCustom[]
   >([])
@@ -52,6 +50,7 @@ export const MyVotesPage: FC = () => {
       titleElement={
         <FormattedMessage id="my-votes" defaultMessage="Мои голоса" />
       }
+      showAddWalletStub
       tabsElement={
         <Tabs
           tabs={[
@@ -75,7 +74,8 @@ export const MyVotesPage: FC = () => {
           activeTabId={PollsActivityType.Active}
         />
       }
-      pollsElement={nftItems.map(nftItem => {
+    >
+      {nftItems.map(nftItem => {
         return (
           <Poll
             key={nftItem.index}
@@ -86,8 +86,7 @@ export const MyVotesPage: FC = () => {
           />
         )
       })}
-      showAddWalletStub={!wallet}
-    />
+    </PollsLayout>
   )
 }
 

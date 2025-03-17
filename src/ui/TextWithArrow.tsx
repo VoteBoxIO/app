@@ -1,22 +1,22 @@
 import { styled } from '@linaria/react'
-import { Link } from 'react-router'
 import SvgArrowRight from '../svgr/ArrowRight'
 import { Typography } from './Typography'
 import React, { FC, PropsWithChildren } from 'react'
+import { RouterLink } from './RouterLink'
 
 export const TextWithArrow: FC<PropsWithChildren & { to: string }> = ({
   to,
   children,
 }) => {
   return (
-    <Link to={to}>
+    <RouterLink to={to}>
       <TextWithArrowContainer>
         <Typography fontSize={14} fontWeight={700}>
           {children}
         </Typography>
         <SvgArrowRight />
       </TextWithArrowContainer>
-    </Link>
+    </RouterLink>
   )
 }
 

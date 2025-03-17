@@ -1,8 +1,8 @@
 import { LinariaClassName, css } from '@linaria/core'
 import { styled } from '@linaria/react'
 import React, { ComponentProps, FC, PropsWithChildren } from 'react'
-import { Link } from 'react-router'
 import { Typography } from './Typography'
+import { RouterLink } from './RouterLink'
 
 export const ButtonLink: FC<
   PropsWithChildren & {
@@ -11,13 +11,13 @@ export const ButtonLink: FC<
   }
 > = ({ to, color, children }) => {
   return (
-    <Link to={to} style={{ display: 'block' }}>
+    <RouterLink to={to} style={{ display: 'block' }}>
       <ButtonContainer className={colorCss[color]}>
         <Typography fontSize={16} fontWeight={600}>
           {children}
         </Typography>
       </ButtonContainer>
-    </Link>
+    </RouterLink>
   )
 }
 

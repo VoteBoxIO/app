@@ -5,7 +5,7 @@ import { AppContext } from '../App.context'
 import { VotingItem } from '../components/PollInner'
 
 export const useFetchNftItems = () => {
-  const { contractsAddresses, wallet } = useContext(AppContext)
+  const { contractsAddresses } = useContext(AppContext)
   const [nftItems, setNftItems] = useState<VotingItem[]>([])
   const [loading, setLoading] = useState(false)
   const currentWalletAddress = useTonAddress()
@@ -26,7 +26,7 @@ export const useFetchNftItems = () => {
         setLoading(false)
       }
     },
-    [wallet],
+    [contractsAddresses.nftCollection, currentWalletAddress],
   )
 
   return {

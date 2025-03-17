@@ -3,15 +3,15 @@ import React, { FC, FormEventHandler, useEffect, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { AddOptionButton } from '../components/AddOptionButton'
 import { VOTING_SETTINGS } from '../constants'
+import { formatPercentInBasisPoints } from '../functions/formatPercentInBasisPoints'
 import { useCreateVoting } from '../hooks/useCreateVoting'
+import { PollsLayout } from '../layout/PollsLayout'
 import { ButtonRegular } from '../ui/Button'
 import { ErrorText } from '../ui/ErrorText'
 import { InputDateTime, InputNumber, InputText } from '../ui/Input'
 import { Rhytm } from '../ui/Rhytm'
-import { TitleAndSubtitle } from '../ui/TitleAndSubtitle'
 import { Toggle } from '../ui/Toggle'
 import { Typography } from '../ui/Typography'
-import { formatPercentInBasisPoints } from '../functions/formatPercentInBasisPoints'
 
 export const CreateMoneyPoolPage: FC = () => {
   const { formatMessage } = useIntl()
@@ -169,37 +169,39 @@ export const CreateMoneyPoolPage: FC = () => {
   }
 
   return (
-    <CreateMoneyPoolPageContainer>
-      <Rhytm>
-        <TitleAndSubtitle
-          titleFontSize={24}
-          title={formatMessage({
-            id: 'money-pool-title',
-            defaultMessage: 'Денежный пул',
-          })}
-          subtitle={formatMessage({
-            id: 'money-pool-subtitle',
-            defaultMessage:
-              'Победители делят деньги проигравших. Голосовать можно неограниченное количество раз.',
-          })}
-        />
-        <form onSubmit={handleSubmit}>
-          <Rhytm>
-            <div>
-              <InputNumber
-                name="creatorBasisPoints"
-                placeholder={formatMessage({
-                  id: 'blogger-commission-placeholder',
-                  defaultMessage: 'Комиссия блогера',
-                })}
-                value={voting.creatorBasisPoints}
-                onChange={handleInputChange}
-              />
-              {error.creatorBasisPoints && (
-                <ErrorText>{error.creatorBasisPoints}</ErrorText>
-              )}
-            </div>
-            {/* <InputFile
+    <PollsLayout
+      titleElement={formatMessage({
+        id: 'money-pool-title',
+        defaultMessage: 'Денежный пул',
+      })}
+      subtitleElement={formatMessage({
+        id: 'money-pool-subtitle',
+        defaultMessage:
+          'Победители делят деньги проигравших. Голосовать можно неограниченное количество раз.',
+      })}
+      loading={false}
+      tabsElement={null}
+      showAddWalletStub
+    >
+      <CreateMoneyPoolPageContainer>
+        <Rhytm>
+          <form onSubmit={handleSubmit}>
+            <Rhytm>
+              <div>
+                <InputNumber
+                  name="creatorBasisPoints"
+                  placeholder={formatMessage({
+                    id: 'blogger-commission-placeholder',
+                    defaultMessage: 'Комиссия блогера',
+                  })}
+                  value={voting.creatorBasisPoints}
+                  onChange={handleInputChange}
+                />
+                {error.creatorBasisPoints && (
+                  <ErrorText>{error.creatorBasisPoints}</ErrorText>
+                )}
+              </div>
+              {/* <InputFile
               name="rewardFile"
               placeholder={formatMessage({
                 id: 'add-reward-placeholder',
@@ -207,58 +209,58 @@ export const CreateMoneyPoolPage: FC = () => {
               })}
               onChange={handleInputChange}
             /> */}
-            <InputText
-              name="pollName"
-              placeholder={formatMessage({
-                id: 'poll-name-placeholder',
-                defaultMessage: 'Название голосования',
-              })}
-              value={voting.pollName}
-              onChange={handleInputChange}
-              maxLength={110}
-            />
-            <InputDateTime
-              name="deadline"
-              placeholder={formatMessage({
-                id: 'deadline-placeholder',
-                defaultMessage: 'Установить дедлайн',
-              })}
-              value={voting.deadline}
-              onChange={handleInputChange}
-            />
-            {error.deadline && <ErrorText>{error.deadline}</ErrorText>}
-          </Rhytm>
-          <Rhytm style={{ marginTop: 20 }}>
-            <Typography fontSize={20} fontWeight={600}>
-              <FormattedMessage id="poll" defaultMessage="Опрос" />
-            </Typography>
-            {voting.options.map((option, index) => (
               <InputText
-                key={index}
-                name={`option-${index}`}
+                name="pollName"
                 placeholder={formatMessage({
-                  id: 'option-placeholder',
-                  defaultMessage: 'Вариант ответа',
+                  id: 'poll-name-placeholder',
+                  defaultMessage: 'Название голосования',
                 })}
-                value={option}
-                onChange={event => handleInputChange(event, index)}
-                maxLength={55}
+                value={voting.pollName}
+                onChange={handleInputChange}
+                maxLength={110}
               />
-            ))}
-            {error.options && <ErrorText>{error.options}</ErrorText>}
-            {canAddOption && <AddOptionButton onClick={addOption} />}
-          </Rhytm>
+              <InputDateTime
+                name="deadline"
+                placeholder={formatMessage({
+                  id: 'deadline-placeholder',
+                  defaultMessage: 'Установить дедлайн',
+                })}
+                value={voting.deadline}
+                onChange={handleInputChange}
+              />
+              {error.deadline && <ErrorText>{error.deadline}</ErrorText>}
+            </Rhytm>
+            <Rhytm style={{ marginTop: 20 }}>
+              <Typography fontSize={20} fontWeight={600}>
+                <FormattedMessage id="poll" defaultMessage="Опрос" />
+              </Typography>
+              {voting.options.map((option, index) => (
+                <InputText
+                  key={index}
+                  name={`option-${index}`}
+                  placeholder={formatMessage({
+                    id: 'option-placeholder',
+                    defaultMessage: 'Вариант ответа',
+                  })}
+                  value={option}
+                  onChange={event => handleInputChange(event, index)}
+                  maxLength={55}
+                />
+              ))}
+              {error.options && <ErrorText>{error.options}</ErrorText>}
+              {canAddOption && <AddOptionButton onClick={addOption} />}
+            </Rhytm>
 
-          <Rhytm style={{ marginTop: 20 }}>
-            <Toggle
-              label={formatMessage({
-                id: 'multiple-options-toggle',
-                defaultMessage: 'Выбор нескольких вариантов',
-              })}
-              checked={voting.allowMultipleOptions}
-              onChange={() => handleToggleChange('allowMultipleOptions')}
-            />
-            {/* <Toggle
+            <Rhytm style={{ marginTop: 20 }}>
+              <Toggle
+                label={formatMessage({
+                  id: 'multiple-options-toggle',
+                  defaultMessage: 'Выбор нескольких вариантов',
+                })}
+                checked={voting.allowMultipleOptions}
+                onChange={() => handleToggleChange('allowMultipleOptions')}
+              />
+              {/* <Toggle
               label={formatMessage({
                 id: 'quiz-mode-toggle',
                 defaultMessage: 'Режим викторины',
@@ -266,26 +268,27 @@ export const CreateMoneyPoolPage: FC = () => {
               checked={formData.quizMode}
               onChange={() => handleToggleChange('quizMode')}
             /> */}
-          </Rhytm>
+            </Rhytm>
 
-          <ButtonRegular
-            color="purple"
-            type="submit"
-            style={{
-              marginTop: 20,
-              width: '100%',
-              position: 'sticky',
-              bottom: 16,
-            }}
-          >
-            {formatMessage({
-              id: 'create-button',
-              defaultMessage: 'Создать',
-            })}
-          </ButtonRegular>
-        </form>
-      </Rhytm>
-    </CreateMoneyPoolPageContainer>
+            <ButtonRegular
+              color="purple"
+              type="submit"
+              style={{
+                marginTop: 20,
+                width: '100%',
+                position: 'sticky',
+                bottom: 16,
+              }}
+            >
+              {formatMessage({
+                id: 'create-button',
+                defaultMessage: 'Создать',
+              })}
+            </ButtonRegular>
+          </form>
+        </Rhytm>
+      </CreateMoneyPoolPageContainer>
+    </PollsLayout>
   )
 }
 

@@ -1,9 +1,10 @@
 import { css, LinariaClassName } from '@linaria/core'
 import { styled } from '@linaria/react'
 import React, { ComponentProps, FC, ReactNode } from 'react'
-import { Link } from 'react-router'
+
 import { TitleAndSubtitle } from './TitleAndSubtitle'
 import { ButtonLink } from './Button'
+import { RouterLink } from './RouterLink'
 
 export const ActionBlockWithIcon: FC<{
   color: Color
@@ -13,12 +14,12 @@ export const ActionBlockWithIcon: FC<{
   subtitle: ReactNode
 }> = ({ color, to, icon, title, subtitle }) => {
   return (
-    <Link to={to}>
+    <RouterLink to={to}>
       <ActionBlockInner className={colorCss[color]}>
         <IconWrapper>{icon}</IconWrapper>
         <TitleAndSubtitle title={title} subtitle={subtitle} />
       </ActionBlockInner>
-    </Link>
+    </RouterLink>
   )
 }
 

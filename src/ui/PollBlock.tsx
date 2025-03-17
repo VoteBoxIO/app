@@ -7,6 +7,7 @@ import { PollBlockItem } from './PollBlockItem'
 import { Rhytm } from './Rhytm'
 import { TextInBubble } from './TextInBubble'
 import { TitleAndSubtitle } from './TitleAndSubtitle'
+import { css } from '@linaria/core'
 
 type PollBlockItemProps = ComponentProps<typeof PollBlockItem>
 export type PollOption = Omit<
@@ -56,8 +57,8 @@ export const PollBlock: FC<{
             defaultMessage="Ошибка загрузки. Повторить"
           />
         </ButtonRegular>
-      ) : loading ? (
-        <Loader />
+      ) : loading || !pollOption.length ? (
+        <Loader className={loaderCss} />
       ) : (
         <PollItems>
           {pollOption.map(item => {
@@ -77,6 +78,9 @@ export const PollBlock: FC<{
   )
 }
 
+const loaderCss = css`
+  padding: 30px 0;
+`
 const PollItems = styled.div`
   display: grid;
   align-items: center;
