@@ -35,10 +35,10 @@ export const AppContextProvider: FC<
     <AppContext.Provider
       value={{
         language,
-        client: contractsData.client,
-        wallet: contractsData.wallet,
-        sender: contractsData.sender,
-        masterNftCollection: contractsData.masterNftCollection,
+        client: contractsData?.client,
+        wallet: contractsData?.wallet,
+        sender: contractsData?.sender,
+        masterNftCollection: contractsData?.masterNftCollection,
         tonApiClient,
         contractsAddresses,
         basePath,
