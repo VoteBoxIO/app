@@ -30,7 +30,7 @@ export const VOTING_SETTINGS = {
   referralFeeBasisPoints: 100, // 0.1% DEFAULT_REFERRAL_FEE_BASIS_POINTS
   referralExpiration: 60 * 60 * 24 * 30, // 30 days DEFAULT_REFERRAL_EXPIRATION
   minVoteAmount: toNano('0.05'), // DEFAULT_MIN_VOTE_AMOUNT
-}
+} as const
 
 export enum PollsActivityType {
   Active = 'active',
