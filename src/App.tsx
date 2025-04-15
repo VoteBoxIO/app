@@ -27,10 +27,10 @@ import {
   MyPollsPage,
 } from './pages/MyPollsPage'
 import {
-  myActiveVotesPagePath,
-  myFinishedVotesPagePath,
-  MyVotesPage,
-} from './pages/MyVotesPage'
+  myActiveBoxesPagePath,
+  myFinishedBoxesPagePath,
+  MyBoxesPage,
+} from './pages/MyBoxesPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import {
   PaymentMethodsPage,
@@ -70,8 +70,8 @@ export const App: FC = () => {
         </Route>
 
         <Route element={<MainLayout background="transparent" />}>
-          <Route path={myActiveVotesPagePath} element={<MyVotesPage />} />
-          <Route path={myFinishedVotesPagePath} element={<MyVotesPage />} />
+          <Route path={myActiveBoxesPagePath} element={<MyBoxesPage />} />
+          <Route path={myFinishedBoxesPagePath} element={<MyBoxesPage />} />
           <Route
             path={myActivePollsPagePath}
             element={<MyPollsPage activeTab={PollsActivityType.Active} />}

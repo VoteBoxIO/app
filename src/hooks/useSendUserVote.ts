@@ -1,12 +1,10 @@
 import { OpenedContract, toNano } from '@ton/core'
 import { useContext } from 'react'
-import { VotingNftItemWrappers } from 'votebox_wrappers'
+import { BoxV0Wrappers } from 'votebox_wrappers'
 import { AppContext } from '../App.context'
 
 export const useSendUserVote = (
-  votingNftItemContract:
-    | OpenedContract<VotingNftItemWrappers.VotingNftItem>
-    | undefined,
+  votingNftItemContract: OpenedContract<BoxV0Wrappers.BoxV0> | undefined,
   recommendedVoteGas: bigint | undefined,
 ) => {
   const { sender } = useContext(AppContext)

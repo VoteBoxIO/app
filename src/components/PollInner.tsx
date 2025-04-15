@@ -1,8 +1,8 @@
 import { Address, fromNano, OpenedContract } from '@ton/core'
 import React, { FC, useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { VotingNftItemWrappers } from 'votebox_wrappers'
-import { useFetchNftVoteSettings } from '../hooks/useFetchNftVoteSettings'
+import { BoxV0Wrappers } from 'votebox_wrappers'
+import { useFetchBoxSettings } from '../hooks/useFetchBoxSettings'
 import { useSendUserVote } from '../hooks/useSendUserVote'
 import {
   ACTIVE_PAGE_TO_REWARD_TYPE_MAP,
@@ -42,7 +42,7 @@ export const PollInner: FC<{
     nftData,
     voteSettingsLoading,
     voteSettingsLoadingError,
-  } = useFetchNftVoteSettings(address)
+  } = useFetchBoxSettings(address)
 
   const { sendUserVote, isValidVotingAmount } = useSendUserVote(
     votingNftItemContract,
@@ -180,7 +180,7 @@ const getHoursAndDaysLeft = (endTimeInSeconds: number) => {
   return { days, hours, isExpired: now >= endTime }
 }
 
-type VotingNftItemContract = OpenedContract<VotingNftItemWrappers.VotingNftItem>
+type VotingNftItemContract = OpenedContract<BoxV0Wrappers.BoxV0>
 type RewardDistributionSettings = Awaited<
   ReturnType<VotingNftItemContract['getRewardDistributionSettings']>
 >

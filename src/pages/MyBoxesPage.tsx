@@ -10,7 +10,7 @@ import { useFetchNftItems } from '../hooks/useFetchNftItems'
 import { PollsLayout } from '../layout/PollsLayout'
 import { Tabs } from '../ui/Tabs'
 
-export const MyVotesPage: FC = () => {
+export const MyBoxesPage: FC = () => {
   const { formatMessage } = useIntl()
   const { jettonsBalances, jettonsBalancesLoading } = useFetchJettonData()
   const { fetchNftItemsFromCollection, nftItems, nftItemsLoading } =
@@ -55,7 +55,7 @@ export const MyVotesPage: FC = () => {
         <Tabs
           tabs={[
             {
-              to: myActiveVotesPagePath,
+              to: myActiveBoxesPagePath,
               id: PollsActivityType.Active,
               label: formatMessage({
                 id: 'tab-active',
@@ -63,7 +63,7 @@ export const MyVotesPage: FC = () => {
               }),
             },
             {
-              to: myFinishedVotesPagePath,
+              to: myFinishedBoxesPagePath,
               id: PollsActivityType.Finished,
               label: formatMessage({
                 id: 'tab-finished',
@@ -90,8 +90,8 @@ export const MyVotesPage: FC = () => {
   )
 }
 
-export const myActiveVotesPagePath = '/my-votes/active'
-export const myFinishedVotesPagePath = '/my-votes/finished'
+export const myActiveBoxesPagePath = '/my-boxes/active'
+export const myFinishedBoxesPagePath = '/my-boxes/finished'
 
 const parseJettonBalances = (jettonsBalances: JettonsBalances) => {
   return jettonsBalances.balances.reduce((acc, item) => {

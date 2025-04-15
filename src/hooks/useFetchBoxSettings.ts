@@ -1,12 +1,12 @@
 import { Address, fromNano, OpenedContract } from '@ton/core'
 import { useContext, useState } from 'react'
-import { VotingNftItemWrappers } from 'votebox_wrappers'
+import { BoxV0Wrappers } from 'votebox_wrappers'
 import { AppContext } from '../App.context'
 import { parseChoices } from '../functions/parseChoices'
 import { useAsyncInitialize } from './useAsyncInitialize'
 import { PollOption } from '../ui/PollBlock'
 
-export const useFetchNftVoteSettings = (votingNftAddress: Address) => {
+export const useFetchBoxSettings = (votingNftAddress: Address) => {
   const { client } = useContext(AppContext)
 
   const [voteSettingsLoading, setVoteSettingsLoading] = useState(false)
@@ -24,8 +24,7 @@ export const useFetchNftVoteSettings = (votingNftAddress: Address) => {
   // Инициализируем контракт для каждого NftItem
   const votingNftItemContract = useAsyncInitialize(async () => {
     if (client) {
-      const contract =
-        VotingNftItemWrappers.VotingNftItem.fromAddress(votingNftAddress)
+      const contract = BoxV0Wrappers.BoxV0.fromAddress(votingNftAddress)
       return client.open(contract)
     }
   }, [client])
@@ -46,7 +45,7 @@ export const useFetchNftVoteSettings = (votingNftAddress: Address) => {
         rewardDistributionSettings,
         recommendedVoteGas,
       ] = await Promise.all([
-        nft.getVoteSettings(),
+        nft.getSettings(),
         nft.getTotalVotes(),
         nft.getRewardDistributionSettings(),
         nft.getRecommendedVoteGas(),
@@ -97,10 +96,8 @@ export const useFetchNftVoteSettings = (votingNftAddress: Address) => {
   }
 }
 
-type VotingNftItemContract = OpenedContract<VotingNftItemWrappers.VotingNftItem>
-type VoteSettings = Awaited<
-  ReturnType<VotingNftItemContract['getVoteSettings']>
->
+type VotingNftItemContract = OpenedContract<BoxV0Wrappers.BoxV0>
+type VoteSettings = Awaited<ReturnType<VotingNftItemContract['getSettings']>>
 type RewardDistributionSettings = Awaited<
   ReturnType<VotingNftItemContract['getRewardDistributionSettings']>
 >

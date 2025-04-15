@@ -1,5 +1,5 @@
 import { Address } from '@ton/core'
-import { MasterNftCollectionWrappers } from 'votebox_wrappers'
+import { BoxCollectionV0Wrappers } from 'votebox_wrappers'
 import { useAsyncInitialize } from './useAsyncInitialize'
 import { useContactAddresses } from './useContactAddresses'
 import { useTonClient } from './useTonClient'
@@ -10,17 +10,17 @@ export function useInitializeContracts() {
   const { wallet, sender } = useTonConnect()
   const contractsAddresses = useContactAddresses()
 
-  const masterNftCollection = useAsyncInitialize(async () => {
+  const boxCollection = useAsyncInitialize(async () => {
     if (!client) return
 
-    const address = Address.parse(contractsAddresses.nftCollection)
+    const address = Address.parse(contractsAddresses.boxCollection)
     const contract =
-      MasterNftCollectionWrappers.MasterNftCollection.fromAddress(address)
+      BoxCollectionV0Wrappers.BoxCollectionV0.fromAddress(address)
 
     return client.open(contract)
   }, [client, wallet])
 
-  if (!client || !masterNftCollection) {
+  if (!client || !boxCollection) {
     return
   }
 
@@ -28,6 +28,6 @@ export function useInitializeContracts() {
     client,
     wallet,
     sender,
-    masterNftCollection,
+    boxCollection,
   }
 }

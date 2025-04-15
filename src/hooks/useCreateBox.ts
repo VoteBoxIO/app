@@ -2,14 +2,14 @@ import { toNano } from '@ton/core'
 import { useContext } from 'react'
 import { AppContext } from '../App.context'
 import { stringToSnakeCell } from '../functions/onchainMeta'
-import { makeChoicesDictionary } from './useCreateVoting.functions'
-import { CreateVotingNft } from './useCreateVoting.types'
+import { makeChoicesDictionary } from './useCreateBox.functions'
+import { CreateBox } from './useCreateBox.types'
 
-export function useCreateVoting() {
-  const { sender, masterNftCollection } = useContext(AppContext)
+export function useCreateBox() {
+  const { sender, boxCollection } = useContext(AppContext)
 
   return {
-    sendCreateVotingMessage: async (voting: CreateVotingNft) => {
+    sendCreateBoxMessage: async (box: CreateBox) => {
       const {
         name,
         description,
@@ -20,20 +20,19 @@ export function useCreateVoting() {
         // hideVotes,
         // referral,
         // fixedVoteAmount,
-      } = voting
+      } = box
 
       try {
         console.log('Отправка сообщения для создания голосования...')
 
-        // Создание объекта CreateVotingNft
-        const result = await masterNftCollection.send(
+        const result = await boxCollection.send(
           sender,
           {
             // Захардкожено из тестов
             value: toNano('0.5') + toNano('0.73'),
           },
           {
-            $$type: 'CreateVotingNft',
+            $$type: 'CreateBoxV0',
             name: stringToSnakeCell(name),
             description: stringToSnakeCell(description),
             // @TODO мб нужна картинка

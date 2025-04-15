@@ -1,23 +1,12 @@
 import { toNano } from '@ton/core'
 import { CHAIN } from '@tonconnect/ui-react'
 
-export const CONTRACT_ADDRESSES: Record<
-  CHAIN,
-  {
-    nftCollection: string
-    nftItem: string
-    jetton: string
-  }
-> = {
+export const CONTRACT_ADDRESSES: Record<CHAIN, { boxCollection: string }> = {
   [CHAIN.TESTNET]: {
-    nftCollection: 'kQBW9oel-GrDWF0KcprXNwryZyflwAa2oWG2zHisDgsQPgik',
-    nftItem: 'kQAzcQjs6pb5TA4gnIKBF4gombhMAOWll7uaRv1b-HGzCU4x',
-    jetton: 'kQA7zB_qTISgvZYS7eqrLbxHpdXeeGV8y4YhEz78KVoI_tKD',
+    boxCollection: 'kQDUmhDUD-1kfs3NJ0PKNfqjTvADSZFjVXFU-p3NckZL4e3M',
   },
   [CHAIN.MAINNET]: {
-    nftCollection: '',
-    nftItem: '',
-    jetton: '',
+    boxCollection: '',
   },
 } as const
 

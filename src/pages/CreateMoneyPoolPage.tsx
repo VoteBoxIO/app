@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { AddOptionButton } from '../components/AddOptionButton'
 import { VOTING_SETTINGS } from '../constants'
 import { formatPercentInBasisPoints } from '../functions/formatPercentInBasisPoints'
-import { useCreateVoting } from '../hooks/useCreateVoting'
+import { useCreateBox } from '../hooks/useCreateBox'
 import { PollsLayout } from '../layout/PollsLayout'
 import { ButtonRegular } from '../ui/Button'
 import { ErrorText } from '../ui/ErrorText'
@@ -15,7 +15,7 @@ import { Typography } from '../ui/Typography'
 
 export const CreateMoneyPoolPage: FC = () => {
   const { formatMessage } = useIntl()
-  const { sendCreateVotingMessage } = useCreateVoting()
+  const { sendCreateBoxMessage: sendCreateVotingMessage } = useCreateBox()
 
   const [voting, setVoting] = useState({
     creatorBasisPoints: '',

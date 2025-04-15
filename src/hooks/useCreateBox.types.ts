@@ -1,4 +1,4 @@
-export interface CreateVotingNft {
+export interface CreateBox {
   name: string
   description: string
   choices: Array<string>

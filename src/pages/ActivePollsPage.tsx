@@ -14,8 +14,7 @@ export const ActivePollsPage: FC<{ activeTab: PollTypeTab }> = ({
 
   useEffect(() => {
     fetchNftItemsFromCollection()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [fetchNftItemsFromCollection])
 
   return (
     <PollsLayout
