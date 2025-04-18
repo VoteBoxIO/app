@@ -15,7 +15,7 @@ import { Typography } from '../ui/Typography'
 
 export const CreateMoneyPoolPage: FC = () => {
   const { formatMessage } = useIntl()
-  const { sendCreateBoxMessage: sendCreateVotingMessage } = useCreateBox()
+  const { sendCreateBoxMessage } = useCreateBox()
 
   const [voting, setVoting] = useState({
     creatorBasisPoints: '',
@@ -153,7 +153,7 @@ export const CreateMoneyPoolPage: FC = () => {
       return
     }
 
-    sendCreateVotingMessage({
+    sendCreateBoxMessage({
       name: voting.pollName.trim(),
       description: '@TODO Hardcoded description',
       choices: voting.options.map(option => option.trim()),

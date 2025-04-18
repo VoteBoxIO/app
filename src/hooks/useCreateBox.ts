@@ -35,8 +35,7 @@ export function useCreateBox() {
             $$type: 'CreateBoxV0',
             name: stringToSnakeCell(name),
             description: stringToSnakeCell(description),
-            // @TODO мб нужна картинка
-            image: stringToSnakeCell(''),
+            image: stringToSnakeCell(IMAGE),
             choices: makeChoicesDictionary(choices),
             end_time: endTimeInSeconds,
             creator_basis_points: creatorBasisPoints,
@@ -53,3 +52,6 @@ export function useCreateBox() {
     },
   }
 }
+
+const IMAGE =
+  'https://fastly.picsum.photos/id/1/200/300.jpg?hmac=jH5bDkLr6Tgy3oAg5khKCHeunZMHq0ehBZr6vGifPLY'
