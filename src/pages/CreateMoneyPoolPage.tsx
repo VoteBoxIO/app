@@ -5,7 +5,7 @@ import { AddOptionButton } from '../components/AddOptionButton'
 import { VOTING_SETTINGS } from '../constants'
 import { formatPercentInBasisPoints } from '../functions/formatPercentInBasisPoints'
 import { useCreateBox } from '../hooks/useCreateBox'
-import { PollsLayout } from '../layout/PollsLayout'
+import { CreateBoxLayout } from '../layout/CreateBoxLayout'
 import { ButtonRegular } from '../ui/Button'
 import { ErrorText } from '../ui/ErrorText'
 import { InputDateTime, InputNumber, InputText } from '../ui/Input'
@@ -169,7 +169,7 @@ export const CreateMoneyPoolPage: FC = () => {
   }
 
   return (
-    <PollsLayout
+    <CreateBoxLayout
       titleElement={formatMessage({
         id: 'money-pool-title',
         defaultMessage: 'Денежный пул',
@@ -179,8 +179,6 @@ export const CreateMoneyPoolPage: FC = () => {
         defaultMessage:
           'Победители делят деньги проигравших. Голосовать можно неограниченное количество раз.',
       })}
-      loading={false}
-      tabsElement={null}
       showAddWalletStub
     >
       <CreateMoneyPoolPageContainer>
@@ -288,7 +286,7 @@ export const CreateMoneyPoolPage: FC = () => {
           </form>
         </Rhytm>
       </CreateMoneyPoolPageContainer>
-    </PollsLayout>
+    </CreateBoxLayout>
   )
 }
 

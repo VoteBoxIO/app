@@ -1,4 +1,4 @@
-// import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { TonConnectUIProvider } from '@tonconnect/ui-react'
 import React, { FC } from 'react'
 import ReactDOM from 'react-dom/client'
@@ -14,10 +14,9 @@ const rootElement = document.getElementById('root')
 if (rootElement) {
   const root = ReactDOM.createRoot(rootElement)
 
-  /** Пока не нужно */
-  // const queryClient = new QueryClient({
-  //   defaultOptions: { queries: { refetchOnWindowFocus: false } },
-  // })
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { refetchOnWindowFocus: false } },
+  })
 
   const bootstrapApplication = async (Component: FC) => {
     const language = detectBrowserLanguage()
@@ -25,17 +24,17 @@ if (rootElement) {
 
     root.render(
       <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/VoteBoxIO/app/refs/heads/main/public/tonconnect-manifest.json">
-        {/* <QueryClientProvider client={queryClient}> */}
-        <AppContextProvider language={language}>
-          <IntlProvider
-            messages={messages}
-            locale={language}
-            defaultLocale="ru"
-          >
-            <Component />
-          </IntlProvider>
-        </AppContextProvider>
-        {/* </QueryClientProvider> */}
+        <QueryClientProvider client={queryClient}>
+          <AppContextProvider language={language}>
+            <IntlProvider
+              messages={messages}
+              locale={language}
+              defaultLocale="ru"
+            >
+              <Component />
+            </IntlProvider>
+          </AppContextProvider>
+        </QueryClientProvider>
       </TonConnectUIProvider>,
     )
   }

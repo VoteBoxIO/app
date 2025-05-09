@@ -5,7 +5,7 @@ import { Boxes } from '../components/Boxes'
 import { BoxActivityType } from '../constants'
 import { Tabs } from '../ui/Tabs'
 
-export const MyBoxesPage: FC<{ activeTab: BoxActivityType }> = ({
+export const MyVotesPage: FC<{ activeTab: BoxActivityType }> = ({
   activeTab,
 }) => {
   const { formatMessage } = useIntl()
@@ -16,14 +16,14 @@ export const MyBoxesPage: FC<{ activeTab: BoxActivityType }> = ({
       status={activeTab}
       owner={wallet!}
       titleElement={
-        <FormattedMessage id="my-polls" defaultMessage="Мои опросы" />
+        <FormattedMessage id="my-votes" defaultMessage="Мои голоса" />
       }
       showAddWalletStub
       tabsElement={
         <Tabs
           tabs={[
             {
-              to: myActiveBoxesPagePath,
+              to: myActiveVotesPagePath,
               id: BoxActivityType.Active,
               label: formatMessage({
                 id: 'tab-active',
@@ -31,7 +31,7 @@ export const MyBoxesPage: FC<{ activeTab: BoxActivityType }> = ({
               }),
             },
             {
-              to: myFinishedBoxesPagePath,
+              to: myFinishedVotesPagePath,
               id: BoxActivityType.Finished,
               label: formatMessage({
                 id: 'tab-finished',
@@ -46,5 +46,5 @@ export const MyBoxesPage: FC<{ activeTab: BoxActivityType }> = ({
   )
 }
 
-export const myActiveBoxesPagePath = '/my-boxes/active'
-export const myFinishedBoxesPagePath = '/my-boxes/finished'
+export const myActiveVotesPagePath = '/my-votes/active'
+export const myFinishedVotesPagePath = '/my-votes/finished'

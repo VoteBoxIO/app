@@ -1,7 +1,7 @@
 import { TonApiClient } from '@ton-api/client'
 import { OpenedContract, Sender } from '@ton/core'
 import { TonClient } from '@ton/ton'
-import React, { createContext, FC, PropsWithChildren } from 'react'
+import React, { createContext, FC, PropsWithChildren, useContext } from 'react'
 import { BoxCollectionV0 } from 'votebox_wrappers/dist/BoxCollectionV0'
 import { useContactAddresses } from './hooks/useContactAddresses'
 import { useInitializeContracts } from './hooks/useInitializeContracts'
@@ -47,3 +47,5 @@ export const AppContextProvider: FC<
     </AppContext.Provider>
   )
 }
+
+export const useAppContext = () => useContext(AppContext)

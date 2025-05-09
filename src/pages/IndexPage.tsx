@@ -10,9 +10,9 @@ import SvgPlus from '../svgr/Plus'
 import SvgPolls from '../svgr/Polls'
 import SvgVote from '../svgr/Vote'
 import { ActionBlockWithIcon } from '../ui/ActionBlock'
-import { activeVotingMoneyPoolPagePath } from './ActivePollsPage'
-import { myActivePollsPagePath } from './MyPollsPage'
+import { activeBoxesMoneyPoolPagePath } from './ActiveBoxesPage'
 import { myActiveBoxesPagePath } from './MyBoxesPage'
+import { myActiveVotesPagePath } from './MyVotesPage'
 import { pollTypePagePath } from './PollTypePage'
 
 export const IndexPage: FC = () => {
@@ -23,7 +23,7 @@ export const IndexPage: FC = () => {
       </Header>
       <Rhytm>
         <ActionBlockWithIcon
-          to={activeVotingMoneyPoolPagePath}
+          to={activeBoxesMoneyPoolPagePath}
           color="purple"
           icon={<SvgVote />}
           title={
@@ -40,7 +40,7 @@ export const IndexPage: FC = () => {
           }
         />
         <ActionBlockWithIcon
-          to={myActiveBoxesPagePath}
+          to={myActiveVotesPagePath}
           color="peach"
           icon={<SvgFolder />}
           title={<FormattedMessage id="my-votes" defaultMessage="Мои голоса" />}
@@ -71,7 +71,7 @@ export const IndexPage: FC = () => {
             }
           />
           <ActionBlockWithIcon
-            to={myActivePollsPagePath}
+            to={myActiveBoxesPagePath}
             color="white"
             icon={<SvgPolls />}
             title={

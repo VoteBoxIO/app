@@ -1,32 +1,35 @@
 import { styled } from '@linaria/react'
+import { fromNano } from '@ton/core'
 import React, { FC } from 'react'
+import { BoxChoice } from '../hooks/useBoxes'
 import SvgPlusSmall from '../svgr/PlusSmall'
 import { Typography } from './Typography'
-import { LoadingMessage } from './LoadingMessage'
 
-export const PollBlockItem: FC<{
-  name: string
-  value: string | null
-  index: number
-  progressPercent: number
-  progressLineGradient: boolean
-  onPollItemClick: (index: number) => void
-  isExpired: boolean
-}> = ({
-  name,
-  value,
-  index,
-  progressPercent,
-  progressLineGradient,
+export const BoxChoiceView: FC<
+  BoxChoice & {
+    onPollItemClick: (index: number) => void
+    isExpired: boolean
+    largestVoteAmount: number
+  }
+> = ({
+  choiceIndex,
+  choice,
+  votesAmount,
   onPollItemClick,
   isExpired,
+  largestVoteAmount,
+  votes,
 }) => {
   const handlePollItemClick = () => {
-    if (isExpired) {
-      return
+    if (!isExpired) {
+      onPollItemClick(choiceIndex)
     }
-    onPollItemClick(index)
   }
+
+  const _votesAmount = Number(votesAmount)
+  const progressLineGradient = largestVoteAmount === _votesAmount
+  const progressPercent =
+    _votesAmount === 0 ? 0 : (_votesAmount / largestVoteAmount) * 100
 
   return (
     <>
@@ -43,7 +46,7 @@ export const PollBlockItem: FC<{
       </Plus>
       <Content>
         <Typography fontSize={16} fontWeight={500}>
-          {name}
+          {choice}
         </Typography>
         <ProgressBar
           style={{ width: `${progressPercent}%` }}
@@ -52,8 +55,7 @@ export const PollBlockItem: FC<{
       </Content>
       <Value>
         <Typography fontSize={16} fontWeight={700}>
-          {value === null ? <LoadingMessage /> : value}
-          <TonWrapper>TON</TonWrapper>
+          {fromNano(votesAmount)} <TonWrapper>TON</TonWrapper>
         </Typography>
       </Value>
     </>

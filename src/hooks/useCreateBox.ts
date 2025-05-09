@@ -1,12 +1,11 @@
 import { toNano } from '@ton/core'
-import { useContext } from 'react'
-import { AppContext } from '../App.context'
+import { useAppContext } from '../App.context'
 import { stringToSnakeCell } from '../functions/onchainMeta'
 import { makeChoicesDictionary } from './useCreateBox.functions'
 import { CreateBox } from './useCreateBox.types'
 
 export function useCreateBox() {
-  const { sender, boxCollection } = useContext(AppContext)
+  const { sender, boxCollection } = useAppContext()
 
   return {
     sendCreateBoxMessage: async (box: CreateBox) => {

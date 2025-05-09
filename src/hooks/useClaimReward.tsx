@@ -1,15 +1,15 @@
 import { toNano } from '@ton/core'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   VoteJettonMasterWrappers,
   VoteJettonWalletWrappers,
 } from 'votebox_wrappers'
-import { AppContext } from '../App.context'
+import { useAppContext } from '../App.context'
 import { JettonBalanceCustom } from '../commonTypes'
 import { useAsyncInitialize } from './useAsyncInitialize'
 
 export const useClaimReward = (jettonBalance: JettonBalanceCustom) => {
-  const { client, sender } = useContext(AppContext)
+  const { client, sender } = useAppContext()
   const [available, setAvailable] = useState(false)
 
   const voteJettonMasterContract = useAsyncInitialize(async () => {

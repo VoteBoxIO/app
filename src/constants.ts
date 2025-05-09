@@ -21,7 +21,7 @@ export const VOTING_SETTINGS = {
   minVoteAmount: toNano('0.05'), // DEFAULT_MIN_VOTE_AMOUNT
 } as const
 
-export enum PollsActivityType {
+export enum BoxActivityType {
   Active = 'active',
   Finished = 'finished',
 }

@@ -1,26 +1,25 @@
 import { OpenedContract, toNano } from '@ton/core'
-import { useContext } from 'react'
 import { BoxV0Wrappers } from 'votebox_wrappers'
-import { AppContext } from '../App.context'
+import { useAppContext } from '../App.context'
 
 export const useSendUserVote = (
-  votingNftItemContract: OpenedContract<BoxV0Wrappers.BoxV0> | undefined,
-  recommendedVoteGas: bigint | undefined,
+  openedContact: OpenedContract<BoxV0Wrappers.BoxV0> | undefined,
+  recommendedVoteGas: string,
 ) => {
-  const { sender } = useContext(AppContext)
+  const { sender } = useAppContext()
 
   const sendUserVote = async (index: number, amount: string) => {
-    if (!votingNftItemContract || !recommendedVoteGas || !amount) {
+    if (!openedContact || !amount) {
       console.error('Failed to send user vote')
       return
     }
 
     const userVotes = toNano(amount)
-    const value = userVotes + recommendedVoteGas
-    const queryId = 1000n
+    const value = BigInt(userVotes) + BigInt(recommendedVoteGas)
+    const queryId = BigInt(Date.now()) // @TODO improve maybe?
 
     try {
-      const result = await votingNftItemContract.send(
+      const result = await openedContact.send(
         sender,
         { value },
         {

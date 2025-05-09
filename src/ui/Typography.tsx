@@ -40,7 +40,9 @@ Typography.displayName = 'Typography'
 export type FontSize = 28 | 24 | 20 | 16 | 14 | 12
 export type FontWeight = 400 | 500 | 600 | 700
 
-const Text = styled.p``
+const Text = styled.p`
+  word-break: break-word;
+`
 export const typographyMapCss: Record<FontSize, LinariaClassName> = {
   28: css`
     font-size: 28px;

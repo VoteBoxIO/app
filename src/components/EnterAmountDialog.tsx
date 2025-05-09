@@ -1,8 +1,8 @@
 import { styled } from '@linaria/react'
 import { useTonConnectModal } from '@tonconnect/ui-react'
-import React, { FC, useContext, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { AppContext } from '../App.context'
+import { useAppContext } from '../App.context'
 import SvgClose from '../svgr/Close'
 import { ButtonRegular } from '../ui/Button'
 import { InputNumber } from '../ui/Input'
@@ -19,7 +19,7 @@ export const EnterAmountDialog: FC<{
   const [dialog, setDialog] = useState<HTMLDialogElement | null>(null)
   const [isVisible, setIsVisible] = useState(false)
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const { wallet } = useContext(AppContext)
+  const { wallet } = useAppContext()
   const { open: openTonConnectModal } = useTonConnectModal()
   const { formatMessage } = useIntl()
 

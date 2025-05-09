@@ -1,16 +1,16 @@
 import { styled } from '@linaria/react'
-import React, { FC, useContext } from 'react'
-import { TextWithArrow } from '../ui/TextWithArrow'
-import { faqPagePath } from '../pages/FaqPage'
-import { supportPagePath } from '../pages/SupportPage'
-import { paymentMethodsPagePath } from '../pages/PaymentMethodsPage'
-import { languagePagePath } from '../pages/LanguagePage'
+import React, { FC } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { AppContext } from '../App.context'
+import { useAppContext } from '../App.context'
 import { createLanguageName } from '../functions/createLanguageName'
+import { faqPagePath } from '../pages/FaqPage'
+import { languagePagePath } from '../pages/LanguagePage'
+import { paymentMethodsPagePath } from '../pages/PaymentMethodsPage'
+import { supportPagePath } from '../pages/SupportPage'
+import { TextWithArrow } from '../ui/TextWithArrow'
 
 export const Footer: FC = () => {
-  const context = useContext(AppContext)
+  const context = useAppContext()
 
   return (
     <FooterContainer>

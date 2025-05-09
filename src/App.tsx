@@ -1,14 +1,14 @@
-import React, { FC, useContext, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import { AppContext } from './App.context'
-import { PollsActivityType } from './constants'
+import { useAppContext } from './App.context'
+import { BoxActivityType } from './constants'
 import { MainLayout } from './layout/MainLayout'
 import {
-  ActivePollsPage,
-  activeVotingAccessToContentPagePath,
-  activeVotingMoneyPoolPagePath,
-} from './pages/ActivePollsPage'
-import { PollTypeTab } from './pages/ActivePollsPage.constants'
+  activeBoxesAccessToContentPagePath,
+  activeBoxesMoneyPoolPagePath,
+  ActiveBoxesPage,
+} from './pages/ActiveBoxesPage'
+import { BoxTypeTab } from './pages/ActiveBoxesPage.constants'
 import {
   CreateMoneyPoolPage,
   createMoneyPoolPagePath,
@@ -22,14 +22,9 @@ import {
 import { IndexPage, indexPagePath } from './pages/IndexPage'
 import { LanguagePage, languagePagePath } from './pages/LanguagePage'
 import {
-  myActivePollsPagePath,
-  myFinishedPollsPagePath,
-  MyPollsPage,
-} from './pages/MyPollsPage'
-import {
   myActiveBoxesPagePath,
-  myFinishedBoxesPagePath,
   MyBoxesPage,
+  myFinishedBoxesPagePath,
 } from './pages/MyBoxesPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import {
@@ -39,9 +34,14 @@ import {
 import { PollTypePage, pollTypePagePath } from './pages/PollTypePage'
 import { SandboxPage, sandboxPagePath } from './pages/SandboxPage'
 import { SupportPage, supportPagePath } from './pages/SupportPage'
+import {
+  myActiveVotesPagePath,
+  myFinishedVotesPagePath,
+  MyVotesPage,
+} from './pages/MyVotesPage'
 
 export const App: FC = () => {
-  const { basePath } = useContext(AppContext)
+  const { basePath } = useAppContext()
 
   useEffect(() => {
     window.Telegram.WebApp.ready()
@@ -70,29 +70,33 @@ export const App: FC = () => {
         </Route>
 
         <Route element={<MainLayout background="transparent" />}>
-          <Route path={myActiveBoxesPagePath} element={<MyBoxesPage />} />
-          <Route path={myFinishedBoxesPagePath} element={<MyBoxesPage />} />
           <Route
-            path={myActivePollsPagePath}
-            element={<MyPollsPage activeTab={PollsActivityType.Active} />}
+            path={myActiveBoxesPagePath}
+            element={<MyBoxesPage activeTab={BoxActivityType.Active} />}
           />
           <Route
-            path={myFinishedPollsPagePath}
-            element={<MyPollsPage activeTab={PollsActivityType.Finished} />}
+            path={myFinishedBoxesPagePath}
+            element={<MyBoxesPage activeTab={BoxActivityType.Finished} />}
+          />
+          <Route
+            path={myActiveVotesPagePath}
+            element={<MyVotesPage activeTab={BoxActivityType.Active} />}
+          />
+          <Route
+            path={myFinishedVotesPagePath}
+            element={<MyVotesPage activeTab={BoxActivityType.Finished} />}
           />
           <Route
             path={createMoneyPoolPagePath}
             element={<CreateMoneyPoolPage />}
           />
           <Route
-            path={activeVotingMoneyPoolPagePath}
-            element={<ActivePollsPage activeTab={PollTypeTab.MoneyPool} />}
+            path={activeBoxesMoneyPoolPagePath}
+            element={<ActiveBoxesPage activeTab={BoxTypeTab.MoneyPool} />}
           />
           <Route
-            path={activeVotingAccessToContentPagePath}
-            element={
-              <ActivePollsPage activeTab={PollTypeTab.AccessToContent} />
-            }
+            path={activeBoxesAccessToContentPagePath}
+            element={<ActiveBoxesPage activeTab={BoxTypeTab.AccessToContent} />}
           />
         </Route>
 
