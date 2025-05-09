@@ -14,6 +14,7 @@ const fetchBoxes = async (
     owner,
     page = DEFAULT_PAGINATION.page,
     limit = DEFAULT_PAGINATION.limit,
+    votedByMe,
   } = params
 
   const queryParams = new URLSearchParams({
@@ -27,6 +28,10 @@ const fetchBoxes = async (
 
   if (owner) {
     queryParams.append('owner', owner)
+  }
+
+  if (votedByMe) {
+    queryParams.append('votedByMe', votedByMe.toString())
   }
 
   const response = await fetch(

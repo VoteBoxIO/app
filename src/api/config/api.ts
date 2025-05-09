@@ -18,6 +18,7 @@ export interface BoxQueryParams {
   owner?: string
   page?: number
   limit?: number
+  votedByMe?: boolean
 }
 
 export const DEFAULT_PAGINATION = {

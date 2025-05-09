@@ -15,6 +15,7 @@ export const MyVotesPage: FC<{ activeTab: BoxActivityType }> = ({
     <Boxes
       status={activeTab}
       owner={wallet!}
+      votedByMe
       titleElement={
         <FormattedMessage id="my-votes" defaultMessage="Мои голоса" />
       }

@@ -10,8 +10,16 @@ export const Boxes: FC<{
   tabsElement: ReactNode
   status: BoxStatus
   owner?: string
+  votedByMe?: boolean
   showAddWalletStub: boolean
-}> = ({ titleElement, tabsElement, status, owner, showAddWalletStub }) => {
+}> = ({
+  titleElement,
+  tabsElement,
+  status,
+  owner,
+  votedByMe,
+  showAddWalletStub,
+}) => {
   const {
     data,
     fetchNextPage,
@@ -19,7 +27,7 @@ export const Boxes: FC<{
     refetch,
     isFetchingNextPage,
     isError,
-  } = useBoxes({ status, owner })
+  } = useBoxes({ status, owner, votedByMe })
 
   return (
     <BoxesLayout
