@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { BoxV0Wrappers } from 'votebox_wrappers'
 import { useAppContext } from '../App.context'
-import { getHoursAndDaysLeft } from '../functions/getHoursAndDaysLeft'
+import { getTimeLeft } from '../functions/getTimeLeft'
 import { useAsyncInitialize } from '../hooks/useAsyncInitialize'
 import { Box as TypeBox } from '../hooks/useBoxes'
 import { useSendUserVote } from '../hooks/useSendUserVote'
@@ -17,7 +17,6 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
 
   const { client } = useAppContext()
 
-  // Инициализируем контракт для каждого NftItem
   const boxV0OpenedContract = useAsyncInitialize(async () => {
     if (client) {
       return client.open(
@@ -35,7 +34,7 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
     setSelectedOptionIndex(index)
   }
 
-  const { days, hours, isExpired } = getHoursAndDaysLeft(Number(box.deadline))
+  const { minutes, days, hours, isExpired } = getTimeLeft(Number(box.deadline))
 
   const largestVoteAmount = Math.max(
     ...box.boxChoices.map(choice => Number(choice.votesAmount)),
@@ -48,18 +47,8 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
         expiration={
           isExpired ? (
             <FormattedMessage id="status-completed" defaultMessage="Завершен" />
-          ) : days ? (
-            <FormattedMessage
-              id="voteSettings.timeLeft"
-              values={{ days, hours }}
-              defaultMessage="Еще {days} д и {hours} ч"
-            />
           ) : (
-            <FormattedMessage
-              id="voteSettings.timeLeftHoursOnly"
-              values={{ hours }}
-              defaultMessage="Еще {hours} ч"
-            />
+            getTimeLeftLexeme(minutes, hours, days)
           )
         }
         bid={fromNano(
@@ -97,42 +86,32 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
   )
 }
 
-// {
-//   "address": "0:982dd64f8c58492480e312db15cb0d20becd82ec9e044fb0ee3f079f9f02c81d",
-//   "masterCollectionAddress": "0:d49a10d40fed647ecdcd2743ca35faa34ef003499163557154fa9dcd72464be1",
-//   "itemIndex": "9",
-//   "owner": "0:e8e5aa9b85c20080c2369913c61061a7613abb88aa430b72f6ea085b2841a43b",
-//   "createBlockchainTimestamp": "33640927000003",
-//   "updateBlockchainTimestamp": "33640927000003",
-//   "question": "Видно?",
-//   "voteStatus": "0",
-//   "winner": null,
-//   "voteRewardType": 0,
-//   "hideVotes": false,
-//   "fixedVoteAmount": null,
-//   "minVoteAmount": "50000000",
-//   "platformBasisPoints": "200",
-//   "creatorBasisPoints": "0",
-//   "referralFeeBasisPoints": null,
-//   "referralAddress": null,
-//   "deadline": "1745035380000",
-//   "pollTimestamp": null,
-//   "boxChoices": [
-//       {
-//           "id": 176,
-//           "boxAddress": "0:982dd64f8c58492480e312db15cb0d20becd82ec9e044fb0ee3f079f9f02c81d",
-//           "choice": "Да",
-//           "choiceIndex": 0,
-//           "votesAmount": "0",
-//           "voteJettonMasterAddress": null
-//       },
-//       {
-//           "id": 177,
-//           "boxAddress": "0:982dd64f8c58492480e312db15cb0d20becd82ec9e044fb0ee3f079f9f02c81d",
-//           "choice": "Ноу",
-//           "choiceIndex": 1,
-//           "votesAmount": "0",
-//           "voteJettonMasterAddress": null
-//       }
-//   ]
-// }
+const getTimeLeftLexeme = (minutes: number, hours: number, days: number) => {
+  if (days > 0) {
+    return (
+      <FormattedMessage
+        id="voteSettings.timeLeft"
+        values={{ days, hours }}
+        defaultMessage="Еще {days} д и {hours} ч"
+      />
+    )
+  }
+  if (hours > 0) {
+    return (
+      <FormattedMessage
+        id="voteSettings.timeLeftHoursOnly"
+        values={{ hours }}
+        defaultMessage="Еще {hours} ч"
+      />
+    )
+  }
+  if (minutes > 0) {
+    return (
+      <FormattedMessage
+        id="voteSettings.timeLeftMinutesOnly"
+        values={{ minutes }}
+        defaultMessage="Еще {minutes} мин"
+      />
+    )
+  }
+}
