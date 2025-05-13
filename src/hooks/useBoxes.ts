@@ -6,6 +6,28 @@ import {
   DEFAULT_PAGINATION,
 } from '../api/config/api'
 
+export const useBoxes = (params: BoxQueryParams = {}) => {
+  return useInfiniteQuery({
+    queryKey: ['boxes', params],
+    queryFn: ({ pageParam = 1 }) => fetchBoxes({ ...params, page: pageParam }),
+    getNextPageParam: lastPage => {
+      if (lastPage.meta.totalPages <= lastPage.meta.page) {
+        return undefined
+      }
+      return lastPage.meta.page + 1
+    },
+    initialPageParam: 1,
+    refetchInterval: 1000 * 5, // Refetch every 5 seconds
+  })
+}
+
+export const useBoxById = (id: string | number) => {
+  return useQuery({
+    queryKey: ['box', id],
+    queryFn: () => fetchBoxById(id),
+  })
+}
+
 const fetchBoxes = async (
   params: BoxQueryParams = {},
 ): Promise<BoxesResponse> => {
@@ -57,27 +79,6 @@ const fetchBoxById = async (id: string | number): Promise<Box> => {
   return response.json()
 }
 
-export const useBoxes = (params: BoxQueryParams = {}) => {
-  return useInfiniteQuery({
-    queryKey: ['boxes', params],
-    queryFn: ({ pageParam = 1 }) => fetchBoxes({ ...params, page: pageParam }),
-    getNextPageParam: lastPage => {
-      if (lastPage.meta.totalPages <= lastPage.meta.page) {
-        return undefined
-      }
-      return lastPage.meta.page + 1
-    },
-    initialPageParam: 1,
-  })
-}
-
-export const useBoxById = (id: string | number) => {
-  return useQuery({
-    queryKey: ['box', id],
-    queryFn: () => fetchBoxById(id),
-  })
-}
-
 export type Vote = {
   id: number
   transactionHash: string
@@ -87,11 +88,13 @@ export type Vote = {
   blockchainTimestamp: string
   createdAt: string
   updatedAt: string
+  jettonWalletAddress: string
 }
 
 export type BoxChoice = {
   id: number
   boxAddress: string
+  jettonMasterAddress: string
   choice: string
   choiceIndex: number
   votesAmount: string

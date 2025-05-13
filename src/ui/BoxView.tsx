@@ -38,17 +38,19 @@ export const BoxView: FC<{
       <TitleAndSubtitle title={title} />
 
       <BoxChoices>
-        {boxChoices.map(boxChoice => {
-          return (
-            <BoxChoiceView
-              key={boxChoice.id}
-              {...boxChoice}
-              onPollItemClick={onPollItemClick}
-              isExpired={isExpired}
-              largestVoteAmount={largestVoteAmount}
-            />
-          )
-        })}
+        {boxChoices
+          .sort((a, b) => a.choiceIndex - b.choiceIndex)
+          .map(boxChoice => {
+            return (
+              <BoxChoiceView
+                key={boxChoice.id}
+                {...boxChoice}
+                onPollItemClick={onPollItemClick}
+                isExpired={isExpired}
+                largestVoteAmount={largestVoteAmount}
+              />
+            )
+          })}
       </BoxChoices>
 
       {bottomElement}

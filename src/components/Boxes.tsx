@@ -31,7 +31,7 @@ export const Boxes: FC<{
 
   return (
     <BoxesLayout
-      loading={isFetching && !isFetchingNextPage}
+      loading={isFetching && !isFetchingNextPage && !data}
       error={isError}
       onRetryFetch={refetch}
       titleElement={titleElement}

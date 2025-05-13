@@ -1,21 +1,21 @@
-import { toNano } from '@ton/core'
+import { Address, toNano } from '@ton/core'
 import { useEffect, useState } from 'react'
 import {
   VoteJettonMasterWrappers,
   VoteJettonWalletWrappers,
 } from 'votebox_wrappers'
 import { useAppContext } from '../App.context'
-import { JettonBalanceCustom } from '../commonTypes'
 import { useAsyncInitialize } from './useAsyncInitialize'
+import { Vote } from './useBoxes'
 
-export const useClaimReward = (jettonBalance: JettonBalanceCustom) => {
+export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
   const { client, sender } = useAppContext()
-  const [available, setAvailable] = useState(false)
+  const [claimable, setClaimable] = useState<boolean | null>(null)
 
   const voteJettonMasterContract = useAsyncInitialize(async () => {
     if (!client) return
     const contract = VoteJettonMasterWrappers.VoteJettonMaster.fromAddress(
-      jettonBalance.jetton.address,
+      Address.parse(jettonMasterAddress),
     )
     return client.open(contract)
   }, [client])
@@ -23,7 +23,7 @@ export const useClaimReward = (jettonBalance: JettonBalanceCustom) => {
   const voteJettonWalletContract = useAsyncInitialize(async () => {
     if (!client) return
     const contract = VoteJettonWalletWrappers.VoteJettonWallet.fromAddress(
-      jettonBalance.walletAddress.address,
+      Address.parse(vote.jettonWalletAddress),
     )
     return client.open(contract)
   }, [client])
@@ -31,22 +31,17 @@ export const useClaimReward = (jettonBalance: JettonBalanceCustom) => {
   useEffect(() => {
     if (!voteJettonMasterContract) return
     ;(async () => {
-      if (
-        jettonBalance.balance &&
-        (await voteJettonMasterContract.getClaimble())
-      ) {
-        setAvailable(true)
-      }
+      const claimable = await voteJettonMasterContract.getClaimble()
+      setClaimable(claimable)
     })()
-  }, [jettonBalance.balance, voteJettonMasterContract])
+  }, [voteJettonMasterContract])
 
   return {
-    claimAvailable: available,
+    claimable,
     claimReward: async () => {
       if (!voteJettonWalletContract) {
         throw new Error('voteJettonWalletContract is not available')
       }
-
       try {
         await voteJettonWalletContract.send(
           sender,

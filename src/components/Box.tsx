@@ -9,13 +9,14 @@ import { Box as TypeBox } from '../hooks/useBoxes'
 import { useSendUserVote } from '../hooks/useSendUserVote'
 import { BoxView } from '../ui/BoxView'
 import { EnterAmountDialog } from './EnterAmountDialog'
+import { ClaimRewardButton } from './ClaimRewardButton'
 
 export const Box: FC<{ box: TypeBox }> = ({ box }) => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(
     null,
   )
 
-  const { client } = useAppContext()
+  const { client, wallet } = useAppContext()
 
   const boxV0OpenedContract = useAsyncInitialize(async () => {
     if (client) {
@@ -70,6 +71,20 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
             }}
           />
         }
+        bottomElement={
+          wallet &&
+          filterVotesCreatedByUser(box.boxChoices, wallet).map(
+            ({ jettonMasterAddress, ...vote }) => {
+              return (
+                <ClaimRewardButton
+                  key={vote.id}
+                  vote={vote}
+                  jettonMasterAddress={jettonMasterAddress}
+                />
+              )
+            },
+          )
+        }
         boxChoices={box.boxChoices}
         onPollItemClick={handlePollItemClick}
         largestVoteAmount={largestVoteAmount}
@@ -84,6 +99,22 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
       )}
     </>
   )
+}
+
+const filterVotesCreatedByUser = (
+  boxChoices: TypeBox['boxChoices'],
+  wallet: string,
+) => {
+  const votesCreatedByUser = boxChoices
+    .flatMap(boxChoice =>
+      boxChoice.votes.map(vote => ({
+        ...vote,
+        jettonMasterAddress: boxChoice.jettonMasterAddress,
+      })),
+    )
+    .filter(vote => vote.user === wallet)
+
+  return votesCreatedByUser
 }
 
 const getTimeLeftLexeme = (minutes: number, hours: number, days: number) => {
