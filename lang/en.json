@@ -1,4 +1,7 @@
 {
+  "box-not-found": {
+    "defaultMessage": "Box not found"
+  },
   "active-voting": {
     "defaultMessage": "Active votings"
   },

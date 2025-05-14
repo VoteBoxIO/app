@@ -17,16 +17,19 @@ export const useBoxes = (params: BoxQueryParams = {}) => {
       return lastPage.meta.page + 1
     },
     initialPageParam: 1,
-    refetchInterval: 1000 * 5, // Refetch every 5 seconds
+    refetchInterval,
   })
 }
 
-export const useBoxById = (id: string | number) => {
+export const useBoxById = (id: string) => {
   return useQuery({
     queryKey: ['box', id],
     queryFn: () => fetchBoxById(id),
+    refetchInterval,
   })
 }
+
+const refetchInterval = 1000 * 5 // Refetch every 5 seconds
 
 const fetchBoxes = async (
   params: BoxQueryParams = {},

@@ -26,6 +26,11 @@ import {
   MyBoxesPage,
   myFinishedBoxesPagePath,
 } from './pages/MyBoxesPage'
+import {
+  myActiveVotesPagePath,
+  myFinishedVotesPagePath,
+  MyVotesPage,
+} from './pages/MyVotesPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import {
   PaymentMethodsPage,
@@ -33,12 +38,8 @@ import {
 } from './pages/PaymentMethodsPage'
 import { PollTypePage, pollTypePagePath } from './pages/PollTypePage'
 import { SandboxPage, sandboxPagePath } from './pages/SandboxPage'
+import { SingleBoxPage, singleBoxPagePath } from './pages/SingleBoxPage'
 import { SupportPage, supportPagePath } from './pages/SupportPage'
-import {
-  myActiveVotesPagePath,
-  myFinishedVotesPagePath,
-  MyVotesPage,
-} from './pages/MyVotesPage'
 
 export const App: FC = () => {
   const { basePath } = useAppContext()
@@ -98,6 +99,7 @@ export const App: FC = () => {
             path={activeBoxesAccessToContentPagePath}
             element={<ActiveBoxesPage activeTab={BoxTypeTab.AccessToContent} />}
           />
+          <Route path={singleBoxPagePath} element={<SingleBoxPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

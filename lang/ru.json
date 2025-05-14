@@ -1,4 +1,7 @@
 {
+  "box-not-found": {
+    "defaultMessage": "Опрос не найден"
+  },
   "active-voting": {
     "defaultMessage": "Активные голосования"
   },
