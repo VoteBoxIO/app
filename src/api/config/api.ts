@@ -2,7 +2,7 @@ export const API_CONFIG = {
   baseUrl:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/api'
-      : process.env.API_URL || 'https://api.votebox.io/api',
+      : process.env.API_URL || 'http://134.209.201.97/api',
   endpoints: {
     boxes: {
       getAll: '/boxes',
