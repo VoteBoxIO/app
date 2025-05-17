@@ -1,12 +1,6 @@
 {
-  "box-not-found": {
-    "defaultMessage": "Опрос не найден"
-  },
-  "active-voting": {
-    "defaultMessage": "Активные голосования"
-  },
-  "active-voting-subtitle": {
-    "defaultMessage": "Посмотрите доступные опросы"
+  "active-boxes-subtitle": {
+    "defaultMessage": "Посмотрите активные голосования"
   },
   "active-voting-title": {
     "defaultMessage": "Активные голосования"
@@ -17,6 +11,15 @@
   "blogger-commission-placeholder": {
     "defaultMessage": "Комиссия блогера"
   },
+  "box-not-found": {
+    "defaultMessage": "Опрос не найден"
+  },
+  "boxes": {
+    "defaultMessage": "Боксы"
+  },
+  "claim-reward": {
+    "defaultMessage": "Забрать выигрыш"
+  },
   "connect-wallet.button": {
     "defaultMessage": "Подключить кошелек"
   },
@@ -26,14 +29,14 @@
   "connect-wallet.title": {
     "defaultMessage": "Подключить кошелек"
   },
+  "create-box": {
+    "defaultMessage": "Создать бокс"
+  },
+  "create-box-subtitle": {
+    "defaultMessage": "Запустите опрос и вовлеките аудиторию"
+  },
   "create-button": {
     "defaultMessage": "Создать"
-  },
-  "create-voting": {
-    "defaultMessage": "Создать голосование"
-  },
-  "create-voting-subtitle": {
-    "defaultMessage": "Запустите опрос и вовлеките аудиторию"
   },
   "create-voting-title": {
     "defaultMessage": "Создание голосования"
@@ -92,29 +95,23 @@
   "money-pool-description": {
     "defaultMessage": "Победители делят деньги проигравших. Голосовать можно неограниченное количество раз."
   },
-  "money-pool-subtitle": {
-    "defaultMessage": "Победители делят деньги проигравших. Голосовать можно неограниченное количество раз."
-  },
   "money-pool-title": {
     "defaultMessage": "Денежный пул"
   },
   "multiple-options-toggle": {
     "defaultMessage": "Выбор нескольких вариантов"
   },
+  "my-boxes": {
+    "defaultMessage": "Мои боксы"
+  },
+  "my-boxes-subtitle": {
+    "defaultMessage": "Активные и завершенные опросы"
+  },
   "my-polls": {
-    "defaultMessage": "Мои опросы"
-  },
-  "my-polls-subtitle": {
-    "defaultMessage": "Здесь собраны ваши опросы. Активные и завершенные."
-  },
-  "my-polls-title": {
     "defaultMessage": "Мои опросы"
   },
   "my-votes": {
     "defaultMessage": "Мои голоса"
-  },
-  "my-votes-subtitle": {
-    "defaultMessage": "История ваших голосований"
   },
   "option-placeholder": {
     "defaultMessage": "Вариант ответа"
@@ -155,6 +152,9 @@
   "status-completed": {
     "defaultMessage": "Завершен"
   },
+  "status-completing": {
+    "defaultMessage": "Завершается"
+  },
   "status-loading": {
     "defaultMessage": "Загружается"
   },
@@ -172,5 +172,11 @@
   },
   "voteSettings.timeLeftHoursOnly": {
     "defaultMessage": "Еще {hours} ч"
+  },
+  "voteSettings.timeLeftMinutesOnly": {
+    "defaultMessage": "Еще {minutes} мин"
+  },
+  "votes-history-subtitle": {
+    "defaultMessage": "История ваших голосов"
   }
 }

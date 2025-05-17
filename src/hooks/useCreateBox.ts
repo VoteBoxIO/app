@@ -1,11 +1,14 @@
 import { toNano } from '@ton/core'
+import { useNavigate } from 'react-router'
 import { useAppContext } from '../App.context'
 import { stringToSnakeCell } from '../functions/onchainMeta'
+import { activeBoxesMoneyPoolPagePath } from '../pages/ActiveBoxesPage'
 import { makeChoicesDictionary } from './useCreateBox.functions'
 import { CreateBox } from './useCreateBox.types'
 
 export function useCreateBox() {
   const { sender, boxCollection } = useAppContext()
+  const navigate = useNavigate()
 
   return {
     sendCreateBoxMessage: async (box: CreateBox) => {
@@ -44,7 +47,9 @@ export function useCreateBox() {
             fixed_vote_amount: null,
           },
         )
+
         console.log('Сообщение успешно отправлено!', result)
+        navigate(activeBoxesMoneyPoolPagePath)
       } catch (error) {
         console.error('Ошибка при отправке сообщения:', error)
       }

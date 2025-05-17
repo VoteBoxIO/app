@@ -41,3 +41,21 @@ npm install
 npm run development-https
 go to https://secure.localhost/
 ```
+
+# Translations:
+
+1. Extract lexemes from the codebase:
+
+```bash
+npm run lexemes-extract
+```
+
+2. Translate all lexemes from `lang/ru.json` to `lang/en.json`. The Russian translations serve as the source of truth, and English translations should be added for each corresponding key.
+
+3. After translation, compile the lexemes:
+
+```bash
+npm run lexemes-compile
+```
+
+This will update the compiled translations in the `compiled-lang` directory which are used by the application.

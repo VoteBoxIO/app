@@ -25,3 +25,13 @@ export enum BoxActivityType {
   Active = 'active',
   Finished = 'finished',
 }
+
+export const BOX_STATUS = {
+  STATE_NOT_POPULATED: 0,
+  STATE_WAITING_JETTONS: 1,
+  STATE_VOTING_OPEN: 2,
+  STATE_VOTING_PREFINISHED: 3,
+  STATE_VOTING_FINISHED: 4,
+  STATE_REWARDS_DISTRIBUTED: 5,
+  STATE_FAILED_TO_CREATE_JETTONS: 10,
+}

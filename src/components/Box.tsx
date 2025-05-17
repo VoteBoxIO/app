@@ -10,6 +10,7 @@ import { useSendUserVote } from '../hooks/useSendUserVote'
 import { BoxView } from '../ui/BoxView'
 import { EnterAmountDialog } from './EnterAmountDialog'
 import { ClaimRewardButton } from './ClaimRewardButton'
+import { BOX_STATUS } from '../constants'
 
 export const Box: FC<{ box: TypeBox }> = ({ box }) => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(
@@ -47,7 +48,17 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
         title={box.question}
         expiration={
           isExpired ? (
-            <FormattedMessage id="status-completed" defaultMessage="Завершен" />
+            box.boxStatus === BOX_STATUS.STATE_VOTING_FINISHED ? (
+              <FormattedMessage
+                id="status-completed"
+                defaultMessage="Завершен"
+              />
+            ) : (
+              <FormattedMessage
+                id="status-completing"
+                defaultMessage="Завершается"
+              />
+            )
           ) : (
             getTimeLeftLexeme(minutes, hours, days)
           )

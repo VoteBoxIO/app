@@ -3,13 +3,13 @@
     "defaultMessage": "Box not found"
   },
   "active-voting": {
-    "defaultMessage": "Active votings"
+    "defaultMessage": "Active boxes"
   },
   "active-voting-subtitle": {
-    "defaultMessage": "View available polls"
+    "defaultMessage": "View active boxes"
   },
   "active-voting-title": {
-    "defaultMessage": "Active votings"
+    "defaultMessage": "Active boxes"
   },
   "add-option": {
     "defaultMessage": "Add option"
@@ -17,11 +17,14 @@
   "blogger-commission-placeholder": {
     "defaultMessage": "Blogger commission"
   },
+  "claim-reward": {
+    "defaultMessage": "Claim reward"
+  },
   "connect-wallet.button": {
     "defaultMessage": "Connect wallet"
   },
   "connect-wallet.subtitle": {
-    "defaultMessage": "You need to connect your wallet to pay for participation and receive rewards after the voting ends. This won't take long."
+    "defaultMessage": "You need to connect your wallet to pay for participation and receive rewards after the box ends. This won't take long."
   },
   "connect-wallet.title": {
     "defaultMessage": "Connect wallet"
@@ -33,13 +36,13 @@
     "defaultMessage": "Create voting"
   },
   "create-voting-subtitle": {
-    "defaultMessage": "Launch a poll and engage your audience"
+    "defaultMessage": "Launch a box and engage your audience"
   },
   "create-voting-title": {
-    "defaultMessage": "Create voting"
+    "defaultMessage": "Create box"
   },
   "create-voting-type": {
-    "defaultMessage": "Choose the type of voting and set parameters"
+    "defaultMessage": "Choose the type of box and set parameters"
   },
   "creator-basis-points-error": {
     "defaultMessage": "Blogger commission must be between 0% and 15%"
@@ -87,13 +90,10 @@
     "defaultMessage": "Money pool"
   },
   "money-pool-button": {
-    "defaultMessage": "Create voting"
+    "defaultMessage": "Create box"
   },
   "money-pool-description": {
-    "defaultMessage": "Winners split the losers' money. Voting can be done an unlimited number of times."
-  },
-  "money-pool-subtitle": {
-    "defaultMessage": "Winners split the losers' money. Voting can be done an unlimited number of times."
+    "defaultMessage": "Winners split the losers' money. You can participate unlimited times."
   },
   "money-pool-title": {
     "defaultMessage": "Money pool"
@@ -102,34 +102,31 @@
     "defaultMessage": "Multiple choice"
   },
   "my-polls": {
-    "defaultMessage": "My polls"
+    "defaultMessage": "My boxes"
   },
   "my-polls-subtitle": {
-    "defaultMessage": "Here are your polls. Active and completed."
-  },
-  "my-polls-title": {
-    "defaultMessage": "My polls"
+    "defaultMessage": "Your boxes history"
   },
   "my-votes": {
-    "defaultMessage": "My votes"
+    "defaultMessage": "My boxes participation"
   },
   "my-votes-subtitle": {
-    "defaultMessage": "Your voting history"
+    "defaultMessage": "Your boxes participation history"
   },
   "option-placeholder": {
     "defaultMessage": "Answer option"
   },
   "options-error": {
-    "defaultMessage": "Answer options must not be empty"
+    "defaultMessage": "Answer options cannot be empty"
   },
   "paid-voting-button": {
-    "defaultMessage": "Create voting"
+    "defaultMessage": "Create box"
   },
   "paid-voting-subtitle": {
-    "defaultMessage": "All participants get access to content. One vote has a fixed cost."
+    "defaultMessage": "All participants get access to content. One participation – fixed cost."
   },
   "paid-voting-title": {
-    "defaultMessage": "Paid voting"
+    "defaultMessage": "Paid box"
   },
   "payment-methods": {
     "defaultMessage": "Payment methods"
@@ -138,13 +135,13 @@
     "defaultMessage": "{commission}% commission"
   },
   "poll": {
-    "defaultMessage": "Poll"
+    "defaultMessage": "Box"
   },
   "poll-name-error": {
-    "defaultMessage": "The poll name must not be empty"
+    "defaultMessage": "Box name cannot be empty"
   },
   "poll-name-placeholder": {
-    "defaultMessage": "Poll name"
+    "defaultMessage": "Box name"
   },
   "poll-type-access-to-content": {
     "defaultMessage": "Access to content"
@@ -154,6 +151,9 @@
   },
   "status-completed": {
     "defaultMessage": "Completed"
+  },
+  "status-completing": {
+    "defaultMessage": "Completing"
   },
   "status-loading": {
     "defaultMessage": "Loading"
@@ -165,12 +165,15 @@
     "defaultMessage": "Active"
   },
   "tab-finished": {
-    "defaultMessage": "Completed"
+    "defaultMessage": "Finished"
   },
   "voteSettings.timeLeft": {
-    "defaultMessage": "{days} d and {hours} h left"
+    "defaultMessage": "{days}d {hours}h left"
   },
   "voteSettings.timeLeftHoursOnly": {
-    "defaultMessage": "{hours} h left"
+    "defaultMessage": "{hours}h left"
+  },
+  "voteSettings.timeLeftMinutesOnly": {
+    "defaultMessage": "{minutes}m left"
   }
 }

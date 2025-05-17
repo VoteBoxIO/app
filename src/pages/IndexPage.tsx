@@ -26,16 +26,11 @@ export const IndexPage: FC = () => {
           to={activeBoxesMoneyPoolPagePath}
           color="purple"
           icon={<SvgVote />}
-          title={
-            <FormattedMessage
-              id="active-voting"
-              defaultMessage="Активные голосования"
-            />
-          }
+          title={<FormattedMessage id="boxes" defaultMessage="Боксы" />}
           subtitle={
             <FormattedMessage
-              id="active-voting-subtitle"
-              defaultMessage="Посмотрите доступные опросы"
+              id="active-boxes-subtitle"
+              defaultMessage="Посмотрите активные голосования"
             />
           }
         />
@@ -43,11 +38,11 @@ export const IndexPage: FC = () => {
           to={myActiveVotesPagePath}
           color="peach"
           icon={<SvgFolder />}
-          title={<FormattedMessage id="my-votes" defaultMessage="Мои голоса" />}
+          title={<FormattedMessage id="my-votes" defaultMessage="Мои воуты" />}
           subtitle={
             <FormattedMessage
-              id="my-votes-subtitle"
-              defaultMessage="История ваших голосований"
+              id="votes-history-subtitle"
+              defaultMessage="История ваших голосов"
             />
           }
         />
@@ -58,14 +53,11 @@ export const IndexPage: FC = () => {
             color="white"
             icon={<SvgPlus />}
             title={
-              <FormattedMessage
-                id="create-voting"
-                defaultMessage="Создать голосование"
-              />
+              <FormattedMessage id="create-box" defaultMessage="Создать бокс" />
             }
             subtitle={
               <FormattedMessage
-                id="create-voting-subtitle"
+                id="create-box-subtitle"
                 defaultMessage="Запустите опрос и вовлеките аудиторию"
               />
             }
@@ -75,12 +67,12 @@ export const IndexPage: FC = () => {
             color="white"
             icon={<SvgPolls />}
             title={
-              <FormattedMessage id="my-polls" defaultMessage="Мои опросы" />
+              <FormattedMessage id="my-boxes" defaultMessage="Мои боксы" />
             }
             subtitle={
               <FormattedMessage
-                id="my-polls-subtitle"
-                defaultMessage="История ваших голосований"
+                id="my-boxes-subtitle"
+                defaultMessage="Активные и завершенные опросы"
               />
             }
           />

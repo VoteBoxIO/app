@@ -175,7 +175,7 @@ export const CreateMoneyPoolPage: FC = () => {
         defaultMessage: 'Денежный пул',
       })}
       subtitleElement={formatMessage({
-        id: 'money-pool-subtitle',
+        id: 'money-pool-description',
         defaultMessage:
           'Победители делят деньги проигравших. Голосовать можно неограниченное количество раз.',
       })}

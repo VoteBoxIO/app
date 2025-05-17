@@ -1,14 +1,8 @@
 {
-  "active-voting": [
+  "active-boxes-subtitle": [
     {
       "type": 0,
-      "value": "Активные голосования"
-    }
-  ],
-  "active-voting-subtitle": [
-    {
-      "type": 0,
-      "value": "Посмотрите доступные опросы"
+      "value": "Посмотрите активные голосования"
     }
   ],
   "active-voting-title": [
@@ -29,6 +23,24 @@
       "value": "Комиссия блогера"
     }
   ],
+  "box-not-found": [
+    {
+      "type": 0,
+      "value": "Опрос не найден"
+    }
+  ],
+  "boxes": [
+    {
+      "type": 0,
+      "value": "Боксы"
+    }
+  ],
+  "claim-reward": [
+    {
+      "type": 0,
+      "value": "Забрать выигрыш"
+    }
+  ],
   "connect-wallet.button": [
     {
       "type": 0,
@@ -47,22 +59,22 @@
       "value": "Подключить кошелек"
     }
   ],
+  "create-box": [
+    {
+      "type": 0,
+      "value": "Создать бокс"
+    }
+  ],
+  "create-box-subtitle": [
+    {
+      "type": 0,
+      "value": "Запустите опрос и вовлеките аудиторию"
+    }
+  ],
   "create-button": [
     {
       "type": 0,
       "value": "Создать"
-    }
-  ],
-  "create-voting": [
-    {
-      "type": 0,
-      "value": "Создать голосование"
-    }
-  ],
-  "create-voting-subtitle": [
-    {
-      "type": 0,
-      "value": "Запустите опрос и вовлеките аудиторию"
     }
   ],
   "create-voting-title": [
@@ -179,12 +191,6 @@
       "value": "Победители делят деньги проигравших. Голосовать можно неограниченное количество раз."
     }
   ],
-  "money-pool-subtitle": [
-    {
-      "type": 0,
-      "value": "Победители делят деньги проигравших. Голосовать можно неограниченное количество раз."
-    }
-  ],
   "money-pool-title": [
     {
       "type": 0,
@@ -197,19 +203,19 @@
       "value": "Выбор нескольких вариантов"
     }
   ],
+  "my-boxes": [
+    {
+      "type": 0,
+      "value": "Мои боксы"
+    }
+  ],
+  "my-boxes-subtitle": [
+    {
+      "type": 0,
+      "value": "Активные и завершенные опросы"
+    }
+  ],
   "my-polls": [
-    {
-      "type": 0,
-      "value": "Мои опросы"
-    }
-  ],
-  "my-polls-subtitle": [
-    {
-      "type": 0,
-      "value": "Здесь собраны ваши опросы. Активные и завершенные."
-    }
-  ],
-  "my-polls-title": [
     {
       "type": 0,
       "value": "Мои опросы"
@@ -219,12 +225,6 @@
     {
       "type": 0,
       "value": "Мои голоса"
-    }
-  ],
-  "my-votes-subtitle": [
-    {
-      "type": 0,
-      "value": "История ваших голосований"
     }
   ],
   "option-placeholder": [
@@ -309,6 +309,12 @@
       "value": "Завершен"
     }
   ],
+  "status-completing": [
+    {
+      "type": 0,
+      "value": "Завершается"
+    }
+  ],
   "status-loading": [
     {
       "type": 0,
@@ -367,6 +373,26 @@
     {
       "type": 0,
       "value": " ч"
+    }
+  ],
+  "voteSettings.timeLeftMinutesOnly": [
+    {
+      "type": 0,
+      "value": "Еще "
+    },
+    {
+      "type": 1,
+      "value": "minutes"
+    },
+    {
+      "type": 0,
+      "value": " мин"
+    }
+  ],
+  "votes-history-subtitle": [
+    {
+      "type": 0,
+      "value": "История ваших голосов"
     }
   ]
 }

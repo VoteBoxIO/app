@@ -13,7 +13,7 @@ export const ClaimRewardButton: FC<{
 
   return (
     <ButtonRegular color="purple" onClick={claimReward} disabled={!claimable}>
-      <FormattedMessage id="claim-win" defaultMessage="Забрать выигрыш" />{' '}
+      <FormattedMessage id="claim-reward" defaultMessage="Забрать выигрыш" />{' '}
       {fromNano(vote.amount)}TON
     </ButtonRegular>
   )
