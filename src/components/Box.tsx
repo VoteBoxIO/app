@@ -84,8 +84,9 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
         }
         bottomElement={
           wallet &&
-          filterVotesCreatedByUser(box.boxChoices, wallet).map(
-            ({ jettonMasterAddress, ...vote }) => {
+          filterVotesCreatedByUser(box.boxChoices, wallet)
+            .sort((a, b) => Number(a.createdAt) - Number(b.createdAt))
+            .map(({ jettonMasterAddress, ...vote }) => {
               return (
                 <ClaimRewardButton
                   key={vote.id}
@@ -93,8 +94,7 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
                   jettonMasterAddress={jettonMasterAddress}
                 />
               )
-            },
-          )
+            })
         }
         boxChoices={box.boxChoices}
         onPollItemClick={handlePollItemClick}

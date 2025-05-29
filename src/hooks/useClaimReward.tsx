@@ -31,6 +31,37 @@ export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
   useEffect(() => {
     if (!voteJettonMasterContract) return
     ;(async () => {
+      // const [
+      //   getConfirmedVotes,
+      //   getFund,
+      //   getGetJettonData,
+      //   getMinBalance,
+      //   getOwner,
+      //   getUnclaimedVotes,
+      //   getWinner,
+      //   getClaimble,
+      // ] = await Promise.all([
+      //   voteJettonMasterContract.getConfirmedVotes(),
+      //   voteJettonMasterContract.getFund(),
+      //   voteJettonMasterContract.getGetJettonData(),
+      //   voteJettonMasterContract.getMinBalance(),
+      //   voteJettonMasterContract.getOwner(),
+      //   voteJettonMasterContract.getUnclaimedVotes(),
+      //   voteJettonMasterContract.getWinner(),
+      //   voteJettonMasterContract.getClaimble(),
+      // ])
+
+      // console.log({
+      //   getConfirmedVotes,
+      //   getFund,
+      //   getGetJettonData,
+      //   getMinBalance,
+      //   getOwner: getOwner.toRawString(),
+      //   getUnclaimedVotes,
+      //   getWinner,
+      //   getClaimble,
+      // })
+
       const claimable = await voteJettonMasterContract.getClaimble()
       setClaimable(claimable)
     })()
