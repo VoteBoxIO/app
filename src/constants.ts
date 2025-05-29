@@ -3,7 +3,7 @@ import { CHAIN } from '@tonconnect/ui-react'
 
 export const CONTRACT_ADDRESSES: Record<CHAIN, { boxCollection: string }> = {
   [CHAIN.TESTNET]: {
-    boxCollection: 'kQDUmhDUD-1kfs3NJ0PKNfqjTvADSZFjVXFU-p3NckZL4e3M',
+    boxCollection: 'kQDEQGiPi6buw4iSIC4iQfWDWzvrG4cmiW-vICLrG3m9426W',
   },
   [CHAIN.MAINNET]: {
     boxCollection: '',
