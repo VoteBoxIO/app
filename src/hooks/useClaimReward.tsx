@@ -41,8 +41,15 @@ export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
       return
     }
     ;(async () => {
-      const claimable = await voteJettonMasterContract.getClaimble()
-      setClaimable(claimable)
+      try {
+        const claimable = await voteJettonMasterContract.getClaimble()
+        setClaimable(claimable)
+      } catch (error) {
+        console.error(
+          'Requesting voteJettonMasterContract.getClaimble is failed',
+          error,
+        )
+      }
     })()
   }, [voteJettonMasterContract])
 
