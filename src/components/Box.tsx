@@ -84,6 +84,8 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
         }
         bottomElement={
           wallet &&
+          // На этом статусе можно забрать выигрыш
+          box.boxStatus === BOX_STATUS.STATE_REWARDS_DISTRIBUTED &&
           filterVotesCreatedByUser(box.boxChoices, wallet)
             .sort((a, b) => Number(a.createdAt) - Number(b.createdAt))
             .map(({ jettonMasterAddress, ...vote }) => {
