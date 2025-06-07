@@ -13,23 +13,33 @@ export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
   const [claimable, setClaimable] = useState<boolean | null>(null)
 
   const voteJettonMasterContract = useAsyncInitialize(async () => {
-    if (!client) return
+    if (!client) {
+      return
+    }
     const contract = VoteJettonMasterWrappers.VoteJettonMaster.fromAddress(
       Address.parse(jettonMasterAddress),
     )
-    return client.open(contract)
+    const openedContract = client.open(contract)
+
+    return openedContract
   }, [client])
 
   const voteJettonWalletContract = useAsyncInitialize(async () => {
-    if (!client) return
+    if (!client) {
+      return
+    }
     const contract = VoteJettonWalletWrappers.VoteJettonWallet.fromAddress(
       Address.parse(vote.jettonWalletAddress),
     )
-    return client.open(contract)
+    const openedContract = client.open(contract)
+
+    return openedContract
   }, [client])
 
   useEffect(() => {
-    if (!voteJettonMasterContract) return
+    if (!voteJettonMasterContract) {
+      return
+    }
     ;(async () => {
       const claimable = await voteJettonMasterContract.getClaimble()
       setClaimable(claimable)
