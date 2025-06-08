@@ -1,8 +1,7 @@
-import { getHttpEndpoint } from '@orbs-network/ton-access'
 import { TonClient } from '@ton/ton'
-import { CHAIN } from '@tonconnect/protocol'
 import { useAsyncInitialize } from './useAsyncInitialize'
 import { useTonConnect } from './useTonConnect'
+import { CHAIN } from '@tonconnect/ui-react'
 
 export function useTonClient() {
   const { network } = useTonConnect()
@@ -14,13 +13,11 @@ export function useTonClient() {
       }
 
       return new TonClient({
-        endpoint: await getHttpEndpoint({
-          network: network
-            ? network === CHAIN.MAINNET
-              ? 'mainnet'
-              : 'testnet'
-            : 'testnet' /** @TODO потом заменить на 'mainnet', потому что без кошелька нужно ходить в бой. */,
-        }),
+        endpoint:
+          network === CHAIN.MAINNET
+            ? ''
+            : 'https://testnet.toncenter.com/api/v2/jsonRPC',
+        apiKey: process.env.TON_CLIENT_API_KEY,
       })
     }, [network]),
   }

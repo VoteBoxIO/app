@@ -1,5 +1,5 @@
 import { Address, toNano } from '@ton/core'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   VoteJettonMasterWrappers,
   VoteJettonWalletWrappers,
@@ -10,7 +10,9 @@ import { Vote } from './useBoxes'
 
 export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
   const { client, sender } = useAppContext()
-  const [claimable, setClaimable] = useState<boolean | null>(null)
+  const [isClaimable, setIsClaimable] = useState<boolean | null>(null)
+  const [isClaimableLoading, setIsClaimableLoading] = useState<boolean>(false)
+  const [isClaimableError, setIsClaimableError] = useState<boolean>(false)
 
   const voteJettonMasterContract = useAsyncInitialize(async () => {
     if (!client) {
@@ -36,25 +38,38 @@ export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
     return openedContract
   }, [client])
 
+  const fetchIsClaimable = useCallback(async () => {
+    if (!voteJettonMasterContract) {
+      return
+    }
+
+    try {
+      setIsClaimableError(false)
+      setIsClaimableLoading(true)
+      const claimable = await voteJettonMasterContract.getClaimble()
+      setIsClaimable(claimable)
+    } catch (error) {
+      setIsClaimableError(true)
+      console.error(
+        'Requesting voteJettonMasterContract.getClaimble is failed',
+        error,
+      )
+    } finally {
+      setIsClaimableLoading(false)
+    }
+  }, [voteJettonMasterContract])
+
   useEffect(() => {
     if (!voteJettonMasterContract) {
       return
     }
-    ;(async () => {
-      try {
-        const claimable = await voteJettonMasterContract.getClaimble()
-        setClaimable(claimable)
-      } catch (error) {
-        console.error(
-          'Requesting voteJettonMasterContract.getClaimble is failed',
-          error,
-        )
-      }
-    })()
-  }, [voteJettonMasterContract])
+    fetchIsClaimable()
+  }, [fetchIsClaimable, voteJettonMasterContract])
 
   return {
-    claimable,
+    isClaimable,
+    isClaimableLoading,
+    isClaimableError,
     claimReward: async () => {
       if (!voteJettonWalletContract) {
         throw new Error('voteJettonWalletContract is not available')
@@ -72,5 +87,6 @@ export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
         throw new Error(error as string)
       }
     },
+    retryFetchIsClaimable: fetchIsClaimable,
   }
 }
