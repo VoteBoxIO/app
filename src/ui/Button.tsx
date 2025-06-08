@@ -3,6 +3,7 @@ import { styled } from '@linaria/react'
 import React, { ComponentProps, FC, PropsWithChildren } from 'react'
 import { Typography } from './Typography'
 import { RouterLink } from './RouterLink'
+import { Loader } from './Loader'
 
 export const ButtonLink: FC<
   PropsWithChildren & {
@@ -22,30 +23,41 @@ export const ButtonLink: FC<
 }
 
 export const ButtonRegular: FC<
-  ComponentProps<typeof StyledButton> & {
+  ComponentProps<typeof ButtonStyled> & {
     color: Color
+    loading?: boolean
   }
-> = ({ children, color, ...props }) => {
+> = ({ children, color, loading, disabled, ...props }) => {
   return (
-    <StyledButton {...props}>
+    <ButtonStyled {...props} disabled={disabled || loading}>
       <ButtonContainer className={colorCss[color]}>
         <Typography fontSize={16} fontWeight={600}>
-          {children}
+          {loading ? <ButtonLoader /> : children}
         </Typography>
       </ButtonContainer>
-    </StyledButton>
+    </ButtonStyled>
   )
 }
 
 type Color = 'purple' | 'peach'
 
-const StyledButton = styled.button`
+const BUTTON_HEIGHT = 52
+
+const ButtonLoader = styled(Loader)`
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+`
+const ButtonStyled = styled.button`
+  height: ${BUTTON_HEIGHT}px;
   transition: opacity 0.2s;
   &:disabled {
     opacity: 0.5;
   }
 `
 const ButtonContainer = styled.div`
+  height: ${BUTTON_HEIGHT}px;
   padding: 16px 20px;
   border-radius: 26px;
   cursor: pointer;
