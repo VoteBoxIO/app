@@ -41,6 +41,12 @@
       "value": "Claim reward"
     }
   ],
+  "claim-reward-distributed": [
+    {
+      "type": 0,
+      "value": "Reward claimed"
+    }
+  ],
   "connect-wallet.button": [
     {
       "type": 0,

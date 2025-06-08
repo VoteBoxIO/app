@@ -4,7 +4,6 @@ import { FormattedMessage } from 'react-intl'
 import { Vote } from '../hooks/useBoxes'
 import { useClaimReward } from '../hooks/useClaimReward'
 import { ButtonRegular } from '../ui/Button'
-import { Loader } from '../ui/Loader'
 
 export const ClaimRewardButton: FC<{
   vote: Vote
@@ -40,8 +39,8 @@ export const ClaimRewardButton: FC<{
         <FormattedMessage id="claim-reward" defaultMessage="Забрать выигрыш" />
       ) : (
         <FormattedMessage
-          id="claim-reward-impossible"
-          defaultMessage="Забрать выигрыш нельзя"
+          id="claim-reward-distributed"
+          defaultMessage="Выигрыш забрали"
         />
       )}
       {' ' + fromNano(vote.amount)}TON

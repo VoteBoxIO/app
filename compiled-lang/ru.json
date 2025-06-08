@@ -41,6 +41,12 @@
       "value": "Забрать выигрыш"
     }
   ],
+  "claim-reward-distributed": [
+    {
+      "type": 0,
+      "value": "Выигрыш забрали"
+    }
+  ],
   "connect-wallet.button": [
     {
       "type": 0,
