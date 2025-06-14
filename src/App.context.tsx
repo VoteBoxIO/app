@@ -1,9 +1,10 @@
-import { TonApiClient } from '@ton-api/client'
+import { JettonBalance, TonApiClient } from '@ton-api/client'
 import { OpenedContract, Sender } from '@ton/core'
 import { TonClient } from '@ton/ton'
 import React, { createContext, FC, PropsWithChildren, useContext } from 'react'
 import { BoxCollectionV0 } from 'votebox_wrappers/dist/BoxCollectionV0'
 import { useContactAddresses } from './hooks/useContactAddresses'
+import { useFetchAccountJettonsBalances } from './hooks/useFetchAccountJettonsBalances'
 import { useInitializeContracts } from './hooks/useInitializeContracts'
 import { useInitializeTonApiClient } from './hooks/useInitializeTonApiClient'
 
@@ -18,6 +19,7 @@ const contextValue = {
     typeof useContactAddresses
   >,
   basePath: '/' as string,
+  accountJettonsBalances: null as JettonBalance[] | null,
 } as const
 
 export const AppContext = createContext<typeof contextValue>(contextValue)
@@ -28,6 +30,10 @@ export const AppContextProvider: FC<
   const contractsData = useInitializeContracts()!
   const tonApiClient = useInitializeTonApiClient()
   const contractsAddresses = useContactAddresses()
+  const accountJettonsBalances = useFetchAccountJettonsBalances(
+    tonApiClient,
+    contractsData?.wallet,
+  )
   const basePath = process.env.PUBLIC_PATH || '/'
 
   return (
@@ -41,6 +47,7 @@ export const AppContextProvider: FC<
         tonApiClient,
         contractsAddresses,
         basePath,
+        accountJettonsBalances,
       }}
     >
       {children}

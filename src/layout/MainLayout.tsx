@@ -11,7 +11,7 @@ export const MainLayout: FC<{ background?: string }> = ({
 
   return (
     <MainLayoutWrapper background={background}>
-      <Header>
+      <MainLayoutHeader>
         <BackButton onClick={() => navigate(-1)}>
           <ArrowBack />
         </BackButton>
@@ -22,7 +22,7 @@ export const MainLayout: FC<{ background?: string }> = ({
         <TonConnectButtonWrapper>
           <TonConnectButton />
         </TonConnectButtonWrapper>
-      </Header>
+      </MainLayoutHeader>
 
       <MainLayoutInner>
         <Content>
@@ -80,7 +80,7 @@ const TonConnectButtonWrapper = styled.div`
   top: 0;
   right: 0;
 `
-const Header = styled.header`
+const MainLayoutHeader = styled.header`
   padding: 10px 16px 10px;
   position: sticky;
   top: 0;
@@ -89,4 +89,5 @@ const Header = styled.header`
   align-items: center;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #80808029;
+  z-index: 1;
 `

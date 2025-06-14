@@ -1,4 +1,5 @@
-import { Address, toNano } from '@ton/core'
+import { JettonBalance } from '@ton-api/client'
+import { toNano } from '@ton/core'
 import { useCallback, useEffect, useState } from 'react'
 import {
   VoteJettonMasterWrappers,
@@ -6,9 +7,8 @@ import {
 } from 'votebox_wrappers'
 import { useAppContext } from '../App.context'
 import { useAsyncInitialize } from './useAsyncInitialize'
-import { Vote } from './useBoxes'
 
-export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
+export const useClaimReward = (jettonBalance: JettonBalance) => {
   const { client, sender } = useAppContext()
   const [isClaimable, setIsClaimable] = useState<boolean | null>(null)
   const [isClaimableLoading, setIsClaimableLoading] = useState<boolean>(false)
@@ -19,11 +19,9 @@ export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
       return
     }
     const contract = VoteJettonMasterWrappers.VoteJettonMaster.fromAddress(
-      Address.parse(jettonMasterAddress),
+      jettonBalance.jetton.address,
     )
-    const openedContract = client.open(contract)
-
-    return openedContract
+    return client.open(contract)
   }, [client])
 
   const voteJettonWalletContract = useAsyncInitialize(async () => {
@@ -31,11 +29,9 @@ export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
       return
     }
     const contract = VoteJettonWalletWrappers.VoteJettonWallet.fromAddress(
-      Address.parse(vote.jettonWalletAddress),
+      jettonBalance.walletAddress.address,
     )
-    const openedContract = client.open(contract)
-
-    return openedContract
+    return client.open(contract)
   }, [client])
 
   const fetchIsClaimable = useCallback(async () => {
@@ -78,10 +74,7 @@ export const useClaimReward = (vote: Vote, jettonMasterAddress: string) => {
         await voteJettonWalletContract.send(
           sender,
           { value: toNano('0.01') },
-          {
-            $$type: 'ClaimUserRewardRequest',
-            query_id: 1n,
-          },
+          { $$type: 'ClaimUserRewardRequest', query_id: 1n },
         )
       } catch (error) {
         throw new Error(error as string)

@@ -17,6 +17,12 @@
       "value": "Добавить вариант"
     }
   ],
+  "bet": [
+    {
+      "type": 0,
+      "value": "Ставка"
+    }
+  ],
   "blogger-commission-placeholder": [
     {
       "type": 0,
@@ -39,12 +45,6 @@
     {
       "type": 0,
       "value": "Забрать выигрыш"
-    }
-  ],
-  "claim-reward-distributed": [
-    {
-      "type": 0,
-      "value": "Выигрыш забрали"
     }
   ],
   "connect-wallet.button": [

@@ -1,21 +1,20 @@
+import { JettonBalance } from '@ton-api/client'
 import { fromNano } from '@ton/core'
 import React, { FC } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Vote } from '../hooks/useBoxes'
 import { useClaimReward } from '../hooks/useClaimReward'
 import { ButtonRegular } from '../ui/Button'
 
-export const ClaimRewardButton: FC<{
-  vote: Vote
-  jettonMasterAddress: string
-}> = ({ vote, jettonMasterAddress }) => {
+export const ClaimRewardButton: FC<{ jettonBalance: JettonBalance }> = ({
+  jettonBalance,
+}) => {
   const {
     isClaimable,
     isClaimableLoading,
     isClaimableError,
     retryFetchIsClaimable,
     claimReward,
-  } = useClaimReward(vote, jettonMasterAddress)
+  } = useClaimReward(jettonBalance)
 
   if (isClaimableError) {
     return (
@@ -38,12 +37,9 @@ export const ClaimRewardButton: FC<{
       {isClaimable ? (
         <FormattedMessage id="claim-reward" defaultMessage="Забрать выигрыш" />
       ) : (
-        <FormattedMessage
-          id="claim-reward-distributed"
-          defaultMessage="Выигрыш забрали"
-        />
+        <FormattedMessage id="bet" defaultMessage="Ставка" />
       )}
-      {' ' + fromNano(vote.amount)}TON
+      {' ' + fromNano(jettonBalance.balance)} TON
     </ButtonRegular>
   )
 }

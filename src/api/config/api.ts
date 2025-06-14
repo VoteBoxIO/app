@@ -1,8 +1,13 @@
+const getApiBaseUrl = () => {
+  if (process.env.NODE_ENV === 'development') {
+    return 'https://testnet.votebox.io/api'
+    // return 'http://localhost:3000/api'
+  }
+  return 'https://testnet.votebox.io/api'
+}
+
 export const API_CONFIG = {
-  baseUrl:
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000/api'
-      : process.env.API_URL || 'https://testnet.votebox.io/api',
+  baseUrl: getApiBaseUrl(),
   endpoints: {
     boxes: {
       getAll: '/boxes',
@@ -21,7 +26,4 @@ export interface BoxQueryParams {
   votedByMe?: boolean
 }
 
-export const DEFAULT_PAGINATION = {
-  page: 1,
-  limit: 10,
-} as const
+export const DEFAULT_PAGINATION = { page: 1, limit: 10 } as const

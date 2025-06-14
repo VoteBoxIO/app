@@ -20,8 +20,8 @@
   "claim-reward": {
     "defaultMessage": "Забрать выигрыш"
   },
-  "claim-reward-distributed": {
-    "defaultMessage": "Выигрыш забрали"
+  "bet": {
+    "defaultMessage": "Ставка"
   },
   "connect-wallet.button": {
     "defaultMessage": "Подключить кошелек"

@@ -23,6 +23,12 @@
       "value": "Add option"
     }
   ],
+  "bet": [
+    {
+      "type": 0,
+      "value": "Bet"
+    }
+  ],
   "blogger-commission-placeholder": [
     {
       "type": 0,
@@ -39,12 +45,6 @@
     {
       "type": 0,
       "value": "Claim reward"
-    }
-  ],
-  "claim-reward-distributed": [
-    {
-      "type": 0,
-      "value": "Reward claimed"
     }
   ],
   "connect-wallet.button": [

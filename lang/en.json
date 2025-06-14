@@ -20,8 +20,8 @@
   "claim-reward": {
     "defaultMessage": "Claim reward"
   },
-  "claim-reward-distributed": {
-    "defaultMessage": "Reward claimed"
+  "bet": {
+    "defaultMessage": "Bet"
   },
   "connect-wallet.button": {
     "defaultMessage": "Connect wallet"

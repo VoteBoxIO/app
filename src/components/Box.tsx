@@ -3,14 +3,14 @@ import React, { FC, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { BoxV0Wrappers } from 'votebox_wrappers'
 import { useAppContext } from '../App.context'
+import { BOX_STATUS } from '../constants'
 import { getTimeLeft } from '../functions/getTimeLeft'
 import { useAsyncInitialize } from '../hooks/useAsyncInitialize'
 import { Box as TypeBox } from '../hooks/useBoxes'
 import { useSendUserVote } from '../hooks/useSendUserVote'
 import { BoxView } from '../ui/BoxView'
+import { BoxClaimRewardBlock } from './BoxClaimRewardBlock'
 import { EnterAmountDialog } from './EnterAmountDialog'
-import { ClaimRewardButton } from './ClaimRewardButton'
-import { BOX_STATUS } from '../constants'
 
 export const Box: FC<{ box: TypeBox }> = ({ box }) => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(
@@ -83,20 +83,11 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
           />
         }
         bottomElement={
-          wallet &&
-          // На этом статусе можно забрать выигрыш
-          box.boxStatus === BOX_STATUS.STATE_REWARDS_DISTRIBUTED &&
-          filterVotesCreatedByUser(box.boxChoices, wallet)
-            .sort((a, b) => Number(a.createdAt) - Number(b.createdAt))
-            .map(({ jettonMasterAddress, ...vote }) => {
-              return (
-                <ClaimRewardButton
-                  key={vote.id}
-                  vote={vote}
-                  jettonMasterAddress={jettonMasterAddress}
-                />
-              )
-            })
+          wallet && (
+            // На этом статусе можно забрать выигрыш
+            // box.boxStatus === BOX_STATUS.STATE_REWARDS_DISTRIBUTED &&
+            <BoxClaimRewardBlock boxIndex={Number(box.itemIndex)} />
+          )
         }
         boxChoices={box.boxChoices}
         onPollItemClick={handlePollItemClick}
@@ -123,6 +114,7 @@ const filterVotesCreatedByUser = (
       boxChoice.votes.map(vote => ({
         ...vote,
         jettonMasterAddress: boxChoice.jettonMasterAddress,
+        choiceIndex: boxChoice.choiceIndex,
       })),
     )
     .filter(vote => vote.user === wallet)

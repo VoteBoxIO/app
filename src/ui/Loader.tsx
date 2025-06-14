@@ -5,11 +5,11 @@ import { WithClassName } from '../commonTypes'
 
 export const Loader: FC<WithClassName> = ({ className }) => {
   return (
-    <div className={cx(wrapperCss, className)}>
-      <div className={spinnerCss}>
+    <span className={cx(wrapperCss, className)}>
+      <span className={spinnerCss}>
         <SvgLoader />
-      </div>
-    </div>
+      </span>
+    </span>
   )
 }
 
