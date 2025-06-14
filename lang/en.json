@@ -1,11 +1,5 @@
 {
-  "box-not-found": {
-    "defaultMessage": "Box not found"
-  },
-  "active-voting": {
-    "defaultMessage": "Active boxes"
-  },
-  "active-voting-subtitle": {
+  "active-boxes-subtitle": {
     "defaultMessage": "View active boxes"
   },
   "active-voting-title": {
@@ -15,7 +9,13 @@
     "defaultMessage": "Add option"
   },
   "blogger-commission-placeholder": {
-    "defaultMessage": "Blogger commission"
+    "defaultMessage": "Blogger's commission"
+  },
+  "box-not-found": {
+    "defaultMessage": "Poll not found"
+  },
+  "boxes": {
+    "defaultMessage": "Boxes"
   },
   "claim-reward": {
     "defaultMessage": "Claim reward"
@@ -27,40 +27,40 @@
     "defaultMessage": "Connect wallet"
   },
   "connect-wallet.subtitle": {
-    "defaultMessage": "You need to connect your wallet to pay for participation and receive rewards after the box ends. This won't take long."
+    "defaultMessage": "You need to connect a wallet to participate and receive rewards after the voting ends. It won't take long."
   },
   "connect-wallet.title": {
     "defaultMessage": "Connect wallet"
   },
+  "create-box": {
+    "defaultMessage": "Create box"
+  },
+  "create-box-subtitle": {
+    "defaultMessage": "Launch a poll and engage your audience"
+  },
   "create-button": {
     "defaultMessage": "Create"
-  },
-  "create-voting": {
-    "defaultMessage": "Create voting"
-  },
-  "create-voting-subtitle": {
-    "defaultMessage": "Launch a box and engage your audience"
   },
   "create-voting-title": {
     "defaultMessage": "Create box"
   },
   "create-voting-type": {
-    "defaultMessage": "Choose the type of box and set parameters"
+    "defaultMessage": "Choose voting type and set parameters"
   },
   "creator-basis-points-error": {
-    "defaultMessage": "Blogger commission must be between 0% and 15%"
+    "defaultMessage": "Blogger's commission must be between 0% and 15%"
   },
   "deadline-error-too-early": {
-    "defaultMessage": "The deadline must be no earlier than 2 hours from now"
+    "defaultMessage": "Deadline must be at least 2 hours from now"
   },
   "deadline-error-too-late": {
-    "defaultMessage": "The deadline must be no later than 90 days from now"
+    "defaultMessage": "Deadline must be within 90 days"
   },
   "deadline-placeholder": {
     "defaultMessage": "Set deadline"
   },
   "enter-amount.placeholder": {
-    "defaultMessage": "Ton bet amount"
+    "defaultMessage": "Bet amount in Ton"
   },
   "enter-amount.submit": {
     "defaultMessage": "Done"
@@ -72,10 +72,10 @@
     "defaultMessage": "Enter amount"
   },
   "error-loading": {
-    "defaultMessage": "Error loading. Retry"
+    "defaultMessage": "Loading error. Retry"
   },
   "how-it-works": {
-    "defaultMessage": "How it works?"
+    "defaultMessage": "How does it work?"
   },
   "how-to-create": {
     "defaultMessage": "How to create"
@@ -84,7 +84,7 @@
     "defaultMessage": "Invite a friend"
   },
   "invite-friend-bonus": {
-    "defaultMessage": "Refer a friend and earn bonuses"
+    "defaultMessage": "Invite a friend and get bonuses"
   },
   "logo-subtitle": {
     "defaultMessage": "Monetize your content"
@@ -93,10 +93,10 @@
     "defaultMessage": "Money pool"
   },
   "money-pool-button": {
-    "defaultMessage": "Create box"
+    "defaultMessage": "Create voting"
   },
   "money-pool-description": {
-    "defaultMessage": "Winners split the losers' money. You can participate unlimited times."
+    "defaultMessage": "Winners share the money from the losing side. You can vote unlimited times."
   },
   "money-pool-title": {
     "defaultMessage": "Money pool"
@@ -104,17 +104,17 @@
   "multiple-options-toggle": {
     "defaultMessage": "Multiple choice"
   },
+  "my-boxes": {
+    "defaultMessage": "My boxes"
+  },
+  "my-boxes-subtitle": {
+    "defaultMessage": "Active and completed polls"
+  },
   "my-polls": {
     "defaultMessage": "My boxes"
   },
-  "my-polls-subtitle": {
-    "defaultMessage": "Your boxes history"
-  },
   "my-votes": {
-    "defaultMessage": "My boxes participation"
-  },
-  "my-votes-subtitle": {
-    "defaultMessage": "Your boxes participation history"
+    "defaultMessage": "My votes"
   },
   "option-placeholder": {
     "defaultMessage": "Answer option"
@@ -123,13 +123,13 @@
     "defaultMessage": "Answer options cannot be empty"
   },
   "paid-voting-button": {
-    "defaultMessage": "Create box"
+    "defaultMessage": "Create voting"
   },
   "paid-voting-subtitle": {
-    "defaultMessage": "All participants get access to content. One participation – fixed cost."
+    "defaultMessage": "All participants get access to content. One vote – fixed cost."
   },
   "paid-voting-title": {
-    "defaultMessage": "Paid box"
+    "defaultMessage": "Paid voting"
   },
   "payment-methods": {
     "defaultMessage": "Payment methods"
@@ -138,13 +138,13 @@
     "defaultMessage": "{commission}% commission"
   },
   "poll": {
-    "defaultMessage": "Box"
+    "defaultMessage": "Poll"
   },
   "poll-name-error": {
-    "defaultMessage": "Box name cannot be empty"
+    "defaultMessage": "Voting name must not be empty"
   },
   "poll-name-placeholder": {
-    "defaultMessage": "Box name"
+    "defaultMessage": "Voting name"
   },
   "poll-type-access-to-content": {
     "defaultMessage": "Access to content"
@@ -168,15 +168,18 @@
     "defaultMessage": "Active"
   },
   "tab-finished": {
-    "defaultMessage": "Finished"
+    "defaultMessage": "Completed"
   },
   "voteSettings.timeLeft": {
-    "defaultMessage": "{days}d {hours}h left"
+    "defaultMessage": "{days} d and {hours} h left"
   },
   "voteSettings.timeLeftHoursOnly": {
-    "defaultMessage": "{hours}h left"
+    "defaultMessage": "{hours} h left"
   },
   "voteSettings.timeLeftMinutesOnly": {
-    "defaultMessage": "{minutes}m left"
+    "defaultMessage": "{minutes} min left"
+  },
+  "votes-history-subtitle": {
+    "defaultMessage": "Your voting history"
   }
 }

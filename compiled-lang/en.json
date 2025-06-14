@@ -1,11 +1,5 @@
 {
-  "active-voting": [
-    {
-      "type": 0,
-      "value": "Active boxes"
-    }
-  ],
-  "active-voting-subtitle": [
+  "active-boxes-subtitle": [
     {
       "type": 0,
       "value": "View active boxes"
@@ -32,13 +26,19 @@
   "blogger-commission-placeholder": [
     {
       "type": 0,
-      "value": "Blogger commission"
+      "value": "Blogger's commission"
     }
   ],
   "box-not-found": [
     {
       "type": 0,
-      "value": "Box not found"
+      "value": "Poll not found"
+    }
+  ],
+  "boxes": [
+    {
+      "type": 0,
+      "value": "Boxes"
     }
   ],
   "claim-reward": [
@@ -56,7 +56,7 @@
   "connect-wallet.subtitle": [
     {
       "type": 0,
-      "value": "You need to connect your wallet to pay for participation and receive rewards after the box ends. This won't take long."
+      "value": "You need to connect a wallet to participate and receive rewards after the voting ends. It won't take long."
     }
   ],
   "connect-wallet.title": [
@@ -65,22 +65,22 @@
       "value": "Connect wallet"
     }
   ],
+  "create-box": [
+    {
+      "type": 0,
+      "value": "Create box"
+    }
+  ],
+  "create-box-subtitle": [
+    {
+      "type": 0,
+      "value": "Launch a poll and engage your audience"
+    }
+  ],
   "create-button": [
     {
       "type": 0,
       "value": "Create"
-    }
-  ],
-  "create-voting": [
-    {
-      "type": 0,
-      "value": "Create voting"
-    }
-  ],
-  "create-voting-subtitle": [
-    {
-      "type": 0,
-      "value": "Launch a box and engage your audience"
     }
   ],
   "create-voting-title": [
@@ -92,25 +92,25 @@
   "create-voting-type": [
     {
       "type": 0,
-      "value": "Choose the type of box and set parameters"
+      "value": "Choose voting type and set parameters"
     }
   ],
   "creator-basis-points-error": [
     {
       "type": 0,
-      "value": "Blogger commission must be between 0% and 15%"
+      "value": "Blogger's commission must be between 0% and 15%"
     }
   ],
   "deadline-error-too-early": [
     {
       "type": 0,
-      "value": "The deadline must be no earlier than 2 hours from now"
+      "value": "Deadline must be at least 2 hours from now"
     }
   ],
   "deadline-error-too-late": [
     {
       "type": 0,
-      "value": "The deadline must be no later than 90 days from now"
+      "value": "Deadline must be within 90 days"
     }
   ],
   "deadline-placeholder": [
@@ -122,7 +122,7 @@
   "enter-amount.placeholder": [
     {
       "type": 0,
-      "value": "Ton bet amount"
+      "value": "Bet amount in Ton"
     }
   ],
   "enter-amount.submit": [
@@ -146,13 +146,13 @@
   "error-loading": [
     {
       "type": 0,
-      "value": "Error loading. Retry"
+      "value": "Loading error. Retry"
     }
   ],
   "how-it-works": [
     {
       "type": 0,
-      "value": "How it works?"
+      "value": "How does it work?"
     }
   ],
   "how-to-create": [
@@ -170,7 +170,7 @@
   "invite-friend-bonus": [
     {
       "type": 0,
-      "value": "Refer a friend and earn bonuses"
+      "value": "Invite a friend and get bonuses"
     }
   ],
   "logo-subtitle": [
@@ -188,13 +188,13 @@
   "money-pool-button": [
     {
       "type": 0,
-      "value": "Create box"
+      "value": "Create voting"
     }
   ],
   "money-pool-description": [
     {
       "type": 0,
-      "value": "Winners split the losers' money. You can participate unlimited times."
+      "value": "Winners share the money from the losing side. You can vote unlimited times."
     }
   ],
   "money-pool-title": [
@@ -209,28 +209,28 @@
       "value": "Multiple choice"
     }
   ],
-  "my-polls": [
+  "my-boxes": [
     {
       "type": 0,
       "value": "My boxes"
     }
   ],
-  "my-polls-subtitle": [
+  "my-boxes-subtitle": [
     {
       "type": 0,
-      "value": "Your boxes history"
+      "value": "Active and completed polls"
+    }
+  ],
+  "my-polls": [
+    {
+      "type": 0,
+      "value": "My polls"
     }
   ],
   "my-votes": [
     {
       "type": 0,
-      "value": "My boxes participation"
-    }
-  ],
-  "my-votes-subtitle": [
-    {
-      "type": 0,
-      "value": "Your boxes participation history"
+      "value": "My votes"
     }
   ],
   "option-placeholder": [
@@ -248,19 +248,19 @@
   "paid-voting-button": [
     {
       "type": 0,
-      "value": "Create box"
+      "value": "Create voting"
     }
   ],
   "paid-voting-subtitle": [
     {
       "type": 0,
-      "value": "All participants get access to content. One participation – fixed cost."
+      "value": "All participants get access to content. One vote – fixed cost."
     }
   ],
   "paid-voting-title": [
     {
       "type": 0,
-      "value": "Paid box"
+      "value": "Paid voting"
     }
   ],
   "payment-methods": [
@@ -282,19 +282,19 @@
   "poll": [
     {
       "type": 0,
-      "value": "Box"
+      "value": "Poll"
     }
   ],
   "poll-name-error": [
     {
       "type": 0,
-      "value": "Box name cannot be empty"
+      "value": "Voting name must not be empty"
     }
   ],
   "poll-name-placeholder": [
     {
       "type": 0,
-      "value": "Box name"
+      "value": "Voting name"
     }
   ],
   "poll-type-access-to-content": [
@@ -342,7 +342,7 @@
   "tab-finished": [
     {
       "type": 0,
-      "value": "Finished"
+      "value": "Completed"
     }
   ],
   "voteSettings.timeLeft": [
@@ -352,7 +352,7 @@
     },
     {
       "type": 0,
-      "value": "d "
+      "value": " d and "
     },
     {
       "type": 1,
@@ -360,7 +360,7 @@
     },
     {
       "type": 0,
-      "value": "h left"
+      "value": " h left"
     }
   ],
   "voteSettings.timeLeftHoursOnly": [
@@ -370,7 +370,7 @@
     },
     {
       "type": 0,
-      "value": "h left"
+      "value": " h left"
     }
   ],
   "voteSettings.timeLeftMinutesOnly": [
@@ -380,7 +380,13 @@
     },
     {
       "type": 0,
-      "value": "m left"
+      "value": " min left"
+    }
+  ],
+  "votes-history-subtitle": [
+    {
+      "type": 0,
+      "value": "Your voting history"
     }
   ]
 }
