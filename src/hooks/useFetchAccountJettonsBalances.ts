@@ -31,7 +31,7 @@ export const useFetchAccountJettonsBalances = (
 
       intervalId = window.setInterval(() => {
         fetchAccountJettonsBalances()
-      }, 30 * 1000)
+      }, 15 * 1000)
     }
 
     return () => {
