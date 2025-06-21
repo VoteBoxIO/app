@@ -22,7 +22,7 @@ export const CreateMoneyPoolPage: FC = () => {
     pollName: '',
     deadline: '',
     options: [''],
-    allowMultipleOptions: false,
+    // allowMultipleOptions: false,
     // rewardFile: null as File | null,
     // quizMode: false,
   })
@@ -132,11 +132,11 @@ export const CreateMoneyPoolPage: FC = () => {
     }
   }
 
-  const handleToggleChange = (
-    name: 'allowMultipleOptions' /** | 'quizMode' */,
-  ) => {
-    setVoting(prev => ({ ...prev, [name]: !prev[name] }))
-  }
+  // const handleToggleChange = (
+  //   name: 'allowMultipleOptions' /** | 'quizMode' */,
+  // ) => {
+  //   setVoting(prev => ({ ...prev, [name]: !prev[name] }))
+  // }
 
   const canAddOption = voting.options.length < VOTING_SETTINGS.maxChoices
 
@@ -249,7 +249,7 @@ export const CreateMoneyPoolPage: FC = () => {
               {canAddOption && <AddOptionButton onClick={addOption} />}
             </Rhytm>
 
-            <Rhytm style={{ marginTop: 20 }}>
+            {/* <Rhytm style={{ marginTop: 20 }}>
               <Toggle
                 label={formatMessage({
                   id: 'multiple-options-toggle',
@@ -258,15 +258,15 @@ export const CreateMoneyPoolPage: FC = () => {
                 checked={voting.allowMultipleOptions}
                 onChange={() => handleToggleChange('allowMultipleOptions')}
               />
-              {/* <Toggle
+              <Toggle
               label={formatMessage({
                 id: 'quiz-mode-toggle',
                 defaultMessage: 'Режим викторины',
               })}
               checked={formData.quizMode}
               onChange={() => handleToggleChange('quizMode')}
-            /> */}
-            </Rhytm>
+            />
+            </Rhytm> */}
 
             <ButtonRegular
               color="purple"
