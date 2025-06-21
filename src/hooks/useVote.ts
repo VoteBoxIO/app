@@ -1,14 +1,17 @@
 import { OpenedContract, toNano } from '@ton/core'
+import { useNavigate } from 'react-router'
 import { BoxV0Wrappers } from 'votebox_wrappers'
 import { useAppContext } from '../App.context'
+import { myActiveVotesPagePath } from '../pages/MyVotesPage'
 
-export const useSendUserVote = (
+export const useVote = (
   openedContact: OpenedContract<BoxV0Wrappers.BoxV0> | undefined,
   recommendedVoteGas: string,
 ) => {
   const { sender } = useAppContext()
+  const navigate = useNavigate()
 
-  const sendUserVote = async (index: number, amount: string) => {
+  const sendVote = async (index: number, amount: string) => {
     if (!openedContact || !amount) {
       console.error('Failed to send user vote')
       return
@@ -30,6 +33,7 @@ export const useSendUserVote = (
         },
       )
       console.log(result)
+      navigate(myActiveVotesPagePath)
     } catch (error) {
       console.error('Error sending user vote', error)
     }
@@ -44,7 +48,7 @@ export const useSendUserVote = (
   }
 
   return {
-    sendUserVote,
+    sendVote,
     isValidVotingAmount,
   }
 }

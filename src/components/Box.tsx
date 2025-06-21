@@ -7,7 +7,7 @@ import { BOX_STATUS } from '../constants'
 import { getTimeLeft } from '../functions/getTimeLeft'
 import { useAsyncInitialize } from '../hooks/useAsyncInitialize'
 import { Box as TypeBox } from '../hooks/useBoxes'
-import { useSendUserVote } from '../hooks/useSendUserVote'
+import { useVote } from '../hooks/useVote'
 import { BoxView } from '../ui/BoxView'
 import { BoxClaimRewardBlock } from './BoxClaimRewardBlock'
 import { EnterAmountDialog } from './EnterAmountDialog'
@@ -27,7 +27,7 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
     }
   }, [client])
 
-  const { sendUserVote, isValidVotingAmount } = useSendUserVote(
+  const { sendVote, isValidVotingAmount } = useVote(
     boxV0OpenedContract,
     box.recommendedVoteGas,
   )
@@ -96,7 +96,7 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
       />
       {selectedOptionIndex !== null && (
         <EnterAmountDialog
-          onSubmit={amount => sendUserVote(selectedOptionIndex, amount)}
+          onSubmit={amount => sendVote(selectedOptionIndex, amount)}
           onClose={() => setSelectedOptionIndex(null)}
           isValidVotingAmount={isValidVotingAmount}
         />
