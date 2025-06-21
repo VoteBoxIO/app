@@ -14,7 +14,9 @@ import path from 'path'
 dotenv.config()
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const isHttpsMode = process.env.HTTPS === 'true'
-const PUBLIC_PATH = '/app'
+const PUBLIC_PATH = '/'
+// Нужно было для github pages, потому что там был URI /app в конце URL: https://voteboxio.github.io/app/
+// const PUBLIC_PATH = '/app'
 
 export const formatDateTime = (date: Date = new Date()): string => {
   return date.toLocaleString('ru', {
