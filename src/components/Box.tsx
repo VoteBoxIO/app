@@ -45,6 +45,7 @@ export const Box: FC<{ box: TypeBox }> = ({ box }) => {
   return (
     <>
       <BoxView
+        boxId={box.id}
         title={box.question}
         expiration={
           isExpired ? (

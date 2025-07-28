@@ -1,12 +1,14 @@
 import { styled } from '@linaria/react'
 import React, { ComponentProps, FC, ReactNode } from 'react'
+import { BoxChoice } from '../hooks/useBoxes'
 import { BoxChoiceView } from './BoxChoiceView'
 import { Rhytm } from './Rhytm'
+import { ShareButton } from './ShareButton'
 import { TextInBubble } from './TextInBubble'
 import { TitleAndSubtitle } from './TitleAndSubtitle'
-import { BoxChoice } from '../hooks/useBoxes'
 
 export const BoxView: FC<{
+  boxId: number
   title: ReactNode
   expiration: ReactNode
   bid: ReactNode
@@ -17,6 +19,7 @@ export const BoxView: FC<{
   bottomElement?: ReactNode
   isExpired: boolean
 }> = ({
+  boxId,
   title,
   expiration,
   bid,
@@ -33,6 +36,7 @@ export const BoxView: FC<{
         <TextInBubble>{expiration}</TextInBubble>
         <TextInBubble>{bid} TON</TextInBubble>
         <TextInBubble>{commission}</TextInBubble>
+        <ShareButton boxId={boxId} />
       </BoxInfo>
 
       <TitleAndSubtitle title={title} />

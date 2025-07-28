@@ -96,7 +96,7 @@ export type Vote = {
 
 export type BoxChoice = {
   id: number
-  boxAddress: string
+  boxIndex: string
   jettonMasterAddress: string
   choice: string
   choiceIndex: number
@@ -107,6 +107,7 @@ export type BoxChoice = {
 }
 
 export type Box = {
+  id: number
   address: string
   transactionHash: string
   masterCollectionAddress: string

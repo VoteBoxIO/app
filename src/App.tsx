@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router'
 import { useAppContext } from './App.context'
 import { BoxActivityType } from './constants'
 import { MainLayout } from './layout/MainLayout'
@@ -38,19 +38,20 @@ import {
 } from './pages/PaymentMethodsPage'
 import { PollTypePage, pollTypePagePath } from './pages/PollTypePage'
 import { SandboxPage, sandboxPagePath } from './pages/SandboxPage'
-import { SingleBoxPage, singleBoxPagePath } from './pages/SingleBoxPage'
+import {
+  SingleBoxPage,
+  singleBoxPageBoxPath,
+  singleBoxPagePath,
+} from './pages/SingleBoxPage'
 import { SupportPage, supportPagePath } from './pages/SupportPage'
+import { parseStartParam } from './functions/parseStartParam'
 
 export const App: FC = () => {
   const { basePath } = useAppContext()
 
-  useEffect(() => {
-    window.Telegram.WebApp.ready()
-    window.Telegram.WebApp.expand()
-  }, [])
-
   return (
     <BrowserRouter basename={basePath}>
+      <Telegram />
       <Routes>
         <Route element={<MainLayout />}>
           <Route index path={indexPagePath} element={<IndexPage />} />
@@ -106,4 +107,23 @@ export const App: FC = () => {
       </Routes>
     </BrowserRouter>
   )
+}
+
+const Telegram: FC = () => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    window.Telegram.WebApp.ready()
+    window.Telegram.WebApp.expand()
+
+    const startParam = window.Telegram.WebApp.initDataUnsafe.start_param
+    const { ref, box } = parseStartParam(startParam)
+    // alert(JSON.stringify({ ref, box }))
+
+    if (box) {
+      navigate(`${singleBoxPageBoxPath}${box}`)
+    }
+  }, [navigate])
+
+  return null
 }

@@ -36,3 +36,4 @@ export const SingleBoxPage: FC = () => {
 }
 
 export const singleBoxPagePath = '/box/:address'
+export const singleBoxPageBoxPath = '/box/'
