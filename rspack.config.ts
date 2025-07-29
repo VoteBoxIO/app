@@ -115,9 +115,9 @@ const config: Configuration = {
       'process.env': JSON.stringify(process.env),
       'process.env.RELEASE_DATE': JSON.stringify(formatDateTime()),
       'process.env.PUBLIC_PATH': JSON.stringify(PUBLIC_PATH),
-      'process.env.BOT_USERNAME': isDevelopment
-        ? 'dev_voteboxio_bot'
-        : 'test_voteboxio_bot',
+      'process.env.BOT_USERNAME': JSON.stringify(
+        isDevelopment ? 'dev_voteboxio_bot' : 'test_voteboxio_bot',
+      ),
     }),
   ].filter(Boolean),
   devServer: {
