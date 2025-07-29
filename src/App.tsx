@@ -46,70 +46,7 @@ import {
 import { SupportPage, supportPagePath } from './pages/SupportPage'
 import { parseStartParam } from './functions/parseStartParam'
 
-export const App: FC = () => {
-  const { basePath } = useAppContext()
-
-  return (
-    <BrowserRouter basename={basePath}>
-      <Telegram />
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route index path={indexPagePath} element={<IndexPage />} />
-          <Route path={pollTypePagePath} element={<PollTypePage />} />
-          <Route path={sandboxPagePath} element={<SandboxPage />} />
-          <Route path={howItWorksPagePath} element={<HowItWorksPage />} />
-          <Route path={faqPagePath} element={<FaqPage />} />
-          <Route path={supportPagePath} element={<SupportPage />} />
-          <Route
-            path={paymentMethodsPagePath}
-            element={<PaymentMethodsPage />}
-          />
-          <Route path={languagePagePath} element={<LanguagePage />} />
-          <Route
-            path={howToCreatePollPagePath}
-            element={<HowToCreatePollPage />}
-          />
-        </Route>
-
-        <Route element={<MainLayout background="transparent" />}>
-          <Route
-            path={myActiveBoxesPagePath}
-            element={<MyBoxesPage activeTab={BoxActivityType.Active} />}
-          />
-          <Route
-            path={myFinishedBoxesPagePath}
-            element={<MyBoxesPage activeTab={BoxActivityType.Finished} />}
-          />
-          <Route
-            path={myActiveVotesPagePath}
-            element={<MyVotesPage activeTab={BoxActivityType.Active} />}
-          />
-          <Route
-            path={myFinishedVotesPagePath}
-            element={<MyVotesPage activeTab={BoxActivityType.Finished} />}
-          />
-          <Route
-            path={createMoneyPoolPagePath}
-            element={<CreateMoneyPoolPage />}
-          />
-          <Route
-            path={activeBoxesMoneyPoolPagePath}
-            element={<ActiveBoxesPage activeTab={BoxTypeTab.MoneyPool} />}
-          />
-          <Route
-            path={activeBoxesAccessToContentPagePath}
-            element={<ActiveBoxesPage activeTab={BoxTypeTab.AccessToContent} />}
-          />
-          <Route path={singleBoxPagePath} element={<SingleBoxPage />} />
-        </Route>
-
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}
-
-const Telegram: FC = () => {
+const AppRoutes: FC = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -123,7 +60,70 @@ const Telegram: FC = () => {
     if (box) {
       navigate(`${singleBoxPageBoxPath}${box}`)
     }
-  }, [navigate])
+    // Оставить пустым
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  return null
+  return (
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route index path={indexPagePath} element={<IndexPage />} />
+        <Route path={pollTypePagePath} element={<PollTypePage />} />
+        <Route path={sandboxPagePath} element={<SandboxPage />} />
+        <Route path={howItWorksPagePath} element={<HowItWorksPage />} />
+        <Route path={faqPagePath} element={<FaqPage />} />
+        <Route path={supportPagePath} element={<SupportPage />} />
+        <Route path={paymentMethodsPagePath} element={<PaymentMethodsPage />} />
+        <Route path={languagePagePath} element={<LanguagePage />} />
+        <Route
+          path={howToCreatePollPagePath}
+          element={<HowToCreatePollPage />}
+        />
+      </Route>
+
+      <Route element={<MainLayout background="transparent" />}>
+        <Route
+          path={myActiveBoxesPagePath}
+          element={<MyBoxesPage activeTab={BoxActivityType.Active} />}
+        />
+        <Route
+          path={myFinishedBoxesPagePath}
+          element={<MyBoxesPage activeTab={BoxActivityType.Finished} />}
+        />
+        <Route
+          path={myActiveVotesPagePath}
+          element={<MyVotesPage activeTab={BoxActivityType.Active} />}
+        />
+        <Route
+          path={myFinishedVotesPagePath}
+          element={<MyVotesPage activeTab={BoxActivityType.Finished} />}
+        />
+        <Route
+          path={createMoneyPoolPagePath}
+          element={<CreateMoneyPoolPage />}
+        />
+        <Route
+          path={activeBoxesMoneyPoolPagePath}
+          element={<ActiveBoxesPage activeTab={BoxTypeTab.MoneyPool} />}
+        />
+        <Route
+          path={activeBoxesAccessToContentPagePath}
+          element={<ActiveBoxesPage activeTab={BoxTypeTab.AccessToContent} />}
+        />
+        <Route path={singleBoxPagePath} element={<SingleBoxPage />} />
+      </Route>
+
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  )
+}
+
+export const App: FC = () => {
+  const { basePath } = useAppContext()
+
+  return (
+    <BrowserRouter basename={basePath}>
+      <AppRoutes />
+    </BrowserRouter>
+  )
 }
