@@ -13,6 +13,9 @@ export const API_CONFIG = {
       getAll: '/boxes',
       getById: (id: string | number) => `/boxes/${id}`,
     },
+    users: {
+      create: '/users',
+    },
   },
 } as const
 

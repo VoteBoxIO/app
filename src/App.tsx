@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from 'react-router'
 import { useAppContext } from './App.context'
 import { BoxActivityType } from './constants'
 import { MainLayout } from './layout/MainLayout'
+import { useWalletConnection } from './hooks/useWalletConnection'
 import {
   activeBoxesAccessToContentPagePath,
   activeBoxesMoneyPoolPagePath,
@@ -48,6 +49,7 @@ import { parseStartParam } from './functions/parseStartParam'
 
 const AppRoutes: FC = () => {
   const navigate = useNavigate()
+  useWalletConnection()
 
   useEffect(() => {
     window.Telegram.WebApp.ready()
