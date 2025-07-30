@@ -1,7 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 
-export const ShareButton: FC<{ boxId: number }> = ({ boxId }) => {
-  const handleShareButtonClick = () => {
+export const ShareButton: FC<{ boxTitle: ReactNode; boxId: number }> = ({
+  boxTitle,
+  boxId,
+}) => {
+  const handleShareButtonClick = async () => {
     const BOT_USERNAME = process.env.BOT_USERNAME
     // У всех ботов задано одинаковое имя приложения
     const APP_NAME = 'votebox'
@@ -11,12 +14,36 @@ export const ShareButton: FC<{ boxId: number }> = ({ boxId }) => {
       return
     }
 
-    const deepLink = `t.me/${BOT_USERNAME}/${APP_NAME}?startapp=ref_123=box_${boxId}`
+    const deepLink = `https://t.me/${BOT_USERNAME}/${APP_NAME}?startapp=ref_123=box_${boxId}`
 
-    // copy url to clipboard
-    navigator.clipboard.writeText(deepLink)
-    // show a message to the user
-    alert('Link copied to clipboard!')
+    // Check if Web Share API is available (mobile browsers typically support this)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: typeof boxTitle === 'string' ? boxTitle : 'VoteBox Poll',
+          text: 'Check out this poll on VoteBox!',
+          url: deepLink,
+        })
+      } catch (error) {
+        // User cancelled the share dialog or an error occurred
+        console.log('Share cancelled or failed:', error)
+      }
+    } else {
+      // Fallback to clipboard copy for desktop or browsers without share support
+      try {
+        await navigator.clipboard.writeText(deepLink)
+        // Show a more subtle notification instead of alert
+        window.Telegram?.WebApp?.showPopup({
+          title: 'Link Copied!',
+          message: 'The link has been copied to your clipboard.',
+          buttons: [{ type: 'ok' }],
+        })
+      } catch (error) {
+        console.error('Failed to copy to clipboard:', error)
+        // Fallback to alert if Telegram WebApp is not available
+        alert('Link copied to clipboard!')
+      }
+    }
   }
 
   return (

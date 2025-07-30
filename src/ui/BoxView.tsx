@@ -36,7 +36,7 @@ export const BoxView: FC<{
         <TextInBubble>{expiration}</TextInBubble>
         <TextInBubble>{bid} TON</TextInBubble>
         <TextInBubble>{commission}</TextInBubble>
-        <ShareButton boxId={boxId} />
+        <ShareButton boxTitle={title} boxId={boxId} />
       </BoxInfo>
 
       <TitleAndSubtitle title={title} />

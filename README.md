@@ -59,3 +59,14 @@ npm run lexemes-compile
 ```
 
 This will update the compiled translations in the `compiled-lang` directory which are used by the application.
+
+# Building the Project:
+
+```bash
+ssh root@134.209.201.97
+su - vb_user
+cd apps/backend
+docker compose stop
+docker system prune -a
+docker-compose up --build
+```
